@@ -57,6 +57,9 @@ task_passed
 quality_score
 visible_chars
 total_cost
+cost_per_pass
+cost_variance
+flakiness_rate
 ```
 
 DeepSeek-specific:
@@ -88,6 +91,8 @@ retries <= original retries
 ```
 
 Use provider usage or provider-priced cost for the final verdict. Do not pass a test only because the visible answer is shorter.
+
+For non-deterministic tasks, run at least 3 trials when practical and record majority pass rate. Treat a variant as flaky when the same fixed conditions produce different pass/fail results, and do not promote a route on a single lucky pass.
 
 Strong pass:
 
