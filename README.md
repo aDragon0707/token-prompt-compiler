@@ -4,9 +4,9 @@
 
 Token Prompt Compiler turns messy human-language requests into token-efficient, machine-readable task packets for LLMs and agent systems.
 
-It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, Gemini CLI, DeepSeek, OpenAI Agents, or another LLM agent can execute with less wasted context.
+Think of it as a **pre-flight checklist for agents**: scope, evidence, verification, and stop rules before the model starts working.
 
-It is designed for agentic coding, research, writing, review, and multi-agent workflows where the real cost is not only model price, but also unclear scope, repeated context, unnecessary tool output, failed retries, and agent drift.
+It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, Gemini CLI, DeepSeek, OpenAI Agents, or another LLM agent can execute with less wasted context.
 
 ## Why
 
@@ -57,7 +57,80 @@ Token policy:
 Adapter notes:
 ```
 
+Short field guide:
+
+| Field | Meaning |
+|---|---|
+| `Why now` | The urgency or context for doing this task now |
+| `Read first` | The first 3-5 inputs the agent should inspect |
+| `Evidence required` | What proves the answer or completion |
+| `Stop rule` | When the agent should stop instead of drifting |
+| `Token policy` | How to avoid wasted context, logs, and output |
+| `Adapter notes` | Model-specific hints for Codex, Claude Code, Gemini, DeepSeek, or OpenAI Agents |
+
 For full field semantics, see [`SPEC.md`](SPEC.md) and [`references/spec.md`](references/spec.md).
+
+## Installation
+
+To use it as a Codex skill, clone this repository into your Codex skills directory.
+
+Windows:
+
+```powershell
+git clone https://github.com/aDragon0707/token-prompt-compiler.git C:\Users\<YOU>\.codex\skills\token-prompt-compiler
+```
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/aDragon0707/token-prompt-compiler.git ~/.codex/skills/token-prompt-compiler
+```
+
+Or copy the folder manually:
+
+```text
+token-prompt-compiler/
+  SKILL.md
+  agents/openai.yaml
+  references/
+```
+
+Restart Codex if the skill list does not refresh immediately.
+
+Minimum verification:
+
+```text
+Confirm that token-prompt-compiler appears in your skill list, or run the Example Trigger below.
+```
+
+To use it with another model, copy the `Machine Task Packet` format from this README or `SKILL.md` into that model's system/project instructions.
+
+## Example Trigger
+
+```text
+Use token-prompt-compiler to turn my request into a token-efficient machine-readable task packet, then execute it.
+
+[paste messy request here]
+```
+
+## How to Test Token Savings
+
+Use an A/B test:
+
+```text
+A: original human-language prompt
+B: compiled Machine Task Packet
+Fixed conditions: same model, same files, same reasoning effort, same output limit
+Measure: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_calls, files_read, retries, quality_score
+Pass rule: B saves at least 25% total tokens while quality drops by no more than 1 point
+```
+
+Start here:
+
+- [Basic English example](examples/basic.en.md)
+- [Basic Chinese example](examples/basic.zh.md)
+- [README A/B test](tests/small-task-ab-test.zh.md)
+- [A/B protocol](references/ab-test.md)
 
 ## Use Cases
 
@@ -80,6 +153,14 @@ The same packet can be adapted to different systems:
 | DeepSeek | stable prefix, JSON mode, cache-hit friendly repeated instructions |
 | OpenAI Agents | tools, handoffs, tracing, eval fields, structured outputs |
 
+## Design Principles
+
+- Less background, more boundaries.
+- Less narration, more evidence.
+- Less history, more current task state.
+- Less full logs, more paths and excerpts.
+- Less open-ended exploration, more stop rules.
+
 ## Related Work
 
 Token Prompt Compiler is closest to these families of tools, but sits one step earlier:
@@ -91,7 +172,7 @@ Token Prompt Compiler is closest to these families of tools, but sits one step e
 | TDD / multi-agent coding skills | Enforce test-first execution, subagent isolation, and implementation phases | Token Prompt Compiler prepares the task packet before execution so TDD workers read less context |
 | Token usage auditors | Measure token usage after runs and identify expensive workflows | Token Prompt Compiler reduces waste before the run by controlling scope, tool output, and stop rules |
 
-Useful references to study:
+Useful references:
 
 - Anthropic Agent Skills examples and spec: https://github.com/anthropics/skills
 - Claude Code skills documentation: https://code.claude.com/docs/en/skills
@@ -105,57 +186,19 @@ Internal references:
 - [`references/ab-test.md`](references/ab-test.md)
 - [`references/related-work.md`](references/related-work.md)
 
-## Installation
+## Encoding
 
-To use it as a Codex skill, clone this repository into your Codex skills directory:
-
-```powershell
-git clone https://github.com/aDragon0707/token-prompt-compiler.git C:\Users\<YOU>\.codex\skills\token-prompt-compiler
-```
-
-Or copy the folder manually:
-
-```text
-token-prompt-compiler/
-  SKILL.md
-  agents/openai.yaml
-```
-
-Restart Codex if the skill list does not refresh immediately.
-
-To use it with another model, copy the `Machine Task Packet` format from this README or `SKILL.md` into that model's system/project instructions.
-
-## Example Trigger
-
-```text
-Use token-prompt-compiler to turn my request into a token-efficient machine-readable task packet, then execute it.
-
-[paste messy request here]
-```
-
-## Design Principles
-
-- Less background, more boundaries.
-- Less narration, more evidence.
-- Less history, more current task state.
-- Less full logs, more paths and excerpts.
-- Less open-ended exploration, more stop rules.
+All Markdown files in this repository are intended to be UTF-8. If Chinese text appears garbled locally, reopen the file as UTF-8.
 
 ## 中文
 
 Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”，压缩成更省 token、更适合机器执行的任务包。
 
+它不是“压缩文字”，而是把人话需求编译成 agent 开工前的任务合同：范围、证据、验证方式和停止条件先写清楚，再让模型执行。
+
 它可以作为 Codex skill 使用，但核心思想不是只服务 Codex，而是服务所有 LLM / Agent 系统：Codex、Claude Code、Gemini CLI、DeepSeek、OpenAI Agents，或者你自己的 multi-agent runtime。
 
-它适合 AI 编程、研究整理、写作、审查、多 agent 协作等场景。它解决的不是“少写几个字”，而是减少这些真实浪费：
-
-- 任务边界不清，模型反复猜意图。
-- 上下文太长，模型反复读历史。
-- 工具输出太大，日志和 diff 直接塞进上下文。
-- 没有验收标准，导致多轮返工。
-- agent 自由探索，越做越偏。
-
-## 为什么做这个
+## 为什么
 
 省 token 的关键不是把 prompt 写短，而是把 prompt 写成可执行的任务合同。
 
@@ -164,6 +207,16 @@ Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”�
 ```text
 目标 -> 范围 -> 输入 -> 行动 -> 证据 -> 验证 -> 停止条件
 ```
+
+它减少的是这些真实浪费：
+
+- 任务边界不清，模型反复猜意图。
+- 上下文太长，模型反复读历史。
+- 工具输出太大，日志和 diff 直接塞进上下文。
+- 没有验收标准，导致多轮返工。
+- agent 自由探索，越做越偏。
+
+## 做什么
 
 它会把一句模糊的话：
 
@@ -182,15 +235,36 @@ Output format: Chinese memo under 800 words.
 Stop rule: Stop if required sources are unavailable.
 ```
 
-## 适合什么时候用
+## 输出格式
 
-- 你有一大段想法，但还没有变成任务。
-- 你想让 Codex / Claude / Gemini / DeepSeek 少读历史、少跑偏。
-- 你要把任务分给 worker agent。
-- 你希望每次任务都有证据、验收和停止条件。
-- 你要降低 token 消耗，但不想牺牲完成质量。
+```text
+Machine Task Packet
+Goal:
+Why now:
+Allowed scope:
+Read first:
+Do not touch:
+Actions:
+Evidence required:
+Verification:
+Output format:
+Stop rule:
+Token policy:
+Adapter notes:
+```
 
-## 使用方式
+几个不直观字段：
+
+| 字段 | 含义 |
+|---|---|
+| `Why now` | 为什么现在要做这件事 |
+| `Read first` | agent 最先应该读的 3-5 个入口 |
+| `Evidence required` | 什么证据能证明结论或完成状态 |
+| `Stop rule` | 什么时候必须停下，避免跑偏 |
+| `Token policy` | 怎么避免浪费上下文、日志和输出 |
+| `Adapter notes` | 针对 Codex、Claude Code、Gemini、DeepSeek、OpenAI Agents 的执行提示 |
+
+## 怎么用
 
 你可以这样对任何模型说：
 
@@ -199,6 +273,25 @@ Stop rule: Stop if required sources are unavailable.
 
 [粘贴你的自然语言需求]
 ```
+
+## 怎么测试
+
+用 A/B 测试：
+
+```text
+A: 原始人话 prompt
+B: 编译后的 Machine Task Packet
+固定条件：同一个模型、同一批文件、同一个 reasoning effort、同一个输出长度限制
+记录指标：input_tokens、cached_tokens、output_tokens、reasoning_tokens、tool_calls、files_read、retries、quality_score
+通过标准：B 至少减少 25% total tokens，并且质量下降不超过 1 分
+```
+
+快速入口：
+
+- [英文基础示例](examples/basic.en.md)
+- [中文基础示例](examples/basic.zh.md)
+- [README A/B 测试](tests/small-task-ab-test.zh.md)
+- [A/B 测试协议](references/ab-test.md)
 
 ## 模型适配
 
@@ -209,6 +302,14 @@ Stop rule: Stop if required sources are unavailable.
 | Gemini CLI | 明确文件范围、结构化输出、grounding |
 | DeepSeek | 稳定前缀、JSON mode、利于缓存命中的重复指令 |
 | OpenAI Agents | tools、handoff、trace、eval、structured outputs |
+
+## 设计原则
+
+- 少背景，多边界。
+- 少过程，多证据。
+- 少闲聊，多验收。
+- 少历史，多当前任务。
+- 少完整日志，多路径和摘要。
 
 ## 可参考的类似方向
 
@@ -221,21 +322,7 @@ Stop rule: Stop if required sources are unavailable.
 | TDD / 多 agent 编码技能 | 强制测试优先、subagent 隔离、分阶段实现 | 我们发生在执行前，让 TDD worker 少读上下文 |
 | Token usage auditor | 运行后统计 token，找最贵 workflow | 我们在运行前减少浪费：控制范围、工具输出和停止条件 |
 
-值得研究：
+## 编码说明
 
-- Anthropic Agent Skills examples and spec: https://github.com/anthropics/skills
-- Claude Code skills documentation: https://code.claude.com/docs/en/skills
-- Spec-driven development skills: https://terminalskills.io/skills/spec-driven-dev
-- GitHub token-efficiency workflow notes: https://github.blog/ai-and-ml/github-copilot/improving-token-efficiency-in-github-agentic-workflows/
+本仓库 Markdown 文件按 UTF-8 保存。如果你在本地看到中文乱码，请用 UTF-8 重新打开。
 
-## 核心判断
-
-好的 prompt 不是越短越好，而是：
-
-```text
-少背景，多边界；
-少过程，多证据；
-少闲聊，多验收；
-少历史，多当前任务；
-少完整日志，多路径和摘要。
-```
