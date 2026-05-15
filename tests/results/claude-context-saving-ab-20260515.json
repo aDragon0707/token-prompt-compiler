@@ -1,0 +1,334 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "context-saving-claim-review-v1",
+  "runner": "claude-code-cli",
+  "fixed_conditions": {
+    "runs": 1,
+    "order": "AB",
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": false,
+    "variant_input_files": {
+      "A": [
+        {
+          "label": "README.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+        },
+        {
+          "label": "SKILL.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+        },
+        {
+          "label": "references/ab-test.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+        },
+        {
+          "label": "references/api-ab-test.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+        },
+        {
+          "label": "tests/small-task-ab-test-v2.zh.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+        },
+        {
+          "label": "small evaluated result",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-local-ab-utf8-2026-05-15T10-08-11-338Z.evaluated.json"
+        },
+        {
+          "label": "large evaluated result",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-ab-20260515.evaluated.json"
+        },
+        {
+          "label": "large compact evaluated result",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-compact-ab-20260515.evaluated.json"
+        }
+      ],
+      "B": [
+        {
+          "label": "references/ab-test.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+        },
+        {
+          "label": "token-saving evidence receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-evidence-receipt.zh.md"
+        }
+      ]
+    },
+    "max_budget_usd": "1.20",
+    "input_files": [
+      {
+        "label": "README.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+      },
+      {
+        "label": "SKILL.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+      },
+      {
+        "label": "references/ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+      },
+      {
+        "label": "references/api-ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+      },
+      {
+        "label": "tests/small-task-ab-test-v2.zh.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+      },
+      {
+        "label": "small evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-local-ab-utf8-2026-05-15T10-08-11-338Z.evaluated.json"
+      },
+      {
+        "label": "large evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-ab-20260515.evaluated.json"
+      },
+      {
+        "label": "large compact evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-compact-ab-20260515.evaluated.json"
+      }
+    ]
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "variant_summaries": {
+    "A": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.49316,
+      "avg_input_tokens": 31289,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 4159,
+      "avg_output_chars": 6521
+    },
+    "B": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.03296,
+      "avg_input_tokens": 1129,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 377,
+      "avg_output_chars": 316
+    },
+    "token_cost_delta_pct_b_vs_a": -0.933166
+  },
+  "records": [
+    {
+      "run_id": "context-saving-claim-review-v1-a-1",
+      "task_id": "context-saving-claim-review-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "prompt_chars": 125663,
+      "output_chars": 6521,
+      "output_text": "# 诚实判断：token-prompt-compiler 现在到底能说什么、不能说什么\n\n## 一、直接结论\n\n**目前不能对外说\"省 token\"。一句都不能。** 三次独立 A/B 实测，B 组（Machine Task Packet）的 provider 总成本全部高于 A 组，质量分全部持平或更低，没有一次通过自己定义的 pass rule（B 总成本降低 ≥25%，质量下降 ≤1 分）。\n\n---\n\n## 二、三次实测数据一览\n\n### 测试 1：小任务 README Review\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| input_tokens | 3,534 | 3,757 (+6.3%) |\n| output_tokens | 2,546 | 2,376 (-6.7%) |\n| total_cost_usd | $0.102 | $0.127 (+24.1%) |\n| 质量分 (0-10) | 9 | 8 |\n\n**结论：B 更贵，质量更低。不通过。**\n\n### 测试 2：大任务协议审查（5 个文件，verbose 版）\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| input_tokens | 7,832 | 8,157 (+4.2%) |\n| output_tokens | 1,940 | 2,321 (+19.6%) |\n| total_cost_usd | $0.147 | $0.148 (+0.9%) |\n| 质量分 (0-10) | 8 | 7 |\n\n**结论：B 的输入和输出都更多，成本略高，质量更低。不通过。**\n\n### 测试 3：大任务协议审查（compact 版，故意压缩 B 的输出格式）\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| visible output chars | 3,096 | 410 (-86.8%) |\n| provider output_tokens | 2,138 | 3,106 (+45.3%) |\n| total_cost_usd | $0.142 | $0.168 (+18.0%) |\n| 质量分 (0-10) | 8 | 7 |\n\n**这个最关键：可见字数暴降 86.8%，但 provider 计费的 output_tokens 反而涨了 45.3%。** 肉眼看到的\"更短\"不等于真的更省 token。Claude Code 的底层 provider（DeepSeek）有自己的 token 计数方式，跟可见字符完全不挂钩。\n\n**三次测试，零次通过。不是接近通过，是方向反了——B 组每次都更贵。**\n\n---\n\n## 三、哪些话可以对外说（有依据的诚实表述）\n\n基于以上证据，以下说法站得住脚：\n\n### ✅ 可以说的\n\n1. **\"token-prompt-compiler 是一个任务编译协议，定义了 goal → scope → evidence → stop rule 的决策面结构。\"** —— 这是事实，SKILL.md 和 README.md 完整定义了这套结构。\n\n2. **\"项目的 A/B 测试方法论是扎实的。\"** —— `references/ab-test.md` 和 `references/api-ab-test.md` 定义了 input_tokens、cached_tokens、output_tokens、reasoning_tokens、quality_score 等完整测量维度，协议本身没有明显漏洞。V2 修正了 V1 的不公平设计（A 自由输出 vs B 强制 3 点），说明项目有自我纠错能力。\n\n3. **\"对于小任务、边界已经清楚的任务，Machine Task Packet 的 token 收益有限，甚至可能增加成本。\"** —— 这是项目自己在小任务测试文档里写的（`tests/small-task-ab-test-v2.zh.md` 末尾），而且三次实测都印证了这一点。\n\n4. **\"Machine Task Packet 可能改善 agent 的行为质量（更少的跑题、更稳定的格式遵守、更明确的验收），但行为改善不等于 token 成本降低。\"** —— 测试 1 的 manual evaluation 里写得很清楚：B 组格式更紧凑，但这没有转化为成本优势。\n\n5. **\"项目目前只有协议和设计，没有任何一次通过 pass rule 的实测数据。\"** —— 两次 large task 测试的评估者都下了同样的判断：\"协议和设计是扎实的，但数据是空的。\"\n\n### ❌ 不能说的\n\n1. **\"token-prompt-compiler 可以节省 25%+ tokens\"** —— 没有任何实测数据支持。三次测试 B 组全部更贵。\n\n2. **\"Machine Task Packet 比原始 prompt 更省 token\"** —— 反事实。三次测试全部相反。\n\n3. **\"编译后的任务包更 token-efficient\"** —— 尚未被证明。目前只能说是\"结构更清晰\"，不能说是\"更省 token\"。\n\n4. **README 里那张 A/B 结果表** —— 全空。在填进至少一行通过 pass rule 的真实数据之前，这张表不是证据，是负债。任何人翻到那里都会问\"你测过吗？\"\n\n5. **\"适用于多 agent / 复杂任务 / 长需求\"** —— 虽然逻辑上合理（项目自己反复论证复杂场景才是主场），但实测全部是在单文件或 5 文件只读场景下做的，没有任何多 agent 交接、需要工具调用、需要改代码的场景数据。这是声称和证据之间的最大缺口。\n\n---\n\n## 四、为什么 B 组每次都更贵（根因分析）\n\n三次测试揭示了一致的模式，不是偶然：\n\n### 根因 1：输入侧固定开销\n\nMachine Task Packet 本身有 200-400 tokens 的结构字段（Goal、Why now、Allowed scope、Read first、Do not touch、Actions、Evidence required、Verification、Output format、Stop rule、Token policy、Adapter notes）。这些在小任务上直接变成净增成本——因为原始人话已经够清楚了。\n\n### 根因 2：输出 paradox（测试 3 最明显）\n\n给模型一个结构化的输出格式要求（\"Each point: Issue / Why it matters / Smallest fix\"），模型会在内部生成更多的结构化 token（markdown 标题、列表符号、分隔线），即使肉眼看到的字数很短。测试 3 的 compact B 可见输出只有 410 字符，但 provider 计费的 output_tokens 是 3,106——比 A 组的 2,138 多 45.3%。**结构化格式不是免费的。**\n\n### 根因 3：Packet 没有硬预算\n\n三次测试的 Token policy 都写了\"under 450 words\"\"no extra sections\"等软约束，但没有一个真正限制了模型的输出长度。模型仍然可以自由决定输出多少。Stop rule 在无工具场景下几乎不起作用——模型读到 README 就能直接输出，stop rule 阻止不了它写长。\n\n### 根因 4：没有利用缓存\n\n三次测试 cache_read_input_tokens 全部为 0。Packet 的设计目标之一是\"static_prefix: reuse stable rules by reference\"，但当前测试是在独立窗口中跑 A 和 B，共享的只有 evidence block 里的文件内容，packet 的结构字段完全重复计算。cache-hit 收益为零。\n\n### 根因 5：Packet 本身不够短\n\n测试 2 的 B 组 packet 有 29,815 字符（含 shared evidence），比 A 组的 28,025 还多。测试 3 的 compact 版砍到了 28,538，但仍然没有比 A 组（28,025）明显更短。**Packet 增加了结构但没有减少总输入长度。** 原始人话 prompt 本身已经做了公平限制（\"只给 3 个点\"\"不要泛泛而谈\"），packet 的结构优势被抵消了。\n\n---\n\n## 五、怎么才能真的省 token（需要改什么）\n\n基于以上根因，要让 token-prompt-compiler 真的通过 pass rule，需要解决至少以下几个：\n\n### 1. Packet 本身必须极短\n\n当前的 packet 格式有 12+ 字段，每个字段一行。对于简单任务这是过度设计。需要分层：\n\n```text\nTiny packet（≤100 tokens）：Goal + Actions + Stop rule。只给 3 个字段。\nStandard packet（≤250 tokens）：加 Evidence、Output format。\nFull packet：只在复杂任务、多文件、多 agent 场景下展开全部字段。\n```\n\n目前的 packet 对小任务多给了 200+ tokens 的结构开销，这是 B 组输入总是更高的直接原因。\n\n### 2. 输出侧必须加硬限制\n\nToken policy 不是建议，是约束。必须从 prompt 层面做：\n\n```text\n不是写 \"under 450 words\"\n而是写 \"max_output_tokens: 200\"（如果 runtime 支持）\n或者 \"输出超过 300 字就停止，后面的内容不会被读取\"\n```\n\n需要让模型自己执行截断逻辑。\n\n### 3. 测试真正需要 stop rule 的场景\n\n当前所有测试都是\"只读一个/几个文件，不编辑，不联网，只输出分析结果\"。在这种场景下 stop rule 几乎是空的——模型读文件、输出、结束，没有机会跑偏。\n\n真正能体现 stop rule 价值的场景是：\n- **有工具调用的任务**：模型可能反复读文件、搜索、改代码。stop rule 阻止它乱翻。\n- **多步任务**：模型可能做完一步后自己加戏。stop rule 叫停。\n- **信息缺失场景**：文件找不到或信息不足时，stop rule 让模型果断停止而不是猜测。\n\n没有工具 = stop rule 无效 = packet 的一个核心字段白加了。\n\n### 4. 利用缓存\n\npackage 的 static 部分（Goal、Allowed scope、Token policy、Stop rule）应该在多次调用间复用。如果同一个 agent 执行 10 个任务，这些字段只计费一次。当前测试每次都是独立调用，缓存收益为零。\n\n### 5. 用 cheap model 做 extraction，strong model 做 judgment\n\n这是 SKILL.md 里 Token policy 自己写的建议（\"cheap model for extraction, strong model for final judgment\"），但三次测试都没有这样做——全部是同一个 strong model 从头做到尾。\n\n---\n\n## 六、下一步该怎么测\n\n按优先级从高到低：\n\n### 🔴 优先级 1：跑一个有工具调用的任务 A/B\n\n这是最大的证据缺口。设计一个场景：\n\n```text\n任务：修改项目中 3 个文件的某个小功能\n条件：同一个模型，同一个工具集（读文件、写文件、搜索）\nA 组：原始人话（\"帮我改一下 XXX，别搞坏其他东西\"）\nB 组：Machine Task Packet（明确文件范围、禁止碰其他文件、每次改完验证）\n记录：input_tokens, output_tokens, tool_calls, files_read, files_modified, retries, quality\n```\n\n这个测试的核心假设是：**B 组的 stop rule 和 scope 限制能减少不必要的 tool_calls 和文件读取**。如果这个假设成立，B 组可能真正省钱。如果连这个场景 B 组都不省钱，那需要重新设计 packet 本身。\n\n### 🟡 优先级 2：重新设计 packet 长度\n\n针对不同复杂度做分层：\n\n```text\nTiny（≤3 actions，单文件）：Goal + Actions + Stop rule，≤80 tokens\nMedium（3-5 actions，多文件）：加 Scope + Evidence + Output format，≤200 tokens\nLarge（多 agent，长需求）：展开全部字段，≤400 tokens\n```\n\n然后测 tiny packet vs 原始人话在小任务上是否能至少打平。\n\n### 🟡 优先级 3：填 README 的结果表\n\n即使当前数据全是 fail，也应该填进去。空表比\"诚实记录了三组 fail 数据\"更伤可信度。\n\n填法：\n\n| Variant | input | output | total cost | quality | pass |\n|---|---:|---:|---:|---:|---|\n| A original (small README review) | 3,534 | 2,546 | $0.102 | 9 | — |\n| B packet (small README review) | 3,757 | 2,376 | $0.127 | 8 | ❌ |\n| A original (large protocol review) | 7,832 | 1,940 | $0.147 | 8 | — |\n| B packet (large protocol review) | 8,157 | 2,321 | $0.148 | 7 | ❌ |\n\n并在旁边注明：\"当前所有测试均为只读分析任务，无工具调用。task packet 在此类场景下未显示 token 节省。下一步测试将覆盖有工具调用的复杂任务。\"\n\n### 🟢 优先级 4：跑一次 API 级 A/B（带缓存）\n\n用 `references/api-ab-test.md` 的 schema，跑至少 3 轮 AB/BA。记录真实的 prompt_cache_hit_tokens（DeepSeek）或 cached_tokens（OpenAI）。验证缓存是否能摊平 packet 的结构开销。\n\n---\n\n## 七、一句话总结\n\n**token-prompt-compiler 的协议设计是诚实的，但省 token 的证据是零。** 三次实测全部指向相反方向——B 组更贵。这不是方向错了，而是当前测试场景（只读、无工具、无缓存、packet 太长）根本不是 packet 能发挥价值的场景。下一步不是继续在 README review 上做 A/B，是去测真正有工具调用、有跑偏风险、有缓存复用价值的复杂任务——并且在 packet 本身做极简化。在那之前，\"省 token\"三个字一个字都不要写出去。",
+      "total_cost_usd": 0.49316,
+      "duration_ms": 111049,
+      "usage": {
+        "input_tokens": 31289,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 4159,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 31433,
+          "outputTokens": 3023,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.23274,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 31289,
+          "outputTokens": 4159,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.26042,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 111049,
+        "duration_api_ms": 152360,
+        "ttft_ms": 33269,
+        "num_turns": 1,
+        "result": "# 诚实判断：token-prompt-compiler 现在到底能说什么、不能说什么\n\n## 一、直接结论\n\n**目前不能对外说\"省 token\"。一句都不能。** 三次独立 A/B 实测，B 组（Machine Task Packet）的 provider 总成本全部高于 A 组，质量分全部持平或更低，没有一次通过自己定义的 pass rule（B 总成本降低 ≥25%，质量下降 ≤1 分）。\n\n---\n\n## 二、三次实测数据一览\n\n### 测试 1：小任务 README Review\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| input_tokens | 3,534 | 3,757 (+6.3%) |\n| output_tokens | 2,546 | 2,376 (-6.7%) |\n| total_cost_usd | $0.102 | $0.127 (+24.1%) |\n| 质量分 (0-10) | 9 | 8 |\n\n**结论：B 更贵，质量更低。不通过。**\n\n### 测试 2：大任务协议审查（5 个文件，verbose 版）\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| input_tokens | 7,832 | 8,157 (+4.2%) |\n| output_tokens | 1,940 | 2,321 (+19.6%) |\n| total_cost_usd | $0.147 | $0.148 (+0.9%) |\n| 质量分 (0-10) | 8 | 7 |\n\n**结论：B 的输入和输出都更多，成本略高，质量更低。不通过。**\n\n### 测试 3：大任务协议审查（compact 版，故意压缩 B 的输出格式）\n\n| 指标 | A 原始人话 | B Machine Task Packet |\n|---|---|---:|\n| visible output chars | 3,096 | 410 (-86.8%) |\n| provider output_tokens | 2,138 | 3,106 (+45.3%) |\n| total_cost_usd | $0.142 | $0.168 (+18.0%) |\n| 质量分 (0-10) | 8 | 7 |\n\n**这个最关键：可见字数暴降 86.8%，但 provider 计费的 output_tokens 反而涨了 45.3%。** 肉眼看到的\"更短\"不等于真的更省 token。Claude Code 的底层 provider（DeepSeek）有自己的 token 计数方式，跟可见字符完全不挂钩。\n\n**三次测试，零次通过。不是接近通过，是方向反了——B 组每次都更贵。**\n\n---\n\n## 三、哪些话可以对外说（有依据的诚实表述）\n\n基于以上证据，以下说法站得住脚：\n\n### ✅ 可以说的\n\n1. **\"token-prompt-compiler 是一个任务编译协议，定义了 goal → scope → evidence → stop rule 的决策面结构。\"** —— 这是事实，SKILL.md 和 README.md 完整定义了这套结构。\n\n2. **\"项目的 A/B 测试方法论是扎实的。\"** —— `references/ab-test.md` 和 `references/api-ab-test.md` 定义了 input_tokens、cached_tokens、output_tokens、reasoning_tokens、quality_score 等完整测量维度，协议本身没有明显漏洞。V2 修正了 V1 的不公平设计（A 自由输出 vs B 强制 3 点），说明项目有自我纠错能力。\n\n3. **\"对于小任务、边界已经清楚的任务，Machine Task Packet 的 token 收益有限，甚至可能增加成本。\"** —— 这是项目自己在小任务测试文档里写的（`tests/small-task-ab-test-v2.zh.md` 末尾），而且三次实测都印证了这一点。\n\n4. **\"Machine Task Packet 可能改善 agent 的行为质量（更少的跑题、更稳定的格式遵守、更明确的验收），但行为改善不等于 token 成本降低。\"** —— 测试 1 的 manual evaluation 里写得很清楚：B 组格式更紧凑，但这没有转化为成本优势。\n\n5. **\"项目目前只有协议和设计，没有任何一次通过 pass rule 的实测数据。\"** —— 两次 large task 测试的评估者都下了同样的判断：\"协议和设计是扎实的，但数据是空的。\"\n\n### ❌ 不能说的\n\n1. **\"token-prompt-compiler 可以节省 25%+ tokens\"** —— 没有任何实测数据支持。三次测试 B 组全部更贵。\n\n2. **\"Machine Task Packet 比原始 prompt 更省 token\"** —— 反事实。三次测试全部相反。\n\n3. **\"编译后的任务包更 token-efficient\"** —— 尚未被证明。目前只能说是\"结构更清晰\"，不能说是\"更省 token\"。\n\n4. **README 里那张 A/B 结果表** —— 全空。在填进至少一行通过 pass rule 的真实数据之前，这张表不是证据，是负债。任何人翻到那里都会问\"你测过吗？\"\n\n5. **\"适用于多 agent / 复杂任务 / 长需求\"** —— 虽然逻辑上合理（项目自己反复论证复杂场景才是主场），但实测全部是在单文件或 5 文件只读场景下做的，没有任何多 agent 交接、需要工具调用、需要改代码的场景数据。这是声称和证据之间的最大缺口。\n\n---\n\n## 四、为什么 B 组每次都更贵（根因分析）\n\n三次测试揭示了一致的模式，不是偶然：\n\n### 根因 1：输入侧固定开销\n\nMachine Task Packet 本身有 200-400 tokens 的结构字段（Goal、Why now、Allowed scope、Read first、Do not touch、Actions、Evidence required、Verification、Output format、Stop rule、Token policy、Adapter notes）。这些在小任务上直接变成净增成本——因为原始人话已经够清楚了。\n\n### 根因 2：输出 paradox（测试 3 最明显）\n\n给模型一个结构化的输出格式要求（\"Each point: Issue / Why it matters / Smallest fix\"），模型会在内部生成更多的结构化 token（markdown 标题、列表符号、分隔线），即使肉眼看到的字数很短。测试 3 的 compact B 可见输出只有 410 字符，但 provider 计费的 output_tokens 是 3,106——比 A 组的 2,138 多 45.3%。**结构化格式不是免费的。**\n\n### 根因 3：Packet 没有硬预算\n\n三次测试的 Token policy 都写了\"under 450 words\"\"no extra sections\"等软约束，但没有一个真正限制了模型的输出长度。模型仍然可以自由决定输出多少。Stop rule 在无工具场景下几乎不起作用——模型读到 README 就能直接输出，stop rule 阻止不了它写长。\n\n### 根因 4：没有利用缓存\n\n三次测试 cache_read_input_tokens 全部为 0。Packet 的设计目标之一是\"static_prefix: reuse stable rules by reference\"，但当前测试是在独立窗口中跑 A 和 B，共享的只有 evidence block 里的文件内容，packet 的结构字段完全重复计算。cache-hit 收益为零。\n\n### 根因 5：Packet 本身不够短\n\n测试 2 的 B 组 packet 有 29,815 字符（含 shared evidence），比 A 组的 28,025 还多。测试 3 的 compact 版砍到了 28,538，但仍然没有比 A 组（28,025）明显更短。**Packet 增加了结构但没有减少总输入长度。** 原始人话 prompt 本身已经做了公平限制（\"只给 3 个点\"\"不要泛泛而谈\"），packet 的结构优势被抵消了。\n\n---\n\n## 五、怎么才能真的省 token（需要改什么）\n\n基于以上根因，要让 token-prompt-compiler 真的通过 pass rule，需要解决至少以下几个：\n\n### 1. Packet 本身必须极短\n\n当前的 packet 格式有 12+ 字段，每个字段一行。对于简单任务这是过度设计。需要分层：\n\n```text\nTiny packet（≤100 tokens）：Goal + Actions + Stop rule。只给 3 个字段。\nStandard packet（≤250 tokens）：加 Evidence、Output format。\nFull packet：只在复杂任务、多文件、多 agent 场景下展开全部字段。\n```\n\n目前的 packet 对小任务多给了 200+ tokens 的结构开销，这是 B 组输入总是更高的直接原因。\n\n### 2. 输出侧必须加硬限制\n\nToken policy 不是建议，是约束。必须从 prompt 层面做：\n\n```text\n不是写 \"under 450 words\"\n而是写 \"max_output_tokens: 200\"（如果 runtime 支持）\n或者 \"输出超过 300 字就停止，后面的内容不会被读取\"\n```\n\n需要让模型自己执行截断逻辑。\n\n### 3. 测试真正需要 stop rule 的场景\n\n当前所有测试都是\"只读一个/几个文件，不编辑，不联网，只输出分析结果\"。在这种场景下 stop rule 几乎是空的——模型读文件、输出、结束，没有机会跑偏。\n\n真正能体现 stop rule 价值的场景是：\n- **有工具调用的任务**：模型可能反复读文件、搜索、改代码。stop rule 阻止它乱翻。\n- **多步任务**：模型可能做完一步后自己加戏。stop rule 叫停。\n- **信息缺失场景**：文件找不到或信息不足时，stop rule 让模型果断停止而不是猜测。\n\n没有工具 = stop rule 无效 = packet 的一个核心字段白加了。\n\n### 4. 利用缓存\n\npackage 的 static 部分（Goal、Allowed scope、Token policy、Stop rule）应该在多次调用间复用。如果同一个 agent 执行 10 个任务，这些字段只计费一次。当前测试每次都是独立调用，缓存收益为零。\n\n### 5. 用 cheap model 做 extraction，strong model 做 judgment\n\n这是 SKILL.md 里 Token policy 自己写的建议（\"cheap model for extraction, strong model for final judgment\"），但三次测试都没有这样做——全部是同一个 strong model 从头做到尾。\n\n---\n\n## 六、下一步该怎么测\n\n按优先级从高到低：\n\n### 🔴 优先级 1：跑一个有工具调用的任务 A/B\n\n这是最大的证据缺口。设计一个场景：\n\n```text\n任务：修改项目中 3 个文件的某个小功能\n条件：同一个模型，同一个工具集（读文件、写文件、搜索）\nA 组：原始人话（\"帮我改一下 XXX，别搞坏其他东西\"）\nB 组：Machine Task Packet（明确文件范围、禁止碰其他文件、每次改完验证）\n记录：input_tokens, output_tokens, tool_calls, files_read, files_modified, retries, quality\n```\n\n这个测试的核心假设是：**B 组的 stop rule 和 scope 限制能减少不必要的 tool_calls 和文件读取**。如果这个假设成立，B 组可能真正省钱。如果连这个场景 B 组都不省钱，那需要重新设计 packet 本身。\n\n### 🟡 优先级 2：重新设计 packet 长度\n\n针对不同复杂度做分层：\n\n```text\nTiny（≤3 actions，单文件）：Goal + Actions + Stop rule，≤80 tokens\nMedium（3-5 actions，多文件）：加 Scope + Evidence + Output format，≤200 tokens\nLarge（多 agent，长需求）：展开全部字段，≤400 tokens\n```\n\n然后测 tiny packet vs 原始人话在小任务上是否能至少打平。\n\n### 🟡 优先级 3：填 README 的结果表\n\n即使当前数据全是 fail，也应该填进去。空表比\"诚实记录了三组 fail 数据\"更伤可信度。\n\n填法：\n\n| Variant | input | output | total cost | quality | pass |\n|---|---:|---:|---:|---:|---|\n| A original (small README review) | 3,534 | 2,546 | $0.102 | 9 | — |\n| B packet (small README review) | 3,757 | 2,376 | $0.127 | 8 | ❌ |\n| A original (large protocol review) | 7,832 | 1,940 | $0.147 | 8 | — |\n| B packet (large protocol review) | 8,157 | 2,321 | $0.148 | 7 | ❌ |\n\n并在旁边注明：\"当前所有测试均为只读分析任务，无工具调用。task packet 在此类场景下未显示 token 节省。下一步测试将覆盖有工具调用的复杂任务。\"\n\n### 🟢 优先级 4：跑一次 API 级 A/B（带缓存）\n\n用 `references/api-ab-test.md` 的 schema，跑至少 3 轮 AB/BA。记录真实的 prompt_cache_hit_tokens（DeepSeek）或 cached_tokens（OpenAI）。验证缓存是否能摊平 packet 的结构开销。\n\n---\n\n## 七、一句话总结\n\n**token-prompt-compiler 的协议设计是诚实的，但省 token 的证据是零。** 三次实测全部指向相反方向——B 组更贵。这不是方向错了，而是当前测试场景（只读、无工具、无缓存、packet 太长）根本不是 packet 能发挥价值的场景。下一步不是继续在 README review 上做 A/B，是去测真正有工具调用、有跑偏风险、有缓存复用价值的复杂任务——并且在 packet 本身做极简化。在那之前，\"省 token\"三个字一个字都不要写出去。",
+        "stop_reason": "end_turn",
+        "session_id": "45dd4ed0-46a2-484a-ae45-70e27c02fcd4",
+        "total_cost_usd": 0.49316,
+        "usage": {
+          "input_tokens": 31289,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 4159,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 31433,
+            "outputTokens": 3023,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.23274,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 31289,
+            "outputTokens": 4159,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.26042,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "148e1b6b-f95b-4c7c-997c-65d8e7e526b8"
+      }
+    },
+    {
+      "run_id": "context-saving-claim-review-v1-b-1",
+      "task_id": "context-saving-claim-review-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "prompt_chars": 3685,
+      "output_chars": 316,
+      "output_text": "1. 安全声明：机器任务包可改善任务边界清晰度、证据纪律与验收检查，但质量评分须与代币节省分开衡量，不可混为一谈。\n2. 不安全声明：机器任务包已被证明能降低供应商代币成本——本地测试未通过≥25%总成本节省规则，不得宣称。\n3. 既往测试未节省成本的原因：可见输出变短不等于供应商端计费代币变少，output_tokens 和 total_cost_usd 均可能反向上升；全量上下文（完整文档与日志）进入提示词抵销了包体精简带来的空间。\n4. 下一步代币节省测试：A 侧保持宽上下文全量文档，B 侧仅注入本精简证据收据与 pass-rule 协议，其余日志和参考文件保留在磁盘根据需要读取，以总成本（非提示词长度）判定是否达标。",
+      "total_cost_usd": 0.03296,
+      "duration_ms": 13325,
+      "usage": {
+        "input_tokens": 1129,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 377,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 1273,
+          "outputTokens": 461,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01789,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 1129,
+          "outputTokens": 377,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01507,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 13325,
+        "duration_api_ms": 18743,
+        "ttft_ms": 6888,
+        "num_turns": 1,
+        "result": "1. 安全声明：机器任务包可改善任务边界清晰度、证据纪律与验收检查，但质量评分须与代币节省分开衡量，不可混为一谈。\n2. 不安全声明：机器任务包已被证明能降低供应商代币成本——本地测试未通过≥25%总成本节省规则，不得宣称。\n3. 既往测试未节省成本的原因：可见输出变短不等于供应商端计费代币变少，output_tokens 和 total_cost_usd 均可能反向上升；全量上下文（完整文档与日志）进入提示词抵销了包体精简带来的空间。\n4. 下一步代币节省测试：A 侧保持宽上下文全量文档，B 侧仅注入本精简证据收据与 pass-rule 协议，其余日志和参考文件保留在磁盘根据需要读取，以总成本（非提示词长度）判定是否达标。",
+        "stop_reason": "end_turn",
+        "session_id": "1382df5b-5c6d-40a1-a0b8-7317effb2e84",
+        "total_cost_usd": 0.03296,
+        "usage": {
+          "input_tokens": 1129,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 377,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 1273,
+            "outputTokens": 461,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.01789,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 1129,
+            "outputTokens": 377,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.01507,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "176e0efd-394c-4197-aea4-ad3e3b81806d"
+      }
+    }
+  ]
+}

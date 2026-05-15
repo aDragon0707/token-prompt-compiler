@@ -15,6 +15,15 @@ B = compiled Machine Task Packet
 
 Test only one variable at a time.
 
+For context-saving tests:
+
+```text
+A = broad context, full documents, full logs
+B = compact evidence receipt + minimum task packet + paths to full logs
+```
+
+This is the main mechanism to test when the claim is token reduction. A packet that reads the same full evidence as the original prompt may improve behavior without reducing cost.
+
 ## Fixed Conditions
 
 Keep these unchanged:
@@ -46,6 +55,8 @@ retries
 wall_time_sec
 task_passed
 quality_score
+visible_chars
+total_cost
 ```
 
 DeepSeek-specific:
@@ -76,6 +87,8 @@ task_passed = true
 retries <= original retries
 ```
 
+Use provider usage or provider-priced cost for the final verdict. Do not pass a test only because the visible answer is shorter.
+
 Strong pass:
 
 ```text
@@ -85,3 +98,22 @@ retries < original retries
 evidence quality unchanged or better
 ```
 
+## Claim Boundary
+
+Safe claim after a passing context-saving test:
+
+```text
+Compiled task packets can reduce total cost when they replace broad context with a compact evidence receipt and minimum task contract.
+```
+
+Unsafe claim without provider usage evidence:
+
+```text
+Machine Task Packets always save tokens.
+```
+
+Known caveat:
+
+```text
+Small, already-scoped tasks may spend more input tokens on packet structure than they save in output or retries.
+```

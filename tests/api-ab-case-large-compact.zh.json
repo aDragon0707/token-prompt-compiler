@@ -1,0 +1,40 @@
+{
+  "task_id": "large-protocol-readiness-review-compact-v1",
+  "static_prefix": "Use only the shared evidence. No web. No edits. Judge quality and token/cost separately. Prefer compact, executable conclusions over essay prose.",
+  "input_files": [
+    {
+      "label": "README.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+    },
+    {
+      "label": "SKILL.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+    },
+    {
+      "label": "references/ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+    },
+    {
+      "label": "references/api-ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+    },
+    {
+      "label": "tests/small-task-ab-test-v2.zh.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+    }
+  ],
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: answers whether the project is ready to claim token savings",
+      "2 points: separates behavior quality from token/cost evidence",
+      "2 points: cites or names specific evidence from the provided files",
+      "2 points: gives a concrete next test plan with pass/fail rules",
+      "2 points: concise enough to execute without broad strategy drift"
+    ]
+  },
+  "variants": {
+    "A": "你帮我认真看一下上面这些 token-prompt-compiler 项目材料，判断这个项目现在能不能对外说“它真的省 token”。我不想要泛泛的 prompt engineering 讨论，也不要只是说 task packet 更整齐。请你基于这些材料做一个可执行的判断：现在已经有什么证据、还缺什么证据、下一步应该怎么测、什么情况下算通过、什么情况下不能通过。顺便指出文档或测试协议里最需要补的一两个地方。回答用中文，别改文件，别联网，尽量直接给我能拿去做下一步的结论。",
+    "B": "Task: judge if token-prompt-compiler can publicly claim real token savings.\nScope: only the shared evidence above. No web. No edits.\nMust separate:\n- behavior_quality_evidence\n- token_cost_evidence\nMust mention:\n- task packets may increase input tokens on small tasks\n- total cost matters, not prompt length\n- quality_score is separate from token saving\nOutput exactly 5 sections, max 650 Chinese characters total:\n1. Verdict: ready_to_claim | narrow_claim_only | not_ready, plus one sentence.\n2. Evidence: 2 bullets max, cite file names.\n3. Missing: usage fields/status in one compact line.\n4. Next Test: fixed conditions + metrics in 3 bullets max.\n5. Pass Rule: one pass line, one fail line.\nStop: no table, no quotes, no summary, no extra section."
+  }
+}

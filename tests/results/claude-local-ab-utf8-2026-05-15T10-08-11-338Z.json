@@ -1,0 +1,237 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "readme-small-review-api-ab-v1",
+  "runner": "claude-code-cli-via-node-utf8-stdin",
+  "fixed_conditions": {
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": true,
+    "input_file": "D:\\GitHub\\token-prompt-compiler\\README.md"
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "records": [
+    {
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "output_text": "以下是针对 README.md 的三个最重要的小改进建议：\n\n---\n\n**建议一：中文部分缺少安装说明**\n\n- **问题**：英文部分有完整的 Installation 小节，包含 Windows/macOS/Linux 的 `git clone` 命令和所需文件清单；中文部分完全没有这些内容，\"怎么用\"只给了一句 prompt 模板就跳过了。\n- **为什么重要**：中文用户读完后不知道如何把项目安装为 Codex skill，等于断了 onboarding 路径。\n- **最小修改**：在中文\"怎么用\"小节开头补两行：\n\n  ```markdown\n  Windows:\n  git clone https://github.com/aDragon0707/token-prompt-compiler.git C:\\Users\\<YOU>\\.codex\\skills\\token-prompt-compiler\n\n  macOS / Linux:\n  git clone https://github.com/aDragon0707/token-prompt-compiler.git ~/.codex/skills/token-prompt-compiler\n  ```\n\n---\n\n**建议二：字段解释表标题有歧义，容易让人以为遗漏了一半字段**\n\n- **问题**：输出格式有 12 个字段，但下面的表格只解释了 6 个。英文标题是 \"Short field guide:\"，读起来像\"这是完整字段指南的缩略版\"而非\"这里只列不直观字段\"；中文标题\"几个不直观字段\"准确，但英文对不上。\n- **为什么重要**：读者可能以为 Goal、Allowed scope、Actions 等字段也需要查阅外部文档才能理解，增加不必要的查找成本。\n- **最小修改**：把英文表头改为 `Non-obvious fields:`，并在表后加一行小字：\n\n  ```markdown\n  Remaining fields (Goal, Allowed scope, Actions, Verification, Output format, Do not touch) are self-explanatory. Full semantics: [SPEC.md](SPEC.md).\n  ```\n\n---\n\n**建议三：A/B 测试结果表完全空白，看起来像文档损坏**\n\n- **问题**：测试结果表的每个单元格都为空，没有任何占位符或说明这是\"待填写模板\"。新读者扫到一张全空的复杂表格，第一反应是\"数据丢了\"或\"还没测过\"。\n- **为什么重要**：这个表是项目证明自己\"真的省 token\"的核心证据入口。一张空表直接削弱可信度。\n- **最小修改**：在第一行数据行的每个单元格填 `—`，或在表上方加一行：\n\n  ```markdown\n  *（将你的测试数据填入下表 / Fill in your results below）*\n  ```\n\n---\n\n三个改动加起来不超过 10 行，但能显著改善\"读得懂\"和\"测得动\"两个关键体验。",
+      "usage": {
+        "input_tokens": 3534,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 2546,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "total_cost_usd": 0.102385,
+      "duration_ms": 80008,
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 3678,
+          "outputTokens": 107,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.021065,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 3534,
+          "outputTokens": 2546,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.08132,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 80008,
+        "duration_api_ms": 82094,
+        "ttft_ms": 62354,
+        "num_turns": 1,
+        "result": "以下是针对 README.md 的三个最重要的小改进建议：\n\n---\n\n**建议一：中文部分缺少安装说明**\n\n- **问题**：英文部分有完整的 Installation 小节，包含 Windows/macOS/Linux 的 `git clone` 命令和所需文件清单；中文部分完全没有这些内容，\"怎么用\"只给了一句 prompt 模板就跳过了。\n- **为什么重要**：中文用户读完后不知道如何把项目安装为 Codex skill，等于断了 onboarding 路径。\n- **最小修改**：在中文\"怎么用\"小节开头补两行：\n\n  ```markdown\n  Windows:\n  git clone https://github.com/aDragon0707/token-prompt-compiler.git C:\\Users\\<YOU>\\.codex\\skills\\token-prompt-compiler\n\n  macOS / Linux:\n  git clone https://github.com/aDragon0707/token-prompt-compiler.git ~/.codex/skills/token-prompt-compiler\n  ```\n\n---\n\n**建议二：字段解释表标题有歧义，容易让人以为遗漏了一半字段**\n\n- **问题**：输出格式有 12 个字段，但下面的表格只解释了 6 个。英文标题是 \"Short field guide:\"，读起来像\"这是完整字段指南的缩略版\"而非\"这里只列不直观字段\"；中文标题\"几个不直观字段\"准确，但英文对不上。\n- **为什么重要**：读者可能以为 Goal、Allowed scope、Actions 等字段也需要查阅外部文档才能理解，增加不必要的查找成本。\n- **最小修改**：把英文表头改为 `Non-obvious fields:`，并在表后加一行小字：\n\n  ```markdown\n  Remaining fields (Goal, Allowed scope, Actions, Verification, Output format, Do not touch) are self-explanatory. Full semantics: [SPEC.md](SPEC.md).\n  ```\n\n---\n\n**建议三：A/B 测试结果表完全空白，看起来像文档损坏**\n\n- **问题**：测试结果表的每个单元格都为空，没有任何占位符或说明这是\"待填写模板\"。新读者扫到一张全空的复杂表格，第一反应是\"数据丢了\"或\"还没测过\"。\n- **为什么重要**：这个表是项目证明自己\"真的省 token\"的核心证据入口。一张空表直接削弱可信度。\n- **最小修改**：在第一行数据行的每个单元格填 `—`，或在表上方加一行：\n\n  ```markdown\n  *（将你的测试数据填入下表 / Fill in your results below）*\n  ```\n\n---\n\n三个改动加起来不超过 10 行，但能显著改善\"读得懂\"和\"测得动\"两个关键体验。",
+        "stop_reason": "end_turn",
+        "session_id": "558b91c2-f179-4518-b0ef-8eb744014eb2",
+        "total_cost_usd": 0.102385,
+        "usage": {
+          "input_tokens": 3534,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 2546,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 3678,
+            "outputTokens": 107,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.021065,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 3534,
+            "outputTokens": 2546,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.08132,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "e67a2dad-0728-4c21-aeea-b99ff3d1128a"
+      }
+    },
+    {
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "output_text": "## README.md 审查：3 个改进点\n\n---\n\n**改进点 1 — 字段指南表头不够明确**\n\n- **Issue**：英文表头 \"Short field guide\" 未说明该表只覆盖不直观字段；中文版写的是 \"几个不直观字段\"，表达更准确。\n- **Why it matters**：新用户可能以为表中 6 个字段就是全部字段，实际上输出格式有 14 个字段（Goal、Actions、Verification 等 8 个未在表中解释）。这会让用户在首次使用时困惑——\"剩下那些字段是什么意思？\"\n- **Smallest fix**：英文表头改为 **\"Short field guide (non-obvious fields only)\"**，表下方加一行：*\"For all 14 fields, see [SPEC.md](SPEC.md).\"*\n\n---\n\n**改进点 2 — A/B 测试缺少质量评分标准**\n\n- **Issue**：A/B 测试协议定义了 `quality_score` 为 1–5 分，但没有提供任何评分 rubric。\"可复现评分\"实际上不可复现——不同评审员对同一个输出可能打出不同分数。\n- **Why it matters**：项目核心卖点是 \"可验证的 token 节省\"，但评分缺标准会削弱测试可信度。用户想自己跑 A/B 测试时，会因不知如何打分而放弃，降低项目被实际测试和采纳的概率。\n- **Smallest fix**：在 \"Reproducible scoring\" 代码块后加一行：*\"quality_score: 1=task not completed, 2=major errors, 3=completed with minor issues, 4=completed well, 5=completed perfectly. Full rubric: [A/B test protocol](references/ab-test.md).\"*\n\n---\n\n**改进点 3 — 安装验证只覆盖 Codex 用户**\n\n- **Issue**：安装后验证只写了一句 \"Confirm that token-prompt-compiler appears in your skill list\"，这对 Claude Code、Gemini CLI、DeepSeek 等用户完全无效。\n- **Why it matters**：README 在开头即声明项目是 model-agnostic，但验证步骤却 Codex-only。非 Codex 用户可能跳过验证，或不知道如何确认安装成功，影响跨系统可用性。\n- **Smallest fix**：在现有验证行后追加：*\"For other systems (Claude Code, Gemini CLI, DeepSeek, etc.), paste the Example Trigger into your agent and confirm it outputs a valid Machine Task Packet.\"*\n\n---\n\n以上 3 点均为 README 层面的小改动，不涉及代码或 spec，修改成本极低，但能显著降低新用户的认知摩擦。",
+      "usage": {
+        "input_tokens": 3757,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 2376,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "",
+        "iterations": [],
+        "speed": "standard"
+      },
+      "total_cost_usd": 0.12704,
+      "duration_ms": 64116,
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 3901,
+          "outputTokens": 1174,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.048854999999999996,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 3757,
+          "outputTokens": 2376,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.078185,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 64116,
+        "duration_api_ms": 76897,
+        "ttft_ms": 49300,
+        "num_turns": 1,
+        "result": "## README.md 审查：3 个改进点\n\n---\n\n**改进点 1 — 字段指南表头不够明确**\n\n- **Issue**：英文表头 \"Short field guide\" 未说明该表只覆盖不直观字段；中文版写的是 \"几个不直观字段\"，表达更准确。\n- **Why it matters**：新用户可能以为表中 6 个字段就是全部字段，实际上输出格式有 14 个字段（Goal、Actions、Verification 等 8 个未在表中解释）。这会让用户在首次使用时困惑——\"剩下那些字段是什么意思？\"\n- **Smallest fix**：英文表头改为 **\"Short field guide (non-obvious fields only)\"**，表下方加一行：*\"For all 14 fields, see [SPEC.md](SPEC.md).\"*\n\n---\n\n**改进点 2 — A/B 测试缺少质量评分标准**\n\n- **Issue**：A/B 测试协议定义了 `quality_score` 为 1–5 分，但没有提供任何评分 rubric。\"可复现评分\"实际上不可复现——不同评审员对同一个输出可能打出不同分数。\n- **Why it matters**：项目核心卖点是 \"可验证的 token 节省\"，但评分缺标准会削弱测试可信度。用户想自己跑 A/B 测试时，会因不知如何打分而放弃，降低项目被实际测试和采纳的概率。\n- **Smallest fix**：在 \"Reproducible scoring\" 代码块后加一行：*\"quality_score: 1=task not completed, 2=major errors, 3=completed with minor issues, 4=completed well, 5=completed perfectly. Full rubric: [A/B test protocol](references/ab-test.md).\"*\n\n---\n\n**改进点 3 — 安装验证只覆盖 Codex 用户**\n\n- **Issue**：安装后验证只写了一句 \"Confirm that token-prompt-compiler appears in your skill list\"，这对 Claude Code、Gemini CLI、DeepSeek 等用户完全无效。\n- **Why it matters**：README 在开头即声明项目是 model-agnostic，但验证步骤却 Codex-only。非 Codex 用户可能跳过验证，或不知道如何确认安装成功，影响跨系统可用性。\n- **Smallest fix**：在现有验证行后追加：*\"For other systems (Claude Code, Gemini CLI, DeepSeek, etc.), paste the Example Trigger into your agent and confirm it outputs a valid Machine Task Packet.\"*\n\n---\n\n以上 3 点均为 README 层面的小改动，不涉及代码或 spec，修改成本极低，但能显著降低新用户的认知摩擦。",
+        "stop_reason": "end_turn",
+        "session_id": "22ac26ed-ae00-477d-b2d2-5c2824c2b7d7",
+        "total_cost_usd": 0.12704,
+        "usage": {
+          "input_tokens": 3757,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 2376,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 3901,
+            "outputTokens": 1174,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.048854999999999996,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 3757,
+            "outputTokens": 2376,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.078185,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "0b4a22a4-8a1c-4342-b8a2-b20317915c8b"
+      }
+    }
+  ]
+}

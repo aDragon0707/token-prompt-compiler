@@ -1,0 +1,276 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "large-protocol-readiness-review-v1",
+  "runner": "claude-code-cli",
+  "fixed_conditions": {
+    "runs": 1,
+    "order": "AB",
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": true,
+    "max_budget_usd": "0.80",
+    "input_files": [
+      {
+        "label": "README.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+      },
+      {
+        "label": "SKILL.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+      },
+      {
+        "label": "references/ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+      },
+      {
+        "label": "references/api-ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+      },
+      {
+        "label": "tests/small-task-ab-test-v2.zh.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+      }
+    ]
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "variant_summaries": {
+    "A": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.14669,
+      "avg_input_tokens": 7832,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 1940,
+      "avg_output_chars": 2717
+    },
+    "B": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.147965,
+      "avg_input_tokens": 8157,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 2321,
+      "avg_output_chars": 6565
+    },
+    "token_cost_delta_pct_b_vs_a": 0.008692
+  },
+  "records": [
+    {
+      "run_id": "large-protocol-readiness-review-v1-a-1",
+      "task_id": "large-protocol-readiness-review-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "prompt_chars": 28025,
+      "output_chars": 2717,
+      "output_text": "# 判断：token-prompt-compiler 目前能不能对外说\"它真的省 token\"？\n\n## 直接结论：不能。现在对外说这句话，证据不够。\n\n不是项目方向不对，而是**一个完成的 A/B 测试都没有**。下面拆开说。\n\n---\n\n## 一、现在已经有什么证据\n\n| 证据类型 | 内容 | 能用来支撑\"省 token\"吗？ |\n|---|---|---|\n| 协议设计 | `references/ab-test.md` 和 `references/api-ab-test.md`，定义了完善的测量维度 | ✅ 协议本身质量不错 |\n| 测试用例 | `tests/small-task-ab-test-v2.zh.md`，一个公平化修正后的小任务测试设计 | ⚠️ 只有设计，没有跑过的数据 |\n| 示例 rewrite | README 和 SKILL.md 里的 before/after 示例 | ❌ 定性展示，不能当定量证据 |\n| API 测试 schema | `references/api-ab-test.md` 里有完整的 JSON schema | ✅ 直接可用的工程产出，但还没用上 |\n| V1 教训 | V2 文档自己承认了 V1 不公平（B 被限制 3 点而 A 自由输出），已修正 | ✅ 诚实，且修正了 |\n\n**核心事实：全部材料里，没有任何一个填完数据的表格，没有任何一次跑完的 API 调用记录，没有一组 A/B 对比数字。**\n\n---\n\n## 二、还缺什么证据（按优先级排）\n\n### 🔴 缺 1：至少一组真实跑完的小任务 A/B 数据\n\n就用 `tests/small-task-ab-test-v2.zh.md` 的设计，在同一个模型上跑 A 和 B，填完那张表。\n\n最低要求：\n- 同一个模型，同一个会话窗口（或两个独立窗口但相同条件）\n- 记录是否跑题、是否多读文件、是否 exactly 3 points、输出字数\n- 手动打质量分（10 分制）\n- 如果有 token 数可直接显示（Codex/Claude 的 usage 信息），一并记录\n\n### 🔴 缺 2：至少一组复杂任务的 A/B 测试\n\n项目本身在 V2 文档末尾承认了：\n\n> \"如果 A 和 B 差不多：说明对于很小、边界已经清楚的任务，task packet 的收益有限……token-prompt-compiler 的最大价值在复杂任务、多文件任务、长需求、多人/多 agent 交接。\"\n\n这是对的——但如果**连一个复杂任务都没测过**，那就连正面案例都没有。建议测一个多文件的代码修改任务，或一个长需求的分析任务。\n\n### 🟡 缺 3：API 级别的成本数据\n\n`references/api-ab-test.md` 设计了完善的 API 对比方案，包括 token 字段映射、cost proxy 计算、DeepSeek 的 prompt cache 统计。但目前没有任何一次 API 调用记录。这个要补，但可以先放第二步。\n\n### 🟡 缺 4：多 agent / 交接场景的测试\n\nREADME 明确写了 use case：\"为 multi-agent 工作流准备 worker prompts\"。但这方面的测试完全没有。可以后补。\n\n---\n\n## 三、下一步应该怎么测（可执行步骤）\n\n### Step 1（本周就能做）：跑通小任务 A/B\n\n直接用 `tests/small-task-ab-test-v2.zh.md`：\n1. 开两个独立窗口，同一个模型，分别贴 A 和 B\n2. 填完那张行为指标表\n3. 主观打质量分（你、或另一个评审者）\n\n### Step 2（下一步）：补一个复杂任务测试\n\n设计标准：\n- 涉及 3+ 个文件\n- 原始需求模糊（模拟真实场景）\n- 要求输出需要引用证据\n- 记录同样指标\n\n对比的就是：\n- A 组有没有乱翻无关文件\n- A 组有没有输出多余的背景复述\n- B 组是不是更聚焦\n\n### Step 3：如果前两步结果好，上 API 测试\n\n用 `references/api-ab-test.md` 的 schema 和 `scripts/run-api-ab-test.mjs`（如果存在），跑真实 API 调用拿到 token 数字。\n\n---\n\n## 四、什么算通过、什么算不通过\n\n### ✅ 可以对外说\"省 token\"的及格线\n\n| 条件 | 标准 |\n|---|---|\n| 小任务 A/B | B 质量 ≥ A 质量，且行为更稳定（少跑题、少多余输出） |\n| 复杂任务 A/B | B 显著减少多余文件读取、减少输出长度、质量不降 |\n| API 测试 | B total tokens 至少减少 25%，质量分下降不超过 1 |\n| 可复现 | 同样的测试别人能重跑 |\n\n### ❌ 不能通过的情况\n\n1. **只有小任务测试**，且 A 和 B 差不多 → 项目自己已经预判了这种情况，不能说\"省\"，只能说\"对小任务不损\"\n2. **没有 API token 数据**，只有行为观察 → 不能量化\"省了多少\"\n3. **只有 rewriter 示例**，没有对比实验 → 这是定性展示，不是证据\n4. **V1 那种不公平对照**被当作证据 → 自己否定自己\n\n---\n\n## 五、文档或测试协议里最需要补的一两个地方\n\n### 补 1：`references/ab-test.md` 和 `README.md` 里 quality_score 范围不一致\n\n- `references/ab-test.md`：10 分制\n- `README.md`（英文和中文都是）：1-5 分\n- 这会导致评审者按不同标准打分，结果不可比\n\n**建议**：统一为 10 分制，并在 README 里改成和 ab-test.md 一致。\n\n### 补 2：缺少一个\"复杂任务\"的测试用例文件\n\n`tests/` 目录下目前只有 `small-task-ab-test-v2.zh.md`。应该加一个 `complex-task-ab-test.zh.md`，覆盖多文件 + 长需求场景，否则项目无法验证自己核心声称的价值。\n\n---\n\n## 总结一句话\n\n**协议和设计是扎实的，但数据是空的。** 把 V2 小任务测试跑了是第一优先级，跑完就能有一个\"初步能不能说\"的判断——而不是现在只能分析\"应该怎么测\"。",
+      "total_cost_usd": 0.14669,
+      "duration_ms": 63215,
+      "usage": {
+        "input_tokens": 7832,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 1940,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 7976,
+          "outputTokens": 766,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.05903,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 7832,
+          "outputTokens": 1940,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.08766,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 63215,
+        "duration_api_ms": 74392,
+        "ttft_ms": 19985,
+        "num_turns": 1,
+        "result": "# 判断：token-prompt-compiler 目前能不能对外说\"它真的省 token\"？\n\n## 直接结论：不能。现在对外说这句话，证据不够。\n\n不是项目方向不对，而是**一个完成的 A/B 测试都没有**。下面拆开说。\n\n---\n\n## 一、现在已经有什么证据\n\n| 证据类型 | 内容 | 能用来支撑\"省 token\"吗？ |\n|---|---|---|\n| 协议设计 | `references/ab-test.md` 和 `references/api-ab-test.md`，定义了完善的测量维度 | ✅ 协议本身质量不错 |\n| 测试用例 | `tests/small-task-ab-test-v2.zh.md`，一个公平化修正后的小任务测试设计 | ⚠️ 只有设计，没有跑过的数据 |\n| 示例 rewrite | README 和 SKILL.md 里的 before/after 示例 | ❌ 定性展示，不能当定量证据 |\n| API 测试 schema | `references/api-ab-test.md` 里有完整的 JSON schema | ✅ 直接可用的工程产出，但还没用上 |\n| V1 教训 | V2 文档自己承认了 V1 不公平（B 被限制 3 点而 A 自由输出），已修正 | ✅ 诚实，且修正了 |\n\n**核心事实：全部材料里，没有任何一个填完数据的表格，没有任何一次跑完的 API 调用记录，没有一组 A/B 对比数字。**\n\n---\n\n## 二、还缺什么证据（按优先级排）\n\n### 🔴 缺 1：至少一组真实跑完的小任务 A/B 数据\n\n就用 `tests/small-task-ab-test-v2.zh.md` 的设计，在同一个模型上跑 A 和 B，填完那张表。\n\n最低要求：\n- 同一个模型，同一个会话窗口（或两个独立窗口但相同条件）\n- 记录是否跑题、是否多读文件、是否 exactly 3 points、输出字数\n- 手动打质量分（10 分制）\n- 如果有 token 数可直接显示（Codex/Claude 的 usage 信息），一并记录\n\n### 🔴 缺 2：至少一组复杂任务的 A/B 测试\n\n项目本身在 V2 文档末尾承认了：\n\n> \"如果 A 和 B 差不多：说明对于很小、边界已经清楚的任务，task packet 的收益有限……token-prompt-compiler 的最大价值在复杂任务、多文件任务、长需求、多人/多 agent 交接。\"\n\n这是对的——但如果**连一个复杂任务都没测过**，那就连正面案例都没有。建议测一个多文件的代码修改任务，或一个长需求的分析任务。\n\n### 🟡 缺 3：API 级别的成本数据\n\n`references/api-ab-test.md` 设计了完善的 API 对比方案，包括 token 字段映射、cost proxy 计算、DeepSeek 的 prompt cache 统计。但目前没有任何一次 API 调用记录。这个要补，但可以先放第二步。\n\n### 🟡 缺 4：多 agent / 交接场景的测试\n\nREADME 明确写了 use case：\"为 multi-agent 工作流准备 worker prompts\"。但这方面的测试完全没有。可以后补。\n\n---\n\n## 三、下一步应该怎么测（可执行步骤）\n\n### Step 1（本周就能做）：跑通小任务 A/B\n\n直接用 `tests/small-task-ab-test-v2.zh.md`：\n1. 开两个独立窗口，同一个模型，分别贴 A 和 B\n2. 填完那张行为指标表\n3. 主观打质量分（你、或另一个评审者）\n\n### Step 2（下一步）：补一个复杂任务测试\n\n设计标准：\n- 涉及 3+ 个文件\n- 原始需求模糊（模拟真实场景）\n- 要求输出需要引用证据\n- 记录同样指标\n\n对比的就是：\n- A 组有没有乱翻无关文件\n- A 组有没有输出多余的背景复述\n- B 组是不是更聚焦\n\n### Step 3：如果前两步结果好，上 API 测试\n\n用 `references/api-ab-test.md` 的 schema 和 `scripts/run-api-ab-test.mjs`（如果存在），跑真实 API 调用拿到 token 数字。\n\n---\n\n## 四、什么算通过、什么算不通过\n\n### ✅ 可以对外说\"省 token\"的及格线\n\n| 条件 | 标准 |\n|---|---|\n| 小任务 A/B | B 质量 ≥ A 质量，且行为更稳定（少跑题、少多余输出） |\n| 复杂任务 A/B | B 显著减少多余文件读取、减少输出长度、质量不降 |\n| API 测试 | B total tokens 至少减少 25%，质量分下降不超过 1 |\n| 可复现 | 同样的测试别人能重跑 |\n\n### ❌ 不能通过的情况\n\n1. **只有小任务测试**，且 A 和 B 差不多 → 项目自己已经预判了这种情况，不能说\"省\"，只能说\"对小任务不损\"\n2. **没有 API token 数据**，只有行为观察 → 不能量化\"省了多少\"\n3. **只有 rewriter 示例**，没有对比实验 → 这是定性展示，不是证据\n4. **V1 那种不公平对照**被当作证据 → 自己否定自己\n\n---\n\n## 五、文档或测试协议里最需要补的一两个地方\n\n### 补 1：`references/ab-test.md` 和 `README.md` 里 quality_score 范围不一致\n\n- `references/ab-test.md`：10 分制\n- `README.md`（英文和中文都是）：1-5 分\n- 这会导致评审者按不同标准打分，结果不可比\n\n**建议**：统一为 10 分制，并在 README 里改成和 ab-test.md 一致。\n\n### 补 2：缺少一个\"复杂任务\"的测试用例文件\n\n`tests/` 目录下目前只有 `small-task-ab-test-v2.zh.md`。应该加一个 `complex-task-ab-test.zh.md`，覆盖多文件 + 长需求场景，否则项目无法验证自己核心声称的价值。\n\n---\n\n## 总结一句话\n\n**协议和设计是扎实的，但数据是空的。** 把 V2 小任务测试跑了是第一优先级，跑完就能有一个\"初步能不能说\"的判断——而不是现在只能分析\"应该怎么测\"。",
+        "stop_reason": "end_turn",
+        "session_id": "f1b2d69c-0bdb-4f11-8f9b-1fdc6e97da0c",
+        "total_cost_usd": 0.14669,
+        "usage": {
+          "input_tokens": 7832,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 1940,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 7976,
+            "outputTokens": 766,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.05903,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 7832,
+            "outputTokens": 1940,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.08766,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "ca8558e6-3c51-4aa8-a4a7-afbd1fea260b"
+      }
+    },
+    {
+      "run_id": "large-protocol-readiness-review-v1-b-1",
+      "task_id": "large-protocol-readiness-review-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "prompt_chars": 29815,
+      "output_chars": 6565,
+      "output_text": "# Machine Task Packet — Execution Result\n\n---\n\n## Verdict\n\n**not_ready** — Cannot claim real token savings. The project has clean spec design, honest self-assessment, and ready-to-use test protocols, but zero quantitative usage data from any provider.\n\nA narrow claim is possible: *\"for complex, multi-file, multi-agent tasks with unclear boundaries, compiled task packets improve agent behavior quality\"* — but the project's own small-task test correctly notes \"如果 A 和 B 差不多…说明对于很小、边界已经清楚的任务，task packet 的收益有限\" (`tests/small-task-ab-test-v2.zh.md`).\n\n---\n\n## Evidence Ledger\n\n### bucket_1: behavior_quality_evidence ✅ (exists, subjective)\n\n| Source | What it shows |\n|---|---|\n| `tests/small-task-ab-test-v2.zh.md` | Behavior metrics design (exactly 3 points, no drift, format compliance). Acknowledges small-task limitation. |\n| `SKILL.md` | Explicit rewrite patterns, quality bar, stop rules. Design is coherent. |\n| `references/ab-test.md` | 10-point quality rubric: goal, scope, evidence, verification, output usability. |\n\n### bucket_2: token_cost_evidence ❌ (not yet collected)\n\n| Source | Status |\n|---|---|\n| `references/api-ab-test.md` | Protocol and JSON schema exist. Script path referenced (`scripts/run-api-ab-test.mjs`). **No results.** |\n| `references/ab-test.md` | Template table exists. **All cells empty.** |\n| Any provider usage log | **Not in evidence.** |\n\nKey quote from `references/api-ab-test.md`:\n\n> \"Task packet can increase input_tokens, especially on small tasks. It only wins if total cost improves after considering: uncached input tokens, cached input tokens, output tokens, reasoning tokens, tool calls, retries, manual repair, quality_score, task_passed.\"\n\nThis is honest and correct. But it's a hypothesis, not a proven result.\n\n---\n\n## Missing Fields\n\n| Field | Availability | Notes |\n|---|---|---|\n| `input_tokens` (A vs B) | Provider-dependent | Available from OpenAI, DeepSeek, Anthropic |\n| `output_tokens` | Provider-dependent | Available from all major providers |\n| `reasoning_tokens` | Provider-dependent | OpenAI: `usage.output_tokens_details.reasoning_tokens`. DeepSeek: may be unavailable on non-reasoner models. |\n| `cached_tokens` | Provider-dependent | OpenAI: `usage.input_tokens_details.cached_tokens`. DeepSeek: `usage.prompt_cache_hit_tokens`. |\n| Actual run JSON | **Currently unavailable** | Script path in `references/api-ab-test.md` references `scripts/run-api-ab-test.mjs`, but no output files are in evidence. |\n| `wall_time_sec` | Available (measure externally) | Mentioned in `references/ab-test.md` metrics list, not yet recorded. |\n\nThe most critical missing piece is **not** a field definition — it's **any actual run** with both A and B variants against the same fixed conditions.\n\n---\n\n## Next Test\n\n### Test Plan: README Review — API-Level A/B\n\n**Fixed conditions:**\n\n```text\nprovider: OpenAI\nmodel: gpt-4.1-mini (or cheapest model supporting usage details)\ntemperature: 0\nmax_output_tokens: 500\nreasoning_effort: none\nshared_evidence: README.md full content (not path — API can't read local files)\nruns: 3 round pairs (AB, BA, AB) to expose cache/order bias\n```\n\n**Variant A (original human-language, fair 3-point limit):**\n\n```text\nReview this README and give exactly 3 small, concrete improvements for understandability and testability. Each point: issue, why it matters, smallest fix. Chinese, under 450 words. Do not summarize the whole README.\n\n[shared evidence: README.md content]\n```\n\n**Variant B (compiled Machine Task Packet):**\n\n```text\n[shared evidence: README.md content]\n\nMachine Task Packet\nGoal: Review README.md. Identify exactly 3 small improvements for understandability and testability.\nAllowed scope: Only the README content provided above.\nActions: For each point — Issue / Why it matters / Smallest fix.\nOutput format: Chinese, under 450 words. Exactly 3 points.\nStop rule: Stop after 3 points. No summary. No extra sections.\nToken policy: No README summary. No background. No motivational closing.\n```\n\n**Metrics recorded per run:**\n\n```text\ninput_tokens, cached_tokens, output_tokens, reasoning_tokens, provider_total_tokens\nquality_score (0-10, per ab-test.md rubric)\nformat_compliance (exactly 3 points: yes/no)\n```\n\n**Output:** JSON conforming to `references/api-ab-test.md` schema version `api-ab-result.v1`.\n\n---\n\n## Pass/Fail Rule\n\n(From `references/api-ab-test.md` and `references/ab-test.md`, applied to Next Test plan)\n\n**Pass:**\n\n```text\nB total_cost (provider-priced) <= A total_cost × 0.75\nB quality_score >= A quality_score - 1\nB format_compliance >= A format_compliance\n```\n\n**Strong pass:**\n\n```text\nB total_cost <= A total_cost × 0.60\nB quality_score >= A quality_score\nB output_tokens < A output_tokens\n```\n\n**Fail:**\n\n```text\nB quality_score drops > 1 point below A\nOR B total_cost >= A total_cost (no savings)\nOR B increases input_tokens and output_tokens does not decrease enough to offset\n```\n\n**⚠️ Caution:** `references/api-ab-test.md` explicitly warns:\n\n> \"If only behavior improved, but total provider cost did not improve\" → fail or inconclusive.\n\nThis is the most likely outcome for a small, single-file README review task. The project itself predicts this in `tests/small-task-ab-test-v2.zh.md`:\n\n> \"如果 A 和 B 差不多：说明对于很小、边界已经清楚的任务，task packet 的收益有限。token-prompt-compiler 的最大价值在：复杂任务、多文件任务、长需求、多人/多 agent 交接、需要证据和验收的任务。\"\n\n---\n\n## Patch Targets\n\n**Patch 1: Add a Task Size Warning to README and SKILL.md**\n\nCurrent state: `tests/small-task-ab-test-v2.zh.md` honestly acknowledges the small-task limitation, but `README.md` and `SKILL.md` do not surface this caveat prominently.\n\n```text\nProposed: Add a short section \"When NOT to use\" or \"Limitations\" stating:\n- On single-file, well-scoped, short tasks, the packet may increase input_tokens without offsetting savings.\n- Value scales with task complexity, file count, ambiguity, and agent count.\n- Measure, don't assume.\n```\n\n**Patch 2: Ship One Real Result in `tests/results/`**\n\nCurrent state: `references/api-ab-test.md` defines a `tests/results/openai-api-ab.json` output path, but no file exists in evidence.\n\n```text\nProposed: Run one clean paired test (even on a small task), record the JSON per schema,\nand commit it. Even a \"fail\" or \"inconclusive\" result is better than zero data — it proves\nthe measurement pipeline works and establishes baseline honesty.\n```\n\nThis also patches a procedural risk: the script path `scripts/run-api-ab-test.mjs` is referenced but that script's existence cannot be verified from the provided evidence. The next test should confirm or replace that script.",
+      "total_cost_usd": 0.147965,
+      "duration_ms": 73266,
+      "usage": {
+        "input_tokens": 8157,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 2321,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 8301,
+          "outputTokens": 306,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.049155000000000004,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 8157,
+          "outputTokens": 2321,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.09881000000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 73266,
+        "duration_api_ms": 79046,
+        "ttft_ms": 23507,
+        "num_turns": 1,
+        "result": "# Machine Task Packet — Execution Result\n\n---\n\n## Verdict\n\n**not_ready** — Cannot claim real token savings. The project has clean spec design, honest self-assessment, and ready-to-use test protocols, but zero quantitative usage data from any provider.\n\nA narrow claim is possible: *\"for complex, multi-file, multi-agent tasks with unclear boundaries, compiled task packets improve agent behavior quality\"* — but the project's own small-task test correctly notes \"如果 A 和 B 差不多…说明对于很小、边界已经清楚的任务，task packet 的收益有限\" (`tests/small-task-ab-test-v2.zh.md`).\n\n---\n\n## Evidence Ledger\n\n### bucket_1: behavior_quality_evidence ✅ (exists, subjective)\n\n| Source | What it shows |\n|---|---|\n| `tests/small-task-ab-test-v2.zh.md` | Behavior metrics design (exactly 3 points, no drift, format compliance). Acknowledges small-task limitation. |\n| `SKILL.md` | Explicit rewrite patterns, quality bar, stop rules. Design is coherent. |\n| `references/ab-test.md` | 10-point quality rubric: goal, scope, evidence, verification, output usability. |\n\n### bucket_2: token_cost_evidence ❌ (not yet collected)\n\n| Source | Status |\n|---|---|\n| `references/api-ab-test.md` | Protocol and JSON schema exist. Script path referenced (`scripts/run-api-ab-test.mjs`). **No results.** |\n| `references/ab-test.md` | Template table exists. **All cells empty.** |\n| Any provider usage log | **Not in evidence.** |\n\nKey quote from `references/api-ab-test.md`:\n\n> \"Task packet can increase input_tokens, especially on small tasks. It only wins if total cost improves after considering: uncached input tokens, cached input tokens, output tokens, reasoning tokens, tool calls, retries, manual repair, quality_score, task_passed.\"\n\nThis is honest and correct. But it's a hypothesis, not a proven result.\n\n---\n\n## Missing Fields\n\n| Field | Availability | Notes |\n|---|---|---|\n| `input_tokens` (A vs B) | Provider-dependent | Available from OpenAI, DeepSeek, Anthropic |\n| `output_tokens` | Provider-dependent | Available from all major providers |\n| `reasoning_tokens` | Provider-dependent | OpenAI: `usage.output_tokens_details.reasoning_tokens`. DeepSeek: may be unavailable on non-reasoner models. |\n| `cached_tokens` | Provider-dependent | OpenAI: `usage.input_tokens_details.cached_tokens`. DeepSeek: `usage.prompt_cache_hit_tokens`. |\n| Actual run JSON | **Currently unavailable** | Script path in `references/api-ab-test.md` references `scripts/run-api-ab-test.mjs`, but no output files are in evidence. |\n| `wall_time_sec` | Available (measure externally) | Mentioned in `references/ab-test.md` metrics list, not yet recorded. |\n\nThe most critical missing piece is **not** a field definition — it's **any actual run** with both A and B variants against the same fixed conditions.\n\n---\n\n## Next Test\n\n### Test Plan: README Review — API-Level A/B\n\n**Fixed conditions:**\n\n```text\nprovider: OpenAI\nmodel: gpt-4.1-mini (or cheapest model supporting usage details)\ntemperature: 0\nmax_output_tokens: 500\nreasoning_effort: none\nshared_evidence: README.md full content (not path — API can't read local files)\nruns: 3 round pairs (AB, BA, AB) to expose cache/order bias\n```\n\n**Variant A (original human-language, fair 3-point limit):**\n\n```text\nReview this README and give exactly 3 small, concrete improvements for understandability and testability. Each point: issue, why it matters, smallest fix. Chinese, under 450 words. Do not summarize the whole README.\n\n[shared evidence: README.md content]\n```\n\n**Variant B (compiled Machine Task Packet):**\n\n```text\n[shared evidence: README.md content]\n\nMachine Task Packet\nGoal: Review README.md. Identify exactly 3 small improvements for understandability and testability.\nAllowed scope: Only the README content provided above.\nActions: For each point — Issue / Why it matters / Smallest fix.\nOutput format: Chinese, under 450 words. Exactly 3 points.\nStop rule: Stop after 3 points. No summary. No extra sections.\nToken policy: No README summary. No background. No motivational closing.\n```\n\n**Metrics recorded per run:**\n\n```text\ninput_tokens, cached_tokens, output_tokens, reasoning_tokens, provider_total_tokens\nquality_score (0-10, per ab-test.md rubric)\nformat_compliance (exactly 3 points: yes/no)\n```\n\n**Output:** JSON conforming to `references/api-ab-test.md` schema version `api-ab-result.v1`.\n\n---\n\n## Pass/Fail Rule\n\n(From `references/api-ab-test.md` and `references/ab-test.md`, applied to Next Test plan)\n\n**Pass:**\n\n```text\nB total_cost (provider-priced) <= A total_cost × 0.75\nB quality_score >= A quality_score - 1\nB format_compliance >= A format_compliance\n```\n\n**Strong pass:**\n\n```text\nB total_cost <= A total_cost × 0.60\nB quality_score >= A quality_score\nB output_tokens < A output_tokens\n```\n\n**Fail:**\n\n```text\nB quality_score drops > 1 point below A\nOR B total_cost >= A total_cost (no savings)\nOR B increases input_tokens and output_tokens does not decrease enough to offset\n```\n\n**⚠️ Caution:** `references/api-ab-test.md` explicitly warns:\n\n> \"If only behavior improved, but total provider cost did not improve\" → fail or inconclusive.\n\nThis is the most likely outcome for a small, single-file README review task. The project itself predicts this in `tests/small-task-ab-test-v2.zh.md`:\n\n> \"如果 A 和 B 差不多：说明对于很小、边界已经清楚的任务，task packet 的收益有限。token-prompt-compiler 的最大价值在：复杂任务、多文件任务、长需求、多人/多 agent 交接、需要证据和验收的任务。\"\n\n---\n\n## Patch Targets\n\n**Patch 1: Add a Task Size Warning to README and SKILL.md**\n\nCurrent state: `tests/small-task-ab-test-v2.zh.md` honestly acknowledges the small-task limitation, but `README.md` and `SKILL.md` do not surface this caveat prominently.\n\n```text\nProposed: Add a short section \"When NOT to use\" or \"Limitations\" stating:\n- On single-file, well-scoped, short tasks, the packet may increase input_tokens without offsetting savings.\n- Value scales with task complexity, file count, ambiguity, and agent count.\n- Measure, don't assume.\n```\n\n**Patch 2: Ship One Real Result in `tests/results/`**\n\nCurrent state: `references/api-ab-test.md` defines a `tests/results/openai-api-ab.json` output path, but no file exists in evidence.\n\n```text\nProposed: Run one clean paired test (even on a small task), record the JSON per schema,\nand commit it. Even a \"fail\" or \"inconclusive\" result is better than zero data — it proves\nthe measurement pipeline works and establishes baseline honesty.\n```\n\nThis also patches a procedural risk: the script path `scripts/run-api-ab-test.mjs` is referenced but that script's existence cannot be verified from the provided evidence. The next test should confirm or replace that script.",
+        "stop_reason": "end_turn",
+        "session_id": "76e9259d-c5d4-49d7-bad0-c2fbe1233ef0",
+        "total_cost_usd": 0.147965,
+        "usage": {
+          "input_tokens": 8157,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 2321,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 8301,
+            "outputTokens": 306,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.049155000000000004,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 8157,
+            "outputTokens": 2321,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.09881000000000001,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "a0dda6d8-54e9-4823-ac0b-33c705f3d400"
+      }
+    }
+  ]
+}

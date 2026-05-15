@@ -15,6 +15,8 @@ Do not merely shorten the user's words. Preserve the decision surface:
 goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
 ```
 
+The main token-saving mechanism is context control, not prettier formatting. Keep full logs, long documents, and broad history on disk; feed the model only a compact evidence receipt, the current task, and the minimum rules needed for the decision.
+
 This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers.
 
 ## Compilation Workflow
@@ -47,6 +49,73 @@ This skill is the pre-spec layer: compile human language before sending work to 
    - `execute_now`: execute from the packet.
    - `worker_packet`: prepare for another agent/model.
    - `ab_test`: produce A/B variants and measurement fields.
+   - `evidence_receipt`: compress broad context into a short evidence ledger before final judgment.
+
+## Packet Tiers
+
+Use the smallest tier that can pass verification:
+
+```text
+Tiny Packet:
+Goal:
+Actions:
+Stop rule:
+```
+
+Use Tiny Packet for single-file, already-scoped, low-risk tasks.
+
+```text
+Standard Packet:
+Goal:
+Allowed scope:
+Actions:
+Evidence required:
+Output format:
+Stop rule:
+```
+
+Use Standard Packet for most reviews, small implementation tasks, and handoffs.
+
+```text
+Full Packet:
+Goal:
+Why now:
+Allowed scope:
+Read first:
+Do not touch:
+Actions:
+Evidence required:
+Verification:
+Output format:
+Stop rule:
+Token policy:
+Adapter notes:
+```
+
+Use Full Packet only when ambiguity, multiple files, tools, workers, safety, or verification justify the extra input tokens.
+
+## Evidence Receipt
+
+When the source context is large, create a short receipt instead of passing the whole context forward:
+
+```text
+Evidence Receipt
+Task:
+Sources checked:
+Facts:
+Missing evidence:
+Decision boundary:
+Next test:
+Full logs:
+```
+
+Rules:
+
+- Full logs and raw outputs stay on disk.
+- The model sees paths, hashes, exit codes, key excerpts, and short findings.
+- Quality score and token saving stay separate.
+- Judge total provider cost, not visible answer length or prompt length alone.
+- Remember that task packets may increase input tokens on small tasks.
 
 ## Output Shape
 
@@ -94,6 +163,15 @@ Metrics: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_call
 Pass rule: >=25% total token reduction, quality_delta >= -1, task_passed=true
 ```
 
+For context-saving tests, compare:
+
+```text
+A: broad context / full documents / full logs
+B: compact evidence receipt + minimum packet + referenced full logs on disk
+```
+
+This tests the real savings mechanism: fewer irrelevant input tokens, shorter required output, fewer retries, and fewer tool calls.
+
 See `references/ab-test.md` for the fuller measurement protocol.
 
 ## Token Policy
@@ -107,6 +185,8 @@ evidence_tail: include only latest relevant evidence
 tool_output: summarize and reference full logs by path
 model_policy: cheap model for extraction, strong model for final judgment
 reasoning_policy: use high reasoning only for ambiguity, architecture, safety, or verification
+packet_tier: tiny by default, standard when evidence/format matters, full only when justified
+claim_policy: do not claim token savings unless provider usage or cost verifies it
 ```
 
 ## Rewrite Patterns

@@ -1,0 +1,305 @@
+﻿{
+    "schema_version":  "local-claude-ab-result.v1",
+    "task_id":  "large-protocol-readiness-review-compact-v1",
+    "runner":  "claude-code-cli",
+    "fixed_conditions":  {
+                             "runs":  1,
+                             "order":  "AB",
+                             "tools":  "disabled",
+                             "output_format":  "json",
+                             "same_shared_evidence":  true,
+                             "max_budget_usd":  "0.80",
+                             "input_files":  [
+                                                 {
+                                                     "label":  "README.md",
+                                                     "path":  "D:\\GitHub\\token-prompt-compiler\\README.md"
+                                                 },
+                                                 {
+                                                     "label":  "SKILL.md",
+                                                     "path":  "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+                                                 },
+                                                 {
+                                                     "label":  "references/ab-test.md",
+                                                     "path":  "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+                                                 },
+                                                 {
+                                                     "label":  "references/api-ab-test.md",
+                                                     "path":  "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+                                                 },
+                                                 {
+                                                     "label":  "tests/small-task-ab-test-v2.zh.md",
+                                                     "path":  "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+                                                 }
+                                             ]
+                         },
+    "field_notes":  {
+                        "available":  [
+                                          "input_tokens",
+                                          "cache_creation_input_tokens",
+                                          "cache_read_input_tokens",
+                                          "output_tokens",
+                                          "total_cost_usd"
+                                      ],
+                        "unavailable":  [
+                                            "reasoning_tokens",
+                                            "openai_cached_tokens"
+                                        ],
+                        "warning":  "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+                    },
+    "variant_summaries":  {
+                              "A":  {
+                                        "runs":  1,
+                                        "avg_total_cost_usd":  0.142465,
+                                        "avg_input_tokens":  7832,
+                                        "avg_cache_read_input_tokens":  0,
+                                        "avg_cache_creation_input_tokens":  0,
+                                        "avg_output_tokens":  2138,
+                                        "avg_output_chars":  3096
+                                    },
+                              "B":  {
+                                        "runs":  1,
+                                        "avg_total_cost_usd":  0.168145,
+                                        "avg_input_tokens":  7900,
+                                        "avg_cache_read_input_tokens":  0,
+                                        "avg_cache_creation_input_tokens":  0,
+                                        "avg_output_tokens":  3106,
+                                        "avg_output_chars":  410
+                                    },
+                              "token_cost_delta_pct_b_vs_a":  0.180255
+                          },
+    "records":  [
+                    {
+                        "run_id":  "large-protocol-readiness-review-compact-v1-a-1",
+                        "task_id":  "large-protocol-readiness-review-compact-v1",
+                        "runner":  "claude-code-cli",
+                        "variant_id":  "A",
+                        "variant_name":  "original_prompt",
+                        "prompt_chars":  28025,
+                        "output_chars":  3096,
+                        "output_text":  "# 判断：token-prompt-compiler 现在能不能说\"它真的省 token\"\n\n**直接结论：不能。目前没有一条实测数据。**\n\n---\n\n## 现在有什么证据（全在设计层面）\n\n项目当前只有**协议和设计**，没有**执行结果**：\n\n| 文件 | 性质 | 有无数据 |\n|---|---|---|\n| `README.md` 的 A/B 结果表 | 空表，input/cached/output/reasoning/tool_calls/files_read/retries/quality/pass 全部空白 | ❌ |\n| `tests/small-task-ab-test-v2.zh.md` | 公平版测试脚本 + 空白记录表 | ❌ |\n| `references/ab-test.md` | 通用 A/B 协议，定义了 pass rule（≥25% token 节省，quality delta ≥ -1） | 只有规则 |\n| `references/api-ab-test.md` | API 级测试协议 + JSON schema + 脚本调用示例 | ❌ 无结果 JSON |\n| `SKILL.md` 的 Rewrite Patterns | 示例对比，非测量数据 | ❌ |\n\n全部材料里没有任何一条 `input_tokens: 实际数字`。项目目前是一个**设计良好的测试框架**，不是**已验证的省 token 方案**。\n\n---\n\n## V2 测试协议本身已经够好了\n\n`small-task-ab-test-v2.zh.md` 解决了 V1 的核心缺陷（A 组自由输出 6 条 vs B 组强制 3 条 → 不公平），现在的设计在公平性上没有明显漏洞：\n\n- A/B 都要求 exactly 3 points\n- 固定同一个模型、同一个文件、不改文件、不联网\n- 质量评分 10 分制明确且可复现\n- 判断标准诚实：明确写了\"如果 A 和 B 差不多，说明小任务收益有限，这也是正常结论\"\n\n**但这份协议仍然没有被执行过**，表里所有格子都是空的。\n\n---\n\n## 还缺什么证据\n\n### 最小可行证据（做完就能初步回答\"省不省\"）\n\n按优先级：\n\n1. **跑一遍 V2 小任务测试**（最容易做）\n   - 用一个模型，两个窗口，A/B 各跑一遍\n   - 填满那张 9 行空白表\n   - 如果测不出差异，如实写结论\n\n2. **跑一个中大型任务的 A/B**\n   - 项目自己承认最大价值在\"复杂任务、多文件任务、长需求、多人/多 agent 交接\"\n   - 但一个这类任务的测试用例都没有\n   - 建议：选一个 3-5 个文件、需要改代码、需要验证的典型场景\n\n3. **跑一次 API 级 A/B（至少一个 provider）**\n   - `api-ab-test.md` 的脚本和 schema 都有了，差的就是 `--run`\n   - 获取真实的 `usage.input_tokens`、`cached_tokens`、`output_tokens`，而不是目测\n\n### 关键证据类型\n\n```text\n已具备           ✗ 缺少\n协议/设计         ✓\n小任务实测数据    ✗\n复杂任务实测数据  ✗\nAPI 真实 usage    ✗\n多模型对比        ✗\n缓存命中收益      ✗（DeepSeek 的 prompt_cache_hit_tokens 从未测过）\n```\n\n---\n\n## 什么情况下算通过、什么情况下不能通过\n\n### 可以通过（可以对外说\"省 token\"）\n\n```text\n条件 1：至少 2 个不同复杂度的任务都有实测数据\n条件 2：B 组 total tokens 节省 ≥ 25%（按 ab-test.md 的 pass rule）\n条件 3：B 组 quality_score ≥ A 组 quality_score - 1\n条件 4：task_passed = true（输出满足任务要求）\n条件 5：至少一个非小任务场景也能通过（证明不只是 trivial case）\n```\n\n满足以上才能写进 README 的结果表。\n\n### 不能通过\n\n```text\n场景 1：只跑了一个小任务，且 A/B 差不多\n        → 如实写\"小任务收益有限，复杂任务待验证\"，不要夸大\n\n场景 2：B 省了 token 但质量显著下降（quality 掉 \u003e1 分）\n        → 说明 skill 在\"压缩\"而非\"编译\"，需要修 prompt\n\n场景 3：B 的 input_tokens 增加，且 output/reasoning/retry 没降够\n        → api-ab-test.md 已经预见了这种情况，如实报 fail\n\n场景 4：只有主观评价（\"看起来更整齐\"），没有数字\n        → 不算证据，不要声称省 token\n```\n\n---\n\n## 文档或测试协议里最需要补的一两个地方\n\n### 1. README 的结果表是空的——这是最大硬伤\n\n一个声称省 token 的项目，在 README 最显眼的位置放了一张全空的 A/B 结果表。任何读者翻到这里都会问同一个问题：\"你测过吗？\"\n\n**修法**：至少填一行真实数据（哪怕只是 V2 小任务的结果），并在旁边注明：\n- 测试条件（模型、日期、文件）\n- 如果小任务没差异，如实写结论，不要留空表\n\n### 2. 缺少\"复杂任务\"测试用例\n\n所有现有测试材料都围绕 README review 这个小任务。但 `SKILL.md` 和 `README.md` 反复强调最大价值在复杂场景。这里有一个**证据缺口**：\n\n- 声称的价值：复杂任务、多文件、长需求、多 agent 交接\n- 现有的测试：只看一个 README，给 3 个建议\n\n**修法**：至少设计一个包含 3+ 文件、需要代码修改、有验证步骤的中型任务测试用例，放到 `tests/` 下。\n\n---\n\n## 下一步该怎么测（可执行清单）\n\n```text\n第 1 步（今天就能做）：\n  打开两个同模型窗口，按 small-task-ab-test-v2.zh.md 跑 A 和 B\n  填满那张记录表，得到第一行真实数据\n\n第 2 步（本周）：\n  如果第 1 步没有显著差异 → 设计一个 3-5 个文件的中型任务\n  同样 A/B 测试，记录完整的 token 和行为指标\n\n第 3 步（有 API key 的话）：\n  跑一次 api-ab-test.md 的脚本，拿到真实的 usage 字段\n  用 provider 定价算出实际成本差异\n\n第 4 步（汇总）：\n  把至少 2 个任务的实测结果填进 README 的结果表\n  根据结果决定措辞：\n    - 都通过 → 可以写\"实测节省 25-40% tokens\"\n    - 只有复杂任务通过 → 写\"在复杂场景下节省显著，小任务收益有限\"\n    - 都没通过 → 修改 skill 本身，重新测\n```\n\n---\n\n**一句话总结**：这个项目的测试方法论和协议设计做得不错，但到目前为止只设计了怎么测、从来没测过。在跑出至少两行真实数据之前，任何关于\"省 token\"的声称都不应该写出去。",
+                        "total_cost_usd":  0.142465,
+                        "duration_ms":  68245,
+                        "usage":  {
+                                      "input_tokens":  7832,
+                                      "cache_creation_input_tokens":  0,
+                                      "cache_read_input_tokens":  0,
+                                      "output_tokens":  2138,
+                                      "server_tool_use":  {
+                                                              "web_search_requests":  0,
+                                                              "web_fetch_requests":  0
+                                                          }
+                                  },
+                        "modelUsage":  {
+                                           "deepseek-v4-flash":  {
+                                                                     "inputTokens":  7976,
+                                                                     "outputTokens":  399,
+                                                                     "cacheReadInputTokens":  0,
+                                                                     "cacheCreationInputTokens":  0,
+                                                                     "webSearchRequests":  0,
+                                                                     "costUSD":  0.049855,
+                                                                     "contextWindow":  200000,
+                                                                     "maxOutputTokens":  32000
+                                                                 },
+                                           "deepseek-v4-pro[1m]":  {
+                                                                       "inputTokens":  7832,
+                                                                       "outputTokens":  2138,
+                                                                       "cacheReadInputTokens":  0,
+                                                                       "cacheCreationInputTokens":  0,
+                                                                       "webSearchRequests":  0,
+                                                                       "costUSD":  0.09261,
+                                                                       "contextWindow":  1000000,
+                                                                       "maxOutputTokens":  32000
+                                                                   }
+                                       },
+                        "raw":  {
+                                    "type":  "result",
+                                    "subtype":  "success",
+                                    "is_error":  false,
+                                    "api_error_status":  null,
+                                    "duration_ms":  68245,
+                                    "duration_api_ms":  74772,
+                                    "ttft_ms":  20146,
+                                    "num_turns":  1,
+                                    "result":  "# 判断：token-prompt-compiler 现在能不能说\"它真的省 token\"\n\n**直接结论：不能。目前没有一条实测数据。**\n\n---\n\n## 现在有什么证据（全在设计层面）\n\n项目当前只有**协议和设计**，没有**执行结果**：\n\n| 文件 | 性质 | 有无数据 |\n|---|---|---|\n| `README.md` 的 A/B 结果表 | 空表，input/cached/output/reasoning/tool_calls/files_read/retries/quality/pass 全部空白 | ❌ |\n| `tests/small-task-ab-test-v2.zh.md` | 公平版测试脚本 + 空白记录表 | ❌ |\n| `references/ab-test.md` | 通用 A/B 协议，定义了 pass rule（≥25% token 节省，quality delta ≥ -1） | 只有规则 |\n| `references/api-ab-test.md` | API 级测试协议 + JSON schema + 脚本调用示例 | ❌ 无结果 JSON |\n| `SKILL.md` 的 Rewrite Patterns | 示例对比，非测量数据 | ❌ |\n\n全部材料里没有任何一条 `input_tokens: 实际数字`。项目目前是一个**设计良好的测试框架**，不是**已验证的省 token 方案**。\n\n---\n\n## V2 测试协议本身已经够好了\n\n`small-task-ab-test-v2.zh.md` 解决了 V1 的核心缺陷（A 组自由输出 6 条 vs B 组强制 3 条 → 不公平），现在的设计在公平性上没有明显漏洞：\n\n- A/B 都要求 exactly 3 points\n- 固定同一个模型、同一个文件、不改文件、不联网\n- 质量评分 10 分制明确且可复现\n- 判断标准诚实：明确写了\"如果 A 和 B 差不多，说明小任务收益有限，这也是正常结论\"\n\n**但这份协议仍然没有被执行过**，表里所有格子都是空的。\n\n---\n\n## 还缺什么证据\n\n### 最小可行证据（做完就能初步回答\"省不省\"）\n\n按优先级：\n\n1. **跑一遍 V2 小任务测试**（最容易做）\n   - 用一个模型，两个窗口，A/B 各跑一遍\n   - 填满那张 9 行空白表\n   - 如果测不出差异，如实写结论\n\n2. **跑一个中大型任务的 A/B**\n   - 项目自己承认最大价值在\"复杂任务、多文件任务、长需求、多人/多 agent 交接\"\n   - 但一个这类任务的测试用例都没有\n   - 建议：选一个 3-5 个文件、需要改代码、需要验证的典型场景\n\n3. **跑一次 API 级 A/B（至少一个 provider）**\n   - `api-ab-test.md` 的脚本和 schema 都有了，差的就是 `--run`\n   - 获取真实的 `usage.input_tokens`、`cached_tokens`、`output_tokens`，而不是目测\n\n### 关键证据类型\n\n```text\n已具备           ✗ 缺少\n协议/设计         ✓\n小任务实测数据    ✗\n复杂任务实测数据  ✗\nAPI 真实 usage    ✗\n多模型对比        ✗\n缓存命中收益      ✗（DeepSeek 的 prompt_cache_hit_tokens 从未测过）\n```\n\n---\n\n## 什么情况下算通过、什么情况下不能通过\n\n### 可以通过（可以对外说\"省 token\"）\n\n```text\n条件 1：至少 2 个不同复杂度的任务都有实测数据\n条件 2：B 组 total tokens 节省 ≥ 25%（按 ab-test.md 的 pass rule）\n条件 3：B 组 quality_score ≥ A 组 quality_score - 1\n条件 4：task_passed = true（输出满足任务要求）\n条件 5：至少一个非小任务场景也能通过（证明不只是 trivial case）\n```\n\n满足以上才能写进 README 的结果表。\n\n### 不能通过\n\n```text\n场景 1：只跑了一个小任务，且 A/B 差不多\n        → 如实写\"小任务收益有限，复杂任务待验证\"，不要夸大\n\n场景 2：B 省了 token 但质量显著下降（quality 掉 \u003e1 分）\n        → 说明 skill 在\"压缩\"而非\"编译\"，需要修 prompt\n\n场景 3：B 的 input_tokens 增加，且 output/reasoning/retry 没降够\n        → api-ab-test.md 已经预见了这种情况，如实报 fail\n\n场景 4：只有主观评价（\"看起来更整齐\"），没有数字\n        → 不算证据，不要声称省 token\n```\n\n---\n\n## 文档或测试协议里最需要补的一两个地方\n\n### 1. README 的结果表是空的——这是最大硬伤\n\n一个声称省 token 的项目，在 README 最显眼的位置放了一张全空的 A/B 结果表。任何读者翻到这里都会问同一个问题：\"你测过吗？\"\n\n**修法**：至少填一行真实数据（哪怕只是 V2 小任务的结果），并在旁边注明：\n- 测试条件（模型、日期、文件）\n- 如果小任务没差异，如实写结论，不要留空表\n\n### 2. 缺少\"复杂任务\"测试用例\n\n所有现有测试材料都围绕 README review 这个小任务。但 `SKILL.md` 和 `README.md` 反复强调最大价值在复杂场景。这里有一个**证据缺口**：\n\n- 声称的价值：复杂任务、多文件、长需求、多 agent 交接\n- 现有的测试：只看一个 README，给 3 个建议\n\n**修法**：至少设计一个包含 3+ 文件、需要代码修改、有验证步骤的中型任务测试用例，放到 `tests/` 下。\n\n---\n\n## 下一步该怎么测（可执行清单）\n\n```text\n第 1 步（今天就能做）：\n  打开两个同模型窗口，按 small-task-ab-test-v2.zh.md 跑 A 和 B\n  填满那张记录表，得到第一行真实数据\n\n第 2 步（本周）：\n  如果第 1 步没有显著差异 → 设计一个 3-5 个文件的中型任务\n  同样 A/B 测试，记录完整的 token 和行为指标\n\n第 3 步（有 API key 的话）：\n  跑一次 api-ab-test.md 的脚本，拿到真实的 usage 字段\n  用 provider 定价算出实际成本差异\n\n第 4 步（汇总）：\n  把至少 2 个任务的实测结果填进 README 的结果表\n  根据结果决定措辞：\n    - 都通过 → 可以写\"实测节省 25-40% tokens\"\n    - 只有复杂任务通过 → 写\"在复杂场景下节省显著，小任务收益有限\"\n    - 都没通过 → 修改 skill 本身，重新测\n```\n\n---\n\n**一句话总结**：这个项目的测试方法论和协议设计做得不错，但到目前为止只设计了怎么测、从来没测过。在跑出至少两行真实数据之前，任何关于\"省 token\"的声称都不应该写出去。",
+                                    "stop_reason":  "end_turn",
+                                    "session_id":  "17f4e73f-2c0d-4245-87fd-2fbd219235ee",
+                                    "total_cost_usd":  0.142465,
+                                    "usage":  {
+                                                  "input_tokens":  7832,
+                                                  "cache_creation_input_tokens":  0,
+                                                  "cache_read_input_tokens":  0,
+                                                  "output_tokens":  2138,
+                                                  "server_tool_use":  {
+                                                                          "web_search_requests":  0,
+                                                                          "web_fetch_requests":  0
+                                                                      },
+                                                  "service_tier":  "standard",
+                                                  "cache_creation":  {
+                                                                         "ephemeral_1h_input_tokens":  0,
+                                                                         "ephemeral_5m_input_tokens":  0
+                                                                     },
+                                                  "inference_geo":  "",
+                                                  "iterations":  [
+
+                                                                 ],
+                                                  "speed":  "standard"
+                                              },
+                                    "modelUsage":  {
+                                                       "deepseek-v4-flash":  {
+                                                                                 "inputTokens":  7976,
+                                                                                 "outputTokens":  399,
+                                                                                 "cacheReadInputTokens":  0,
+                                                                                 "cacheCreationInputTokens":  0,
+                                                                                 "webSearchRequests":  0,
+                                                                                 "costUSD":  0.049855,
+                                                                                 "contextWindow":  200000,
+                                                                                 "maxOutputTokens":  32000
+                                                                             },
+                                                       "deepseek-v4-pro[1m]":  {
+                                                                                   "inputTokens":  7832,
+                                                                                   "outputTokens":  2138,
+                                                                                   "cacheReadInputTokens":  0,
+                                                                                   "cacheCreationInputTokens":  0,
+                                                                                   "webSearchRequests":  0,
+                                                                                   "costUSD":  0.09261,
+                                                                                   "contextWindow":  1000000,
+                                                                                   "maxOutputTokens":  32000
+                                                                               }
+                                                   },
+                                    "permission_denials":  [
+
+                                                           ],
+                                    "terminal_reason":  "completed",
+                                    "fast_mode_state":  "off",
+                                    "uuid":  "924e3860-391d-40af-859a-c507c8c7e9ce"
+                                }
+                    },
+                    {
+                        "run_id":  "large-protocol-readiness-review-compact-v1-b-1",
+                        "task_id":  "large-protocol-readiness-review-compact-v1",
+                        "runner":  "claude-code-cli",
+                        "variant_id":  "B",
+                        "variant_name":  "machine_task_packet",
+                        "prompt_chars":  28538,
+                        "output_chars":  410,
+                        "output_text":  "1. Verdict: not_ready。仅有测试方案文档，无任何实测token消耗与质量数据。\n\n2. Evidence:\n- references/ab-test.md列出指标但无运行实例。\n- tests/small-task-ab-test-v2.zh.md仅有测试设计，未产生结果。\n\n3. Missing: 缺失usage字段、quality_score、pass/fail记录。\n\n4. Next Test:\n- 依references/api-ab-test.md固定模型/温度/文件，跑≥3轮AB/BA。\n- 记录input/cached/output/reasoning tokens及质量分。\n- 按provider定价算总成本，检验B组省量≥25%。\n\n5. Pass Rule: B质量≥A-1且总成本降≥25%且task_passed。Fail: token增加且成本未降，或质量差\u003e1分。",
+                        "total_cost_usd":  0.16814500000000002,
+                        "duration_ms":  96022,
+                        "usage":  {
+                                      "input_tokens":  7900,
+                                      "cache_creation_input_tokens":  0,
+                                      "cache_read_input_tokens":  0,
+                                      "output_tokens":  3106,
+                                      "server_tool_use":  {
+                                                              "web_search_requests":  0,
+                                                              "web_fetch_requests":  0
+                                                          }
+                                  },
+                        "modelUsage":  {
+                                           "deepseek-v4-flash":  {
+                                                                     "inputTokens":  8044,
+                                                                     "outputTokens":  431,
+                                                                     "cacheReadInputTokens":  0,
+                                                                     "cacheCreationInputTokens":  0,
+                                                                     "webSearchRequests":  0,
+                                                                     "costUSD":  0.050995000000000006,
+                                                                     "contextWindow":  200000,
+                                                                     "maxOutputTokens":  32000
+                                                                 },
+                                           "deepseek-v4-pro[1m]":  {
+                                                                       "inputTokens":  7900,
+                                                                       "outputTokens":  3106,
+                                                                       "cacheReadInputTokens":  0,
+                                                                       "cacheCreationInputTokens":  0,
+                                                                       "webSearchRequests":  0,
+                                                                       "costUSD":  0.11715,
+                                                                       "contextWindow":  1000000,
+                                                                       "maxOutputTokens":  32000
+                                                                   }
+                                       },
+                        "raw":  {
+                                    "type":  "result",
+                                    "subtype":  "success",
+                                    "is_error":  false,
+                                    "api_error_status":  null,
+                                    "duration_ms":  96022,
+                                    "duration_api_ms":  102708,
+                                    "ttft_ms":  90903,
+                                    "num_turns":  1,
+                                    "result":  "1. Verdict: not_ready。仅有测试方案文档，无任何实测token消耗与质量数据。\n\n2. Evidence:\n- references/ab-test.md列出指标但无运行实例。\n- tests/small-task-ab-test-v2.zh.md仅有测试设计，未产生结果。\n\n3. Missing: 缺失usage字段、quality_score、pass/fail记录。\n\n4. Next Test:\n- 依references/api-ab-test.md固定模型/温度/文件，跑≥3轮AB/BA。\n- 记录input/cached/output/reasoning tokens及质量分。\n- 按provider定价算总成本，检验B组省量≥25%。\n\n5. Pass Rule: B质量≥A-1且总成本降≥25%且task_passed。Fail: token增加且成本未降，或质量差\u003e1分。",
+                                    "stop_reason":  "end_turn",
+                                    "session_id":  "1139c89c-f742-4494-a24b-67c62c3dfea8",
+                                    "total_cost_usd":  0.16814500000000002,
+                                    "usage":  {
+                                                  "input_tokens":  7900,
+                                                  "cache_creation_input_tokens":  0,
+                                                  "cache_read_input_tokens":  0,
+                                                  "output_tokens":  3106,
+                                                  "server_tool_use":  {
+                                                                          "web_search_requests":  0,
+                                                                          "web_fetch_requests":  0
+                                                                      },
+                                                  "service_tier":  "standard",
+                                                  "cache_creation":  {
+                                                                         "ephemeral_1h_input_tokens":  0,
+                                                                         "ephemeral_5m_input_tokens":  0
+                                                                     },
+                                                  "inference_geo":  "",
+                                                  "iterations":  [
+
+                                                                 ],
+                                                  "speed":  "standard"
+                                              },
+                                    "modelUsage":  {
+                                                       "deepseek-v4-flash":  {
+                                                                                 "inputTokens":  8044,
+                                                                                 "outputTokens":  431,
+                                                                                 "cacheReadInputTokens":  0,
+                                                                                 "cacheCreationInputTokens":  0,
+                                                                                 "webSearchRequests":  0,
+                                                                                 "costUSD":  0.050995000000000006,
+                                                                                 "contextWindow":  200000,
+                                                                                 "maxOutputTokens":  32000
+                                                                             },
+                                                       "deepseek-v4-pro[1m]":  {
+                                                                                   "inputTokens":  7900,
+                                                                                   "outputTokens":  3106,
+                                                                                   "cacheReadInputTokens":  0,
+                                                                                   "cacheCreationInputTokens":  0,
+                                                                                   "webSearchRequests":  0,
+                                                                                   "costUSD":  0.11715,
+                                                                                   "contextWindow":  1000000,
+                                                                                   "maxOutputTokens":  32000
+                                                                               }
+                                                   },
+                                    "permission_denials":  [
+
+                                                           ],
+                                    "terminal_reason":  "completed",
+                                    "fast_mode_state":  "off",
+                                    "uuid":  "c7f94511-67db-430c-9cee-1e69c3d64c72"
+                                }
+                    }
+                ],
+    "manual_evaluation":  {
+                              "manual_quality_scores":  {
+                                                            "A":  8,
+                                                            "B":  7,
+                                                            "rubric":  "10 points: verdict, separate behavior/token evidence, cite files, concrete next test/pass-fail, concise/no drift",
+                                                            "rationale":  "B is much more usable and concise on visible output, but it omits/weakens some required content: no explicit behavior_quality_evidence vs token_cost_evidence buckets, no explicit small-task input-token caveat, and quality_score separation is only implicit. A is verbose but more complete."
+                                                        },
+                              "token_comparison":  {
+                                                       "input_tokens_delta":  68,
+                                                       "input_tokens_delta_pct":  0.0087,
+                                                       "output_tokens_delta":  968,
+                                                       "output_tokens_delta_pct":  0.4528,
+                                                       "visible_chars_delta":  -2686,
+                                                       "visible_chars_delta_pct":  -0.8676,
+                                                       "total_cost_delta_usd":  0.025680,
+                                                       "total_cost_delta_pct":  0.1803
+                                                   },
+                              "verdict":  "visible_output_improved_but_token_saving_failed",
+                              "reason":  "Compact B cut visible output dramatically, but Claude Code usage still charged more output tokens and higher total cost. This proves visible length is not a sufficient token-saving metric in this runtime.",
+                              "next_protocol_patch":  "For Claude Code local tests, record visible_chars separately from provider output_tokens, and treat hidden/provider completion tokens as part of total cost. Do not claim savings from shorter visible answers unless usage confirms it."
+                          }
+}

@@ -1,0 +1,98 @@
+{
+  "task_id": "context-saving-claim-review-v1",
+  "static_prefix": "Use only the provided evidence. No web. No edits. Keep quality judgment separate from token/cost judgment.",
+  "input_files": [
+    {
+      "label": "README.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+    },
+    {
+      "label": "SKILL.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+    },
+    {
+      "label": "references/ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+    },
+    {
+      "label": "references/api-ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+    },
+    {
+      "label": "tests/small-task-ab-test-v2.zh.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+    },
+    {
+      "label": "small evaluated result",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-local-ab-utf8-2026-05-15T10-08-11-338Z.evaluated.json"
+    },
+    {
+      "label": "large evaluated result",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-ab-20260515.evaluated.json"
+    },
+    {
+      "label": "large compact evaluated result",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-compact-ab-20260515.evaluated.json"
+    }
+  ],
+  "variant_input_files": {
+    "A": [
+      {
+        "label": "README.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+      },
+      {
+        "label": "SKILL.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+      },
+      {
+        "label": "references/ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+      },
+      {
+        "label": "references/api-ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+      },
+      {
+        "label": "tests/small-task-ab-test-v2.zh.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+      },
+      {
+        "label": "small evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-local-ab-utf8-2026-05-15T10-08-11-338Z.evaluated.json"
+      },
+      {
+        "label": "large evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-ab-20260515.evaluated.json"
+      },
+      {
+        "label": "large compact evaluated result",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\claude-large-compact-ab-20260515.evaluated.json"
+      }
+    ],
+    "B": [
+      {
+        "label": "references/ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+      },
+      {
+        "label": "token-saving evidence receipt",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-evidence-receipt.zh.md"
+      }
+    ]
+  },
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: states safe and unsafe claim boundary",
+      "2 points: uses real result numbers",
+      "2 points: separates behavior quality from token/cost saving",
+      "2 points: gives next saving mechanism/test",
+      "2 points: concise and directly usable"
+    ]
+  },
+  "variants": {
+    "A": "你帮我把上面所有材料都看一下，判断 token-prompt-compiler 现在到底应该怎么说才诚实：哪些话可以对外说，哪些话不能说，怎么才能真的省 token，下一步该怎么测。回答中文，尽量有依据，不要联网，不要改文件。",
+    "B": "Task: decide the honest claim boundary and next token-saving test.\nScope: only provided protocol + compact evidence receipt.\nOutput max 500 Chinese chars, exactly 4 bullets:\n1. Safe claim\n2. Unsafe claim\n3. Why previous tests did not save cost\n4. Next saving test\nMust mention: quality_score separate from token saving; total cost matters; compact evidence receipts are the likely saving mechanism.\nStop: no table, no quotes, no extra section."
+  }
+}

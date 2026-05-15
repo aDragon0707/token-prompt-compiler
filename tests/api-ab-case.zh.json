@@ -1,0 +1,25 @@
+{
+  "task_id": "readme-small-review-api-ab-v1",
+  "static_prefix": "You are evaluating a README review task. Follow the provided evidence only. Do not browse. Do not claim to have edited files. Keep the final answer concise.",
+  "input_files": [
+    {
+      "label": "README.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+    }
+  ],
+  "quality_rubric": {
+    "max_chars": 900,
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: exactly 3 README improvement points",
+      "2 points: each point is concrete and actionable",
+      "2 points: each point maps to README content",
+      "2 points: follows scope: README only, no edits, no web",
+      "2 points: concise, no extra filler"
+    ]
+  },
+  "variants": {
+    "A": "你帮我看看上面提供的 README.md，这个项目我想让别人更容易理解，也方便后面测试是不是真的省 token。别改文件，不要联网，只看 README。请只给我 3 个最重要的小改进建议，每个建议说明问题、为什么重要、最小修改办法。回答用中文，尽量简洁，不要泛泛而谈。",
+    "B": "Machine Task Packet\nGoal: Review the provided README.md and identify exactly 3 small improvements that make the project easier to understand, test, or share.\nWhy now: We are testing whether structured task packets improve agent focus and reduce wasted output.\nAllowed scope: Use only the README.md evidence provided above.\nRead first:\n- README.md evidence provided above.\nDo not touch:\n- Do not edit files.\n- Do not inspect unrelated files.\n- Do not browse the web.\nActions:\n- Identify exactly 3 improvement points.\n- For each point, explain the issue, why it matters, and the smallest fix.\n- Prefer concrete README changes over broad strategy advice.\nEvidence required:\n- Refer to the README section or wording behind each point.\nVerification:\n- Output has exactly 3 points.\n- Each point has Issue / Why it matters / Smallest fix.\n- No file edits were made.\nOutput format:\n- Chinese.\n- Under 450 words.\n- Use this structure for each point: Issue / Why it matters / Smallest fix.\nStop rule:\n- Stop after using the provided README evidence.\n- If README evidence is unavailable, report that and stop.\nToken policy:\n- Do not summarize the whole README.\n- Do not repeat project background.\n- Do not produce a full rewrite.\n- Do not add extra sections after the 3 points.\nAdapter notes:\n- API runner: no tools, concise final answer only."
+  }
+}

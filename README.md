@@ -43,6 +43,36 @@ goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
 
 This helps LLM agents spend fewer tokens guessing intent, rereading history, exploring irrelevant files, or producing long unsupported summaries.
 
+## How Token Savings Actually Happen
+
+The packet format alone does not guarantee lower token use. On small, already-scoped tasks, a task packet can increase `input_tokens`.
+
+The strongest savings come from **context control**:
+
+```text
+full docs / logs / history stay on disk
+-> compact Evidence Receipt goes into the prompt
+-> minimum task packet tells the model what to do next
+-> provider usage verifies the result
+```
+
+Use three packet tiers:
+
+| Tier | Use when | Shape |
+|---|---|---|
+| Tiny | Single-file, clear task | Goal / Actions / Stop rule |
+| Standard | Most reviews and small implementation tasks | Goal / Scope / Actions / Evidence / Output / Stop |
+| Full | Multi-file, tool-using, multi-agent, high-risk work | Full Machine Task Packet |
+
+Measured local Claude Code result for a context-saving test:
+
+| Variant | Input strategy | input | output | cost | quality |
+|---|---|---:|---:|---:|---:|
+| A | Full documents and full result logs | 31,289 | 4,159 | $0.493160 | 9/10 |
+| B | Evidence Receipt + minimum protocol | 1,129 | 377 | $0.032960 | 8/10 |
+
+Result: B reduced total cost by 93.3% while quality dropped by 1 point. This supports the narrower claim: token-prompt-compiler can save cost when it replaces broad context with a compact evidence receipt and a minimum task contract. It does **not** prove every Machine Task Packet saves tokens.
+
 ## What It Does
 
 It compiles requests like:
@@ -161,7 +191,8 @@ Reproducible scoring:
 ```text
 total_tokens = input_tokens + output_tokens + reasoning_tokens
 cached_tokens are recorded separately
-quality_score = 1-5, scored by the same reviewer with the same rubric
+quality_score = 0-10, scored by the same reviewer with the same rubric
+visible answer length is recorded separately from provider output_tokens
 ```
 
 Result table:

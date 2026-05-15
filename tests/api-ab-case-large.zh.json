@@ -1,0 +1,40 @@
+{
+  "task_id": "large-protocol-readiness-review-v1",
+  "static_prefix": "You are evaluating token-prompt-compiler as an evidence-bound reviewer. Use only the shared evidence. Do not browse. Do not claim to edit files. Keep quality judgment separate from token/cost judgment.",
+  "input_files": [
+    {
+      "label": "README.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\README.md"
+    },
+    {
+      "label": "SKILL.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\SKILL.md"
+    },
+    {
+      "label": "references/ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+    },
+    {
+      "label": "references/api-ab-test.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\references\\api-ab-test.md"
+    },
+    {
+      "label": "tests/small-task-ab-test-v2.zh.md",
+      "path": "D:\\GitHub\\token-prompt-compiler\\tests\\small-task-ab-test-v2.zh.md"
+    }
+  ],
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: answers whether the project is ready to claim token savings",
+      "2 points: separates behavior quality from token/cost evidence",
+      "2 points: cites or names specific evidence from the provided files",
+      "2 points: gives a concrete next test plan with pass/fail rules",
+      "2 points: concise enough to execute without broad strategy drift"
+    ]
+  },
+  "variants": {
+    "A": "你帮我认真看一下上面这些 token-prompt-compiler 项目材料，判断这个项目现在能不能对外说“它真的省 token”。我不想要泛泛的 prompt engineering 讨论，也不要只是说 task packet 更整齐。请你基于这些材料做一个可执行的判断：现在已经有什么证据、还缺什么证据、下一步应该怎么测、什么情况下算通过、什么情况下不能通过。顺便指出文档或测试协议里最需要补的一两个地方。回答用中文，别改文件，别联网，尽量直接给我能拿去做下一步的结论。",
+    "B": "Machine Task Packet\nGoal: Judge whether token-prompt-compiler is currently ready to claim real token savings, and produce the next executable evidence plan.\nWhy now: Small subjective A/B tests showed behavior benefits, but token/cost proof requires API or provider usage evidence.\nAllowed scope: Use only the shared evidence provided above: README.md, SKILL.md, references/ab-test.md, references/api-ab-test.md, and tests/small-task-ab-test-v2.zh.md.\nDo not touch:\n- Do not edit files.\n- Do not browse the web.\n- Do not discuss generic prompt engineering.\n- Do not treat prettier formatting as token saving proof.\nActions:\n1. Give a verdict: ready_to_claim, not_ready, or narrow_claim_only.\n2. Separate evidence into two buckets: behavior_quality_evidence and token_cost_evidence.\n3. Name the most important missing usage fields and say whether each is available, unavailable, or provider-dependent.\n4. Produce a next-test plan with fixed conditions, metrics, run order, and pass/fail rule.\n5. Identify at most 2 documentation/protocol patches that would make the claim safer.\nEvidence required:\n- Refer to specific provided files or sections by name.\n- Explicitly state that task packets may increase input tokens on small tasks.\n- Explicitly judge total cost, not single prompt length.\nVerification:\n- Output has exactly these sections: Verdict, Evidence Ledger, Missing Fields, Next Test, Pass/Fail Rule, Patch Targets.\n- quality_score and token saving are treated as separate dimensions.\n- No claims depend on files or web pages outside the shared evidence.\nOutput format:\n- Chinese.\n- Under 900 words.\n- Use short bullets, not long essay paragraphs.\nStop rule:\n- If the evidence is insufficient for a public token-saving claim, say not_ready or narrow_claim_only and stop after the next-test plan.\nToken policy:\n- Do not summarize every document.\n- Do not quote long passages.\n- Do not add a final motivational summary.\nAdapter notes:\n- Claude Code local: tools disabled; rely only on shared evidence; concise final answer."
+  }
+}
