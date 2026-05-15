@@ -1,0 +1,273 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "micro-receipt-claim-resolution-v1",
+  "runner": "claude-code-cli",
+  "fixed_conditions": {
+    "runs": 1,
+    "order": "AB",
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": false,
+    "variant_input_files": {
+      "A": [
+        {
+          "label": "references/ab-test.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+        },
+        {
+          "label": "token-saving evidence receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-evidence-receipt.zh.md"
+        }
+      ],
+      "B": [
+        {
+          "label": "token-saving micro receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+        }
+      ]
+    },
+    "max_budget_usd": "0.30",
+    "input_files": []
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "variant_summaries": {
+    "A": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.038285,
+      "avg_input_tokens": 1269,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 919,
+      "avg_output_chars": 988
+    },
+    "B": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.06193,
+      "avg_input_tokens": 511,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 543,
+      "avg_output_chars": 140
+    },
+    "token_cost_delta_pct_b_vs_a": 0.617605
+  },
+  "records": [
+    {
+      "run_id": "micro-receipt-claim-resolution-v1-a-1",
+      "task_id": "micro-receipt-claim-resolution-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "prompt_chars": 4292,
+      "output_chars": 988,
+      "output_text": "## 当前局面\n\n根据三组 A/B 测试，**B 组（compiled packet）的 token 成本全部高于 A 组**，即使可见输出更短。小任务上 packet 结构本身的 token 开销就超过了节省量。\n\n## 下一步该怎么改\n\n**核心方向：上下文控制，而非 prompt 格式。**\n\n当前 B 组仍然读取了完整上下文（full documents/logs），packet 只是换了层皮。真正的节省机制应该是：\n\n- B 组只拿到 **compact evidence receipt + 当前任务所需的最少协议条款 + 文件路径**\n- 模型需要完整信息时通过工具按需读取，而不是一次性塞进 prompt\n\n下一步应测试的对照：\n> A = 完整文档 + 完整日志 + 任务描述\n> B = 仅证据收据 + pass-rule 协议 + 路径引用（模型自行按需读取）\n\n## 现在能说什么、不能说什么\n\n**能说的 claim：**\n- Machine Task Packets 可以改善输出边界、证据纪律和验收检查质量\n- 上下文控制（用 compact receipt 替代完整文档）是 token 节省的潜在机制\n\n**不能说的 claim：**\n- ❌ \"Machine Task Packets 已被证明能降低 token 成本\" — 证据反而指向成本上升\n- ❌ \"总是省 token\" — 小任务上 packet 开销反超节省量\n\n## 具体改动建议\n\n| 优先级 | 改动 | 原因 |\n|---|---|---|\n| 1 | 实现 compact receipt 模式：B 不传全量文档，只传 receipt + 协议 + 路径 | 这是收据里指出的唯一未验证的节省机制 |\n| 2 | 对大任务拆分 packet：只编译当前步骤所需的协议片段，而非整个协议栈 | 减少 input_tokens 的固定开销 |\n| 3 | 对小任务增加大小阈值：低于阈值的任务不编译 packet，直接发原始 prompt | 避免 packet 结构反噬小任务 |\n\n## 一句话总结\n\n**别在 prompt 格式上雕花了，去砍上下文。** 把\"完整文档塞 prompt\"改成\"收据 + 按需读取\"，然后跑 A/B 验证 token 是否真的降了。",
+      "total_cost_usd": 0.038285,
+      "duration_ms": 29815,
+      "usage": {
+        "input_tokens": 1269,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 919,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 1413,
+          "outputTokens": 76,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.008965,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 1269,
+          "outputTokens": 919,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.02932,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 29815,
+        "duration_api_ms": 31206,
+        "ttft_ms": 14861,
+        "num_turns": 1,
+        "result": "## 当前局面\n\n根据三组 A/B 测试，**B 组（compiled packet）的 token 成本全部高于 A 组**，即使可见输出更短。小任务上 packet 结构本身的 token 开销就超过了节省量。\n\n## 下一步该怎么改\n\n**核心方向：上下文控制，而非 prompt 格式。**\n\n当前 B 组仍然读取了完整上下文（full documents/logs），packet 只是换了层皮。真正的节省机制应该是：\n\n- B 组只拿到 **compact evidence receipt + 当前任务所需的最少协议条款 + 文件路径**\n- 模型需要完整信息时通过工具按需读取，而不是一次性塞进 prompt\n\n下一步应测试的对照：\n> A = 完整文档 + 完整日志 + 任务描述\n> B = 仅证据收据 + pass-rule 协议 + 路径引用（模型自行按需读取）\n\n## 现在能说什么、不能说什么\n\n**能说的 claim：**\n- Machine Task Packets 可以改善输出边界、证据纪律和验收检查质量\n- 上下文控制（用 compact receipt 替代完整文档）是 token 节省的潜在机制\n\n**不能说的 claim：**\n- ❌ \"Machine Task Packets 已被证明能降低 token 成本\" — 证据反而指向成本上升\n- ❌ \"总是省 token\" — 小任务上 packet 开销反超节省量\n\n## 具体改动建议\n\n| 优先级 | 改动 | 原因 |\n|---|---|---|\n| 1 | 实现 compact receipt 模式：B 不传全量文档，只传 receipt + 协议 + 路径 | 这是收据里指出的唯一未验证的节省机制 |\n| 2 | 对大任务拆分 packet：只编译当前步骤所需的协议片段，而非整个协议栈 | 减少 input_tokens 的固定开销 |\n| 3 | 对小任务增加大小阈值：低于阈值的任务不编译 packet，直接发原始 prompt | 避免 packet 结构反噬小任务 |\n\n## 一句话总结\n\n**别在 prompt 格式上雕花了，去砍上下文。** 把\"完整文档塞 prompt\"改成\"收据 + 按需读取\"，然后跑 A/B 验证 token 是否真的降了。",
+        "stop_reason": "end_turn",
+        "session_id": "3d9dd868-d335-410f-87e2-4a37b26c337a",
+        "total_cost_usd": 0.038285,
+        "usage": {
+          "input_tokens": 1269,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 919,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 1413,
+            "outputTokens": 76,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.008965,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 1269,
+            "outputTokens": 919,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.02932,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "b0629256-cd7f-4030-a4b3-c0f46fa57942"
+      }
+    },
+    {
+      "run_id": "micro-receipt-claim-resolution-v1-b-1",
+      "task_id": "micro-receipt-claim-resolution-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "prompt_chars": 1148,
+      "output_chars": 140,
+      "output_text": "• 安全主张：收据替代完整上下文省成本93.3%，质量9→8（Δ=-1，通过）\n• 不安全主张：“每个MTP都省token”——三项直接包测试成本均反增，全部失败\n• 进一步缩减：测试更小微型收据，观察质量变化\n• 下一步补丁：质量可用则修文档；质量≠token节省，二者独立评估",
+      "total_cost_usd": 0.06193,
+      "duration_ms": 17332,
+      "usage": {
+        "input_tokens": 511,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 543,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 655,
+          "outputTokens": 1701,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.0458,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 511,
+          "outputTokens": 543,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01613,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 17332,
+        "duration_api_ms": 30417,
+        "ttft_ms": 14607,
+        "num_turns": 1,
+        "result": "• 安全主张：收据替代完整上下文省成本93.3%，质量9→8（Δ=-1，通过）\n• 不安全主张：“每个MTP都省token”——三项直接包测试成本均反增，全部失败\n• 进一步缩减：测试更小微型收据，观察质量变化\n• 下一步补丁：质量可用则修文档；质量≠token节省，二者独立评估",
+        "stop_reason": "end_turn",
+        "session_id": "a3032949-8fc4-45ce-a2bf-7999edddeca5",
+        "total_cost_usd": 0.06193,
+        "usage": {
+          "input_tokens": 511,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 543,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 655,
+            "outputTokens": 1701,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.0458,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 511,
+            "outputTokens": 543,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.01613,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "54ab0c95-52eb-4efa-b315-8b23eb454837"
+      }
+    }
+  ]
+}

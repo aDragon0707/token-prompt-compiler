@@ -1,0 +1,271 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "micro-receipt-no-meta-output-v2",
+  "runner": "claude-code-cli",
+  "fixed_conditions": {
+    "runs": 1,
+    "order": "AB",
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": false,
+    "variant_input_files": {
+      "A": [
+        {
+          "label": "token-saving micro receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+        }
+      ],
+      "B": [
+        {
+          "label": "token-saving micro receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+        }
+      ]
+    },
+    "max_budget_usd": "0.15",
+    "model": "deepseek-v4-pro",
+    "bare": true,
+    "input_files": []
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "variant_summaries": {
+    "A": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.013735,
+      "avg_input_tokens": 488,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 254,
+      "avg_output_chars": 171
+    },
+    "B": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.079525,
+      "avg_input_tokens": 502,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 2455,
+      "avg_output_chars": 90
+    },
+    "token_cost_delta_pct_b_vs_a": 4.789953
+  },
+  "records": [
+    {
+      "run_id": "micro-receipt-no-meta-output-v2-a-1",
+      "task_id": "micro-receipt-no-meta-output-v2",
+      "runner": "claude-code-cli",
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "prompt_chars": 1148,
+      "output_chars": 171,
+      "output_text": "基于共享证据，结论如下：\n\n- 安全主张：紧凑收据替代宽上下文可降本93.3%，质量从9降至8，达标。\n- 不安全主张：每个任务包都省token——先前测试质量降幅超标（如9→7），失败。\n- 下一步缩减：测试更小微型收据，观察质量为8是否延续。\n- 后续补丁：若质量可用（≥7），修补文档固化方案；注意质量≠token节省，总成本才是判据。",
+      "total_cost_usd": 0.013734999999999999,
+      "duration_ms": 7786,
+      "usage": {
+        "input_tokens": 488,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 254,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 659,
+          "outputTokens": 66,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.004945,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 488,
+          "outputTokens": 254,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.00879,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 7786,
+        "duration_api_ms": 9337,
+        "ttft_ms": 4780,
+        "num_turns": 1,
+        "result": "基于共享证据，结论如下：\n\n- 安全主张：紧凑收据替代宽上下文可降本93.3%，质量从9降至8，达标。\n- 不安全主张：每个任务包都省token——先前测试质量降幅超标（如9→7），失败。\n- 下一步缩减：测试更小微型收据，观察质量为8是否延续。\n- 后续补丁：若质量可用（≥7），修补文档固化方案；注意质量≠token节省，总成本才是判据。",
+        "stop_reason": "end_turn",
+        "session_id": "8ee303a7-b86e-46ca-a14e-636e2e34df5d",
+        "total_cost_usd": 0.013734999999999999,
+        "usage": {
+          "input_tokens": 488,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 254,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 659,
+            "outputTokens": 66,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.004945,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 488,
+            "outputTokens": 254,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.00879,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "4cfd7954-0341-40f6-af7f-8f039fff5855"
+      }
+    },
+    {
+      "run_id": "micro-receipt-no-meta-output-v2-b-1",
+      "task_id": "micro-receipt-no-meta-output-v2",
+      "runner": "claude-code-cli",
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "prompt_chars": 1048,
+      "output_chars": 90,
+      "output_text": "安全声明：收据替全上下文，省93.3%成本。\n禁止声明：每任务包都省token，质量≠省token。\n省token机制：压缩收据代替全上下文。\n下一步：测更小收据，质量可用则补丁。",
+      "total_cost_usd": 0.07952500000000001,
+      "duration_ms": 73398,
+      "usage": {
+        "input_tokens": 502,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 2455,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 673,
+          "outputTokens": 491,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01564,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro[1m]": {
+          "inputTokens": 502,
+          "outputTokens": 2455,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.06388500000000001,
+          "contextWindow": 1000000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 73398,
+        "duration_api_ms": 79907,
+        "ttft_ms": 71810,
+        "num_turns": 1,
+        "result": "安全声明：收据替全上下文，省93.3%成本。\n禁止声明：每任务包都省token，质量≠省token。\n省token机制：压缩收据代替全上下文。\n下一步：测更小收据，质量可用则补丁。",
+        "stop_reason": "end_turn",
+        "session_id": "6130bad6-e3f2-4b37-aad4-c32f34864902",
+        "total_cost_usd": 0.07952500000000001,
+        "usage": {
+          "input_tokens": 502,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 2455,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 673,
+            "outputTokens": 491,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.01564,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro[1m]": {
+            "inputTokens": 502,
+            "outputTokens": 2455,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.06388500000000001,
+            "contextWindow": 1000000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "f617285e-1648-4f5d-8bf5-cb8c915e756d"
+      }
+    }
+  ]
+}

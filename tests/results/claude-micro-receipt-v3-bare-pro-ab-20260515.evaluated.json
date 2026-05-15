@@ -1,0 +1,297 @@
+﻿{
+    "schema_version":  "local-claude-ab-result.v1",
+    "task_id":  "micro-receipt-balanced-output-v3",
+    "runner":  "claude-code-cli",
+    "fixed_conditions":  {
+                             "runs":  1,
+                             "order":  "AB",
+                             "tools":  "disabled",
+                             "output_format":  "json",
+                             "same_shared_evidence":  false,
+                             "variant_input_files":  {
+                                                         "A":  [
+                                                                   {
+                                                                       "label":  "token-saving micro receipt",
+                                                                       "path":  "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+                                                                   }
+                                                               ],
+                                                         "B":  [
+                                                                   {
+                                                                       "label":  "token-saving micro receipt",
+                                                                       "path":  "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+                                                                   }
+                                                               ]
+                                                     },
+                             "max_budget_usd":  "0.15",
+                             "model":  "deepseek-v4-pro",
+                             "bare":  true,
+                             "input_files":  [
+
+                                             ]
+                         },
+    "field_notes":  {
+                        "available":  [
+                                          "input_tokens",
+                                          "cache_creation_input_tokens",
+                                          "cache_read_input_tokens",
+                                          "output_tokens",
+                                          "total_cost_usd"
+                                      ],
+                        "unavailable":  [
+                                            "reasoning_tokens",
+                                            "openai_cached_tokens"
+                                        ],
+                        "warning":  "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+                    },
+    "variant_summaries":  {
+                              "A":  {
+                                        "runs":  1,
+                                        "avg_total_cost_usd":  0.03206,
+                                        "avg_input_tokens":  488,
+                                        "avg_cache_read_input_tokens":  0,
+                                        "avg_cache_creation_input_tokens":  0,
+                                        "avg_output_tokens":  909,
+                                        "avg_output_chars":  153
+                                    },
+                              "B":  {
+                                        "runs":  1,
+                                        "avg_total_cost_usd":  0.035775,
+                                        "avg_input_tokens":  497,
+                                        "avg_cache_read_input_tokens":  0,
+                                        "avg_cache_creation_input_tokens":  0,
+                                        "avg_output_tokens":  1116,
+                                        "avg_output_chars":  251
+                                    },
+                              "token_cost_delta_pct_b_vs_a":  0.115876
+                          },
+    "records":  [
+                    {
+                        "run_id":  "micro-receipt-balanced-output-v3-a-1",
+                        "task_id":  "micro-receipt-balanced-output-v3",
+                        "runner":  "claude-code-cli",
+                        "variant_id":  "A",
+                        "variant_name":  "original_prompt",
+                        "prompt_chars":  1148,
+                        "output_chars":  153,
+                        "output_text":  "- 安全声明：紧凑收据替代完整上下文可节省93.3%成本（质量9→8），规则通过。  \n- 不安全声明：每个机器任务包都省令牌——实验显示直接包反而增加令牌成本，不成立。  \n- 进一步缩减：测试更小微型收据以验证质量是否保持可用。  \n- 下一步补丁：若质量可接受则更新文档，注意质量≠令牌节省指标独立。",
+                        "total_cost_usd":  0.03206,
+                        "duration_ms":  29000,
+                        "usage":  {
+                                      "input_tokens":  488,
+                                      "cache_creation_input_tokens":  0,
+                                      "cache_read_input_tokens":  0,
+                                      "output_tokens":  909,
+                                      "server_tool_use":  {
+                                                              "web_search_requests":  0,
+                                                              "web_fetch_requests":  0
+                                                          }
+                                  },
+                        "modelUsage":  {
+                                           "deepseek-v4-flash":  {
+                                                                     "inputTokens":  659,
+                                                                     "outputTokens":  144,
+                                                                     "cacheReadInputTokens":  0,
+                                                                     "cacheCreationInputTokens":  0,
+                                                                     "webSearchRequests":  0,
+                                                                     "costUSD":  0.006895,
+                                                                     "contextWindow":  200000,
+                                                                     "maxOutputTokens":  32000
+                                                                 },
+                                           "deepseek-v4-pro[1m]":  {
+                                                                       "inputTokens":  488,
+                                                                       "outputTokens":  909,
+                                                                       "cacheReadInputTokens":  0,
+                                                                       "cacheCreationInputTokens":  0,
+                                                                       "webSearchRequests":  0,
+                                                                       "costUSD":  0.025165,
+                                                                       "contextWindow":  1000000,
+                                                                       "maxOutputTokens":  32000
+                                                                   }
+                                       },
+                        "raw":  {
+                                    "type":  "result",
+                                    "subtype":  "success",
+                                    "is_error":  false,
+                                    "api_error_status":  null,
+                                    "duration_ms":  29000,
+                                    "duration_api_ms":  31900,
+                                    "ttft_ms":  26096,
+                                    "num_turns":  1,
+                                    "result":  "- 安全声明：紧凑收据替代完整上下文可节省93.3%成本（质量9→8），规则通过。  \n- 不安全声明：每个机器任务包都省令牌——实验显示直接包反而增加令牌成本，不成立。  \n- 进一步缩减：测试更小微型收据以验证质量是否保持可用。  \n- 下一步补丁：若质量可接受则更新文档，注意质量≠令牌节省指标独立。",
+                                    "stop_reason":  "end_turn",
+                                    "session_id":  "1b9058b9-e46a-46ad-aaf3-81dca14e283a",
+                                    "total_cost_usd":  0.03206,
+                                    "usage":  {
+                                                  "input_tokens":  488,
+                                                  "cache_creation_input_tokens":  0,
+                                                  "cache_read_input_tokens":  0,
+                                                  "output_tokens":  909,
+                                                  "server_tool_use":  {
+                                                                          "web_search_requests":  0,
+                                                                          "web_fetch_requests":  0
+                                                                      },
+                                                  "service_tier":  "standard",
+                                                  "cache_creation":  {
+                                                                         "ephemeral_1h_input_tokens":  0,
+                                                                         "ephemeral_5m_input_tokens":  0
+                                                                     },
+                                                  "inference_geo":  "",
+                                                  "iterations":  [
+
+                                                                 ],
+                                                  "speed":  "standard"
+                                              },
+                                    "modelUsage":  {
+                                                       "deepseek-v4-flash":  {
+                                                                                 "inputTokens":  659,
+                                                                                 "outputTokens":  144,
+                                                                                 "cacheReadInputTokens":  0,
+                                                                                 "cacheCreationInputTokens":  0,
+                                                                                 "webSearchRequests":  0,
+                                                                                 "costUSD":  0.006895,
+                                                                                 "contextWindow":  200000,
+                                                                                 "maxOutputTokens":  32000
+                                                                             },
+                                                       "deepseek-v4-pro[1m]":  {
+                                                                                   "inputTokens":  488,
+                                                                                   "outputTokens":  909,
+                                                                                   "cacheReadInputTokens":  0,
+                                                                                   "cacheCreationInputTokens":  0,
+                                                                                   "webSearchRequests":  0,
+                                                                                   "costUSD":  0.025165,
+                                                                                   "contextWindow":  1000000,
+                                                                                   "maxOutputTokens":  32000
+                                                                               }
+                                                   },
+                                    "permission_denials":  [
+
+                                                           ],
+                                    "terminal_reason":  "completed",
+                                    "fast_mode_state":  "off",
+                                    "uuid":  "fb5f1f3a-44db-45b0-b430-3e0b3ed20bab"
+                                }
+                    },
+                    {
+                        "run_id":  "micro-receipt-balanced-output-v3-b-1",
+                        "task_id":  "micro-receipt-balanced-output-v3",
+                        "runner":  "claude-code-cli",
+                        "variant_id":  "B",
+                        "variant_name":  "machine_task_packet",
+                        "prompt_chars":  1044,
+                        "output_chars":  251,
+                        "output_text":  "安全claim：用紧凑收据+最小任务替换广域上下文可节省成本，全上下文成本0.493160，收据成本0.032960，节约93.3%，质量从9降至8，质量≠省token。\n禁止claim：“每个Machine Task Packet都省token”不成立，因直接包测试成本上升、质量下降。\n省token机制：上下文压缩——以紧凑收据取代完整上下文，实现93.3%成本节省（0.493160→0.032960），质量9→8，说明质量≠省token。\n下一补丁：测试更小的微收据，若质量保持可用则修补文档。",
+                        "total_cost_usd":  0.035775,
+                        "duration_ms":  34844,
+                        "usage":  {
+                                      "input_tokens":  497,
+                                      "cache_creation_input_tokens":  0,
+                                      "cache_read_input_tokens":  0,
+                                      "output_tokens":  1116,
+                                      "server_tool_use":  {
+                                                              "web_search_requests":  0,
+                                                              "web_fetch_requests":  0
+                                                          }
+                                  },
+                        "modelUsage":  {
+                                           "deepseek-v4-flash":  {
+                                                                     "inputTokens":  668,
+                                                                     "outputTokens":  82,
+                                                                     "cacheReadInputTokens":  0,
+                                                                     "cacheCreationInputTokens":  0,
+                                                                     "webSearchRequests":  0,
+                                                                     "costUSD":  0.005390000000000001,
+                                                                     "contextWindow":  200000,
+                                                                     "maxOutputTokens":  32000
+                                                                 },
+                                           "deepseek-v4-pro[1m]":  {
+                                                                       "inputTokens":  497,
+                                                                       "outputTokens":  1116,
+                                                                       "cacheReadInputTokens":  0,
+                                                                       "cacheCreationInputTokens":  0,
+                                                                       "webSearchRequests":  0,
+                                                                       "costUSD":  0.030385000000000002,
+                                                                       "contextWindow":  1000000,
+                                                                       "maxOutputTokens":  32000
+                                                                   }
+                                       },
+                        "raw":  {
+                                    "type":  "result",
+                                    "subtype":  "success",
+                                    "is_error":  false,
+                                    "api_error_status":  null,
+                                    "duration_ms":  34844,
+                                    "duration_api_ms":  36663,
+                                    "ttft_ms":  30429,
+                                    "num_turns":  1,
+                                    "result":  "安全claim：用紧凑收据+最小任务替换广域上下文可节省成本，全上下文成本0.493160，收据成本0.032960，节约93.3%，质量从9降至8，质量≠省token。\n禁止claim：“每个Machine Task Packet都省token”不成立，因直接包测试成本上升、质量下降。\n省token机制：上下文压缩——以紧凑收据取代完整上下文，实现93.3%成本节省（0.493160→0.032960），质量9→8，说明质量≠省token。\n下一补丁：测试更小的微收据，若质量保持可用则修补文档。",
+                                    "stop_reason":  "end_turn",
+                                    "session_id":  "2668bf79-0f35-45bb-ba29-14686393c524",
+                                    "total_cost_usd":  0.035775,
+                                    "usage":  {
+                                                  "input_tokens":  497,
+                                                  "cache_creation_input_tokens":  0,
+                                                  "cache_read_input_tokens":  0,
+                                                  "output_tokens":  1116,
+                                                  "server_tool_use":  {
+                                                                          "web_search_requests":  0,
+                                                                          "web_fetch_requests":  0
+                                                                      },
+                                                  "service_tier":  "standard",
+                                                  "cache_creation":  {
+                                                                         "ephemeral_1h_input_tokens":  0,
+                                                                         "ephemeral_5m_input_tokens":  0
+                                                                     },
+                                                  "inference_geo":  "",
+                                                  "iterations":  [
+
+                                                                 ],
+                                                  "speed":  "standard"
+                                              },
+                                    "modelUsage":  {
+                                                       "deepseek-v4-flash":  {
+                                                                                 "inputTokens":  668,
+                                                                                 "outputTokens":  82,
+                                                                                 "cacheReadInputTokens":  0,
+                                                                                 "cacheCreationInputTokens":  0,
+                                                                                 "webSearchRequests":  0,
+                                                                                 "costUSD":  0.005390000000000001,
+                                                                                 "contextWindow":  200000,
+                                                                                 "maxOutputTokens":  32000
+                                                                             },
+                                                       "deepseek-v4-pro[1m]":  {
+                                                                                   "inputTokens":  497,
+                                                                                   "outputTokens":  1116,
+                                                                                   "cacheReadInputTokens":  0,
+                                                                                   "cacheCreationInputTokens":  0,
+                                                                                   "webSearchRequests":  0,
+                                                                                   "costUSD":  0.030385000000000002,
+                                                                                   "contextWindow":  1000000,
+                                                                                   "maxOutputTokens":  32000
+                                                                               }
+                                                   },
+                                    "permission_denials":  [
+
+                                                           ],
+                                    "terminal_reason":  "completed",
+                                    "fast_mode_state":  "off",
+                                    "uuid":  "e5d94f66-95ee-43f8-8030-13447c06fc98"
+                                }
+                    }
+                ],
+    "manual_evaluation":  {
+                              "manual_quality_scores":  {
+                                                            "A":  8,
+                                                            "B":  8,
+                                                            "rationale":  "B used required strings and repeated evidence, increasing output_tokens and cost. A solved the task more cheaply with looser 4-bullet guidance."
+                                                        },
+                              "token_comparison":  {
+                                                       "input_tokens_delta":  9,
+                                                       "output_tokens_delta":  207,
+                                                       "total_cost_delta_usd":  0.003715,
+                                                       "total_cost_delta_pct":  0.1159
+                                                   },
+                              "verdict":  "fail_string_constraint_cost",
+                              "reason":  "B used required strings and repeated evidence, increasing output_tokens and cost. A solved the task more cheaply with looser 4-bullet guidance.",
+                              "lesson":  "Looser short-output guidance can be cheaper than rigid line/character/string constraints in Claude Code local runs."
+                          }
+}

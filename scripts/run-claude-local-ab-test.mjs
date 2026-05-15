@@ -17,6 +17,8 @@ const runs = Number(args.runs || 1);
 const order = args.order || "AB";
 const maxBudgetUsd = args.max_budget_usd || "0.50";
 const outPath = args.out || `tests/results/claude-local-ab-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+const model = args.model || null;
+const bare = Boolean(args.bare);
 
 if (!["AB", "BA"].includes(order)) fail("--order must be AB or BA");
 if (!Number.isInteger(runs) || runs < 1) fail("--runs must be a positive integer");
@@ -30,7 +32,7 @@ for (let runIndex = 0; runIndex < runs; runIndex += 1) {
   for (const variantId of runOrder) {
     const sharedEvidence = await loadSharedEvidence(testCase, caseDir, variantId);
     const prompt = buildPrompt(testCase, sharedEvidence, variantId);
-    const raw = await runClaude(prompt, testCase.static_prefix || "", maxBudgetUsd);
+    const raw = await runClaude(prompt, testCase.static_prefix || "", maxBudgetUsd, { model, bare });
     const record = {
       run_id: `${testCase.task_id || "claude-ab"}-${variantId.toLowerCase()}-${runIndex + 1}`,
       task_id: testCase.task_id || null,
@@ -63,6 +65,8 @@ const result = {
     same_shared_evidence: !testCase.variant_input_files,
     variant_input_files: testCase.variant_input_files || null,
     max_budget_usd: maxBudgetUsd,
+    model,
+    bare,
     input_files: testCase.input_files || [],
   },
   field_notes: {
@@ -99,17 +103,24 @@ function buildPrompt(testCase, sharedEvidence, variantId) {
   return `Shared evidence for both variants:\n\n${sharedEvidence}\n\n${testCase.variants[variantId]}`;
 }
 
-function runClaude(prompt, systemPrompt, maxBudgetUsd) {
+function runClaude(prompt, systemPrompt, maxBudgetUsd, options = {}) {
   return new Promise((resolve, reject) => {
     const command = "claude";
-    const child = spawn(command, [
+    const claudeArgs = [
       "-p",
       "--output-format", "json",
       "--tools", "",
       "--permission-mode", "dontAsk",
       "--max-budget-usd", maxBudgetUsd,
       "--system-prompt", systemPrompt,
-    ], {
+    ];
+    if (options.model) {
+      claudeArgs.push("--model", options.model);
+    }
+    if (options.bare) {
+      claudeArgs.unshift("--bare");
+    }
+    const child = spawn(command, claudeArgs, {
       cwd: process.cwd(),
       stdio: ["pipe", "pipe", "pipe"],
       shell: process.platform === "win32",
@@ -206,9 +217,11 @@ function parseArgs(argv) {
 function printHelp() {
   process.stdout.write(`Usage:
   node scripts/run-claude-local-ab-test.mjs --case tests/api-ab-case-large.zh.json --runs 1 --order AB --max-budget-usd 0.80 --out tests/results/claude-large-ab.json
+  node scripts/run-claude-local-ab-test.mjs --bare --model deepseek-v4-flash --case tests/api-ab-case-micro-receipt.zh.json --out tests/results/claude-micro-bare.json
 
 Notes:
   - Uses local Claude Code auth.
+  - --bare removes most Claude Code project/system overhead when available.
   - Disables tools and feeds identical shared evidence to A/B.
   - Measures Claude Code usage/cost, not OpenAI API usage.
 `);

@@ -117,3 +117,19 @@ Known caveat:
 ```text
 Small, already-scoped tasks may spend more input tokens on packet structure than they save in output or retries.
 ```
+
+Local runner caveat:
+
+```text
+CLI wrappers may add system/project overhead or route through helper models.
+Record provider usage by model when available.
+Use bare/minimal mode and fixed model for cleaner measurement.
+```
+
+Output constraint caveat:
+
+```text
+Shorter visible output can still cost more.
+Overly rigid line, character, or required-string constraints may increase provider output_tokens.
+Prefer short-bullet guidance plus "no meta/postscript" unless strict schema is needed downstream.
+```

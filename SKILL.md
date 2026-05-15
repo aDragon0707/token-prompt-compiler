@@ -117,6 +117,33 @@ Rules:
 - Judge total provider cost, not visible answer length or prompt length alone.
 - Remember that task packets may increase input tokens on small tasks.
 
+Use a Micro Receipt when the next task only needs a claim boundary or final decision:
+
+```text
+Micro Receipt
+Task:
+Facts:
+Rules:
+Claim:
+Next:
+```
+
+Micro Receipt works best when the full evidence has already been audited and saved elsewhere. Include exact numbers only when they change the decision.
+
+## Runtime Cost Controls
+
+For local CLI runners and agent shells, the wrapper can cost more than the task. Prefer:
+
+```text
+minimal_runtime: bare/minimal mode when available
+fixed_model: avoid automatic multi-model routing during measurement
+micro_receipt: pass only facts needed for the next decision
+loose_short_output: ask for short bullets, not rigid per-line character math
+no_meta: no word counts, no explanations of compliance, no postscript
+```
+
+Avoid over-constraining output with many exact string, line, or character requirements. In local tests, visible output could shrink while provider `output_tokens` and total cost rose.
+
 ## Output Shape
 
 When the user asks for a prompt only, output this:
@@ -186,6 +213,7 @@ tool_output: summarize and reference full logs by path
 model_policy: cheap model for extraction, strong model for final judgment
 reasoning_policy: use high reasoning only for ambiguity, architecture, safety, or verification
 packet_tier: tiny by default, standard when evidence/format matters, full only when justified
+receipt_tier: evidence receipt for broad context, micro receipt for final claim/decision
 claim_policy: do not claim token savings unless provider usage or cost verifies it
 ```
 

@@ -1,0 +1,32 @@
+{
+  "task_id": "micro-receipt-no-meta-output-v2",
+  "static_prefix": "",
+  "variant_input_files": {
+    "A": [
+      {
+        "label": "token-saving micro receipt",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+      }
+    ],
+    "B": [
+      {
+        "label": "token-saving micro receipt",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+      }
+    ]
+  },
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: gives safe claim",
+      "2 points: gives unsafe claim",
+      "2 points: gives further reduction mechanism",
+      "2 points: gives next patch",
+      "2 points: no preface/meta/postscript"
+    ]
+  },
+  "variants": {
+    "A": "Solve task in <=260 Chinese chars. Output 4 bullets only: safe claim; unsafe claim; further reduction; next patch. Must include one numeric result and mention quality != token saving.",
+    "B": "4行中文，每行<=38字，无标题/解释/统计。\n1 安全claim\n2 禁止claim\n3 省token机制\n4 下一补丁\n必须含93.3%和“质量≠省token”。"
+  }
+}

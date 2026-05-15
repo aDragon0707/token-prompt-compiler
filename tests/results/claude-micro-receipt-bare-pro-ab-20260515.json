@@ -1,0 +1,275 @@
+{
+  "schema_version": "local-claude-ab-result.v1",
+  "task_id": "micro-receipt-claim-resolution-v1",
+  "runner": "claude-code-cli",
+  "fixed_conditions": {
+    "runs": 1,
+    "order": "AB",
+    "tools": "disabled",
+    "output_format": "json",
+    "same_shared_evidence": false,
+    "variant_input_files": {
+      "A": [
+        {
+          "label": "references/ab-test.md",
+          "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+        },
+        {
+          "label": "token-saving evidence receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-evidence-receipt.zh.md"
+        }
+      ],
+      "B": [
+        {
+          "label": "token-saving micro receipt",
+          "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+        }
+      ]
+    },
+    "max_budget_usd": "0.20",
+    "model": "deepseek-v4-pro",
+    "bare": true,
+    "input_files": []
+  },
+  "field_notes": {
+    "available": [
+      "input_tokens",
+      "cache_creation_input_tokens",
+      "cache_read_input_tokens",
+      "output_tokens",
+      "total_cost_usd"
+    ],
+    "unavailable": [
+      "reasoning_tokens",
+      "openai_cached_tokens"
+    ],
+    "warning": "This measures local Claude Code provider usage and behavior quality, not OpenAI API usage."
+  },
+  "variant_summaries": {
+    "A": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.034845,
+      "avg_input_tokens": 1241,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 471,
+      "avg_output_chars": 513
+    },
+    "B": {
+      "runs": 1,
+      "avg_total_cost_usd": 0.017415,
+      "avg_input_tokens": 483,
+      "avg_cache_read_input_tokens": 0,
+      "avg_cache_creation_input_tokens": 0,
+      "avg_output_tokens": 282,
+      "avg_output_chars": 223
+    },
+    "token_cost_delta_pct_b_vs_a": -0.500215
+  },
+  "records": [
+    {
+      "run_id": "micro-receipt-claim-resolution-v1-a-1",
+      "task_id": "micro-receipt-claim-resolution-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "A",
+      "variant_name": "original_prompt",
+      "prompt_chars": 4292,
+      "output_chars": 513,
+      "output_text": "**下一步该改哪里**\n\n目前的问题是 B 包的 structure overhead 大于它节省的 token。下一步不是加功能，是做减法：\n\n1. **不做全量编译**——不要把所有参考文件塞进 B 包。改成 B 只包含：evidence receipt（路径+摘要）+ 最小 task contract + 协议条款。\n2. **做一次真正的上下文对比测试**：A 给全量日志/文档，B 只给这份 `token-saving-evidence-receipt.zh.md` 的内容加上 pass rule，其他文件保留在磁盘路径。这才是可能产生节省的场景。\n3. **先停掉小任务编译**——证据收据已表明小任务 B 比 A 贵，overhead 吃掉了一切。\n\n**哪些 claim 可以说**\n- ✅ MTP 改善行为边界、证据纪律、输出结构\n- ✅ 编译任务包在替换宽上下文时有潜力降低总成本（需 provider usage 验证）\n- ✅ 可见长度缩短不等于 token 成本降低\n\n**哪些不能说**\n- ❌ MTP 已证明能减少 token 消耗\n- ❌ MTP 总是节省成本\n- ❌ 输出更短就代表更便宜",
+      "total_cost_usd": 0.034845,
+      "duration_ms": 16713,
+      "usage": {
+        "input_tokens": 1241,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 471,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 1413,
+          "outputTokens": 392,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.016864999999999998,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro": {
+          "inputTokens": 1241,
+          "outputTokens": 471,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.01798,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 16713,
+        "duration_api_ms": 22638,
+        "ttft_ms": 7895,
+        "num_turns": 1,
+        "result": "**下一步该改哪里**\n\n目前的问题是 B 包的 structure overhead 大于它节省的 token。下一步不是加功能，是做减法：\n\n1. **不做全量编译**——不要把所有参考文件塞进 B 包。改成 B 只包含：evidence receipt（路径+摘要）+ 最小 task contract + 协议条款。\n2. **做一次真正的上下文对比测试**：A 给全量日志/文档，B 只给这份 `token-saving-evidence-receipt.zh.md` 的内容加上 pass rule，其他文件保留在磁盘路径。这才是可能产生节省的场景。\n3. **先停掉小任务编译**——证据收据已表明小任务 B 比 A 贵，overhead 吃掉了一切。\n\n**哪些 claim 可以说**\n- ✅ MTP 改善行为边界、证据纪律、输出结构\n- ✅ 编译任务包在替换宽上下文时有潜力降低总成本（需 provider usage 验证）\n- ✅ 可见长度缩短不等于 token 成本降低\n\n**哪些不能说**\n- ❌ MTP 已证明能减少 token 消耗\n- ❌ MTP 总是节省成本\n- ❌ 输出更短就代表更便宜",
+        "stop_reason": "end_turn",
+        "session_id": "a0183da9-1e97-400f-8648-71eee546a4b6",
+        "total_cost_usd": 0.034845,
+        "usage": {
+          "input_tokens": 1241,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 471,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 1413,
+            "outputTokens": 392,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.016864999999999998,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro": {
+            "inputTokens": 1241,
+            "outputTokens": 471,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.01798,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "969f239b-e0e6-465a-99c9-122a863b14e3"
+      }
+    },
+    {
+      "run_id": "micro-receipt-claim-resolution-v1-b-1",
+      "task_id": "micro-receipt-claim-resolution-v1",
+      "runner": "claude-code-cli",
+      "variant_id": "B",
+      "variant_name": "machine_task_packet",
+      "prompt_chars": 1148,
+      "output_chars": 223,
+      "output_text": "• 安全主张：用紧凑收据替代宽上下文可省成本（93.3%），质量仅降1分（9→8），通过阈值。\n• 不安全主张：每个机器任务包都省Token——直接包测试全部失败（体积反增、质量下降），不成立。\n• 进一步缩减：测试更小的微型收据，观察质量是否仍可保持在可用范围。\n• 下一步补丁：若微型收据质量可用，更新文档明确“质量≠Token节省”，仅推荐上下文替换场景。\n\n字数统计：约210字符（含标点）。已含数值93.3%并点明质量≠Token节省。",
+      "total_cost_usd": 0.017415,
+      "duration_ms": 10069,
+      "usage": {
+        "input_tokens": 483,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 282,
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        }
+      },
+      "modelUsage": {
+        "deepseek-v4-flash": {
+          "inputTokens": 655,
+          "outputTokens": 187,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.007949999999999999,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        },
+        "deepseek-v4-pro": {
+          "inputTokens": 483,
+          "outputTokens": 282,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0,
+          "webSearchRequests": 0,
+          "costUSD": 0.009465000000000001,
+          "contextWindow": 200000,
+          "maxOutputTokens": 32000
+        }
+      },
+      "raw": {
+        "type": "result",
+        "subtype": "success",
+        "is_error": false,
+        "api_error_status": null,
+        "duration_ms": 10069,
+        "duration_api_ms": 13263,
+        "ttft_ms": 5620,
+        "num_turns": 1,
+        "result": "• 安全主张：用紧凑收据替代宽上下文可省成本（93.3%），质量仅降1分（9→8），通过阈值。\n• 不安全主张：每个机器任务包都省Token——直接包测试全部失败（体积反增、质量下降），不成立。\n• 进一步缩减：测试更小的微型收据，观察质量是否仍可保持在可用范围。\n• 下一步补丁：若微型收据质量可用，更新文档明确“质量≠Token节省”，仅推荐上下文替换场景。\n\n字数统计：约210字符（含标点）。已含数值93.3%并点明质量≠Token节省。",
+        "stop_reason": "end_turn",
+        "session_id": "d4c67e80-2f38-4ba9-b8d9-aff732ba2ccf",
+        "total_cost_usd": 0.017415,
+        "usage": {
+          "input_tokens": 483,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "output_tokens": 282,
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "",
+          "iterations": [],
+          "speed": "standard"
+        },
+        "modelUsage": {
+          "deepseek-v4-flash": {
+            "inputTokens": 655,
+            "outputTokens": 187,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.007949999999999999,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          },
+          "deepseek-v4-pro": {
+            "inputTokens": 483,
+            "outputTokens": 282,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.009465000000000001,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000
+          }
+        },
+        "permission_denials": [],
+        "terminal_reason": "completed",
+        "fast_mode_state": "off",
+        "uuid": "135d9827-82dc-4d80-b20d-ddef8294556b"
+      }
+    }
+  ]
+}

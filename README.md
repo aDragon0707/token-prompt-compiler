@@ -73,6 +73,24 @@ Measured local Claude Code result for a context-saving test:
 
 Result: B reduced total cost by 93.3% while quality dropped by 1 point. This supports the narrower claim: token-prompt-compiler can save cost when it replaces broad context with a compact evidence receipt and a minimum task contract. It does **not** prove every Machine Task Packet saves tokens.
 
+Further local reduction with Claude Code:
+
+```text
+Use bare/minimal runtime when available.
+Fix the model during measurement.
+Use a Micro Receipt for final claim-boundary tasks.
+Avoid rigid line/character constraints that can increase provider output_tokens.
+```
+
+Measured follow-up:
+
+| Variant | Runtime | input | output | cost | quality |
+|---|---|---:|---:|---:|---:|
+| A | bare + full receipt | 1,241 | 471 | $0.034845 | 8/10 |
+| B | bare + Micro Receipt | 483 | 282 | $0.017415 | 8/10 |
+
+Result: Micro Receipt reduced cost by 50.0% with no quality loss in that run. A stricter "4 lines / max characters" variant looked shorter but cost more, so judge provider usage, not visible length.
+
 ## What It Does
 
 It compiles requests like:

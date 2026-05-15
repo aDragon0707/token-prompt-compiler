@@ -1,0 +1,36 @@
+{
+  "task_id": "micro-receipt-claim-resolution-v1",
+  "static_prefix": "Use only provided evidence. No web. No edits. Prefer the shortest complete answer.",
+  "variant_input_files": {
+    "A": [
+      {
+        "label": "references/ab-test.md",
+        "path": "D:\\GitHub\\token-prompt-compiler\\references\\ab-test.md"
+      },
+      {
+        "label": "token-saving evidence receipt",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-evidence-receipt.zh.md"
+      }
+    ],
+    "B": [
+      {
+        "label": "token-saving micro receipt",
+        "path": "D:\\GitHub\\token-prompt-compiler\\tests\\results\\token-saving-micro-receipt.zh.md"
+      }
+    ]
+  },
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: gives honest safe/unsafe claim",
+      "2 points: uses prior result numbers",
+      "2 points: separates quality from token/cost",
+      "2 points: explains further reduction mechanism",
+      "2 points: gives next action without drift"
+    ]
+  },
+  "variants": {
+    "A": "基于上面的协议和证据收据，解决这个任务：现在 token-prompt-compiler 应该怎么进一步减少 token 消耗？哪些 claim 可以说，哪些不能说？下一步该改哪里？中文回答，尽量短。",
+    "B": "Solve task in <=260 Chinese chars. Output 4 bullets only: safe claim; unsafe claim; further reduction; next patch. Must include one numeric result and mention quality != token saving."
+  }
+}
