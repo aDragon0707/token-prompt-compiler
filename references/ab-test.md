@@ -126,6 +126,14 @@ Record provider usage by model when available.
 Use bare/minimal mode and fixed model for cleaner measurement.
 ```
 
+Cache caveat:
+
+```text
+High cache_read tokens reduce repeated-prefix cost, but do not prove the prompt is token-efficient.
+Compare cached full-context prompts against Micro Receipt prompts when the next decision only needs facts.
+Record uncached input, cached input, output, reasoning, and total provider cost separately.
+```
+
 Output constraint caveat:
 
 ```text

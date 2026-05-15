@@ -91,6 +91,23 @@ Measured follow-up:
 
 Result: Micro Receipt reduced cost by 50.0% with no quality loss in that run. A stricter "4 lines / max characters" variant looked shorter but cost more, so judge provider usage, not visible length.
 
+### Cache vs Receipt
+
+Prompt caching is useful, but it is not the same as context reduction:
+
+```text
+cache hit = repeated long context becomes cheaper
+Micro Receipt = long context is not sent unless needed
+```
+
+Best default:
+
+```text
+stable short prefix -> Micro Receipt -> current task
+```
+
+If a request shows high `cached_tokens`, you may have saved compute compared with a cold long prompt, but you may still be paying more than a short receipt-based prompt. Record cached tokens separately and judge total provider cost.
+
 ## What It Does
 
 It compiles requests like:

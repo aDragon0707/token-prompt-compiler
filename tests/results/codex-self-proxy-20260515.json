@@ -1,0 +1,26 @@
+{
+  "schema_version": "codex-self-proxy-v1",
+  "note": "Proxy only: Codex provider usage/reasoning/cached tokens are not exposed in this local interface.",
+  "A": {
+    "label": "A_old_full_context",
+    "files_read": 6,
+    "chars": 97482,
+    "rough_token_estimate": 29176,
+    "prompt_preview": "FILE: D:/GitHub/token-prompt-compiler/README.md --- # Token Prompt Compiler **English** | [中文](#中文) Token Prompt Compiler turns messy human-language requests"
+  },
+  "B": {
+    "label": "B_self_micro_receipt",
+    "files_read": 1,
+    "chars": 988,
+    "rough_token_estimate": 247,
+    "prompt_preview": "FILE: D:/GitHub/token-prompt-compiler/tests/results/token-saving-micro-receipt.zh.md --- # Token Saving Micro Receipt Date: 2026-05-15 Task: decide honest tok"
+  },
+  "savings_proxy": {
+    "files_read_delta": -5,
+    "chars_delta": -96494,
+    "chars_saving_pct": 0.9899,
+    "rough_tokens_delta": -28929,
+    "rough_tokens_saving_pct": 0.9915
+  },
+  "verdict": "self_rules_reduce_controllable_context_proxy"
+}

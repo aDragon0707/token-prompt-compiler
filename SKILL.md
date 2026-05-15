@@ -144,6 +144,23 @@ no_meta: no word counts, no explanations of compliance, no postscript
 
 Avoid over-constraining output with many exact string, line, or character requirements. In local tests, visible output could shrink while provider `output_tokens` and total cost rose.
 
+## Cache vs Receipt Rule
+
+Prompt caching and receipts solve different problems:
+
+```text
+cache_hit: makes repeated long prefixes cheaper
+micro_receipt: avoids sending the long prefix at all
+```
+
+Decision rule:
+
+- If the long context is stable and must remain active, put stable rules first so cache can hit.
+- If the next decision only needs facts, replace the long context with a Micro Receipt.
+- Best case: stable short prefix + Micro Receipt + dynamic task tail.
+- Do not treat high cache-read tokens as proof of good context design; it may only mean an oversized prompt became cheaper, not small.
+- Report both `cached_tokens` and uncached/dynamic tokens when usage is available.
+
 ## Output Shape
 
 When the user asks for a prompt only, output this:
@@ -214,6 +231,7 @@ model_policy: cheap model for extraction, strong model for final judgment
 reasoning_policy: use high reasoning only for ambiguity, architecture, safety, or verification
 packet_tier: tiny by default, standard when evidence/format matters, full only when justified
 receipt_tier: evidence receipt for broad context, micro receipt for final claim/decision
+cache_policy: stable short prefix first, dynamic task last, but prefer receipt over huge cached context
 claim_policy: do not claim token savings unless provider usage or cost verifies it
 ```
 
