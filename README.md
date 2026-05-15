@@ -1,4 +1,4 @@
-# Token Prompt Compiler
+﻿# Token Prompt Compiler
 
 **English** | [中文](#中文)
 
@@ -7,6 +7,29 @@ Token Prompt Compiler turns messy human-language requests into token-efficient, 
 Think of it as a **pre-flight checklist for agents**: scope, evidence, verification, and stop rules before the model starts working.
 
 It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, Gemini CLI, DeepSeek, OpenAI Agents, or another LLM agent can execute with less wasted context.
+
+## 30-Second Quick Start
+
+Paste this into Codex, Claude, Gemini, DeepSeek, or another agent:
+
+```text
+Use token-prompt-compiler to compile this request into a token-efficient Machine Task Packet, then execute it:
+
+[your messy request]
+```
+
+Tiny example:
+
+```text
+Input: Help me review this README and make it easier to test.
+
+Output:
+Goal: Review README.md for testability.
+Allowed scope: README.md only.
+Actions: Find 3 small improvements.
+Evidence required: Refer to the relevant README sections.
+Stop rule: Do not edit files.
+```
 
 ## Why
 
@@ -97,6 +120,14 @@ token-prompt-compiler/
 
 Restart Codex if the skill list does not refresh immediately.
 
+Required files:
+
+```text
+SKILL.md is required.
+references/ should be kept for optional spec, adapter, and A/B testing details.
+agents/openai.yaml is optional UI metadata for Codex-like environments.
+```
+
 Minimum verification:
 
 ```text
@@ -124,6 +155,21 @@ Fixed conditions: same model, same files, same reasoning effort, same output lim
 Measure: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_calls, files_read, retries, quality_score
 Pass rule: B saves at least 25% total tokens while quality drops by no more than 1 point
 ```
+
+Reproducible scoring:
+
+```text
+total_tokens = input_tokens + output_tokens + reasoning_tokens
+cached_tokens are recorded separately
+quality_score = 1-5, scored by the same reviewer with the same rubric
+```
+
+Result table:
+
+| Variant | input | cached | output | reasoning | total | tool_calls | files_read | retries | quality | pass |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| A original prompt |  |  |  |  |  |  |  |  |  |  |
+| B task packet |  |  |  |  |  |  |  |  |  |  |
 
 Start here:
 
@@ -197,6 +243,29 @@ Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”�
 它不是“压缩文字”，而是把人话需求编译成 agent 开工前的任务合同：范围、证据、验证方式和停止条件先写清楚，再让模型执行。
 
 它可以作为 Codex skill 使用，但核心思想不是只服务 Codex，而是服务所有 LLM / Agent 系统：Codex、Claude Code、Gemini CLI、DeepSeek、OpenAI Agents，或者你自己的 multi-agent runtime。
+
+## 30 秒上手
+
+把这段粘贴给 Codex、Claude、Gemini、DeepSeek 或其他 agent：
+
+```text
+Use token-prompt-compiler to compile this request into a token-efficient Machine Task Packet, then execute it:
+
+[your messy request]
+```
+
+极短示例：
+
+```text
+Input: 帮我审查这个 README，让它更容易测试。
+
+Output:
+Goal: Review README.md for testability.
+Allowed scope: README.md only.
+Actions: Find 3 small improvements.
+Evidence required: Refer to the relevant README sections.
+Stop rule: Do not edit files.
+```
 
 ## 为什么
 
@@ -286,6 +355,21 @@ B: 编译后的 Machine Task Packet
 通过标准：B 至少减少 25% total tokens，并且质量下降不超过 1 分
 ```
 
+可复现评分：
+
+```text
+total_tokens = input_tokens + output_tokens + reasoning_tokens
+cached_tokens 单独记录
+quality_score = 1-5 分，由同一个评审按同一套标准打分
+```
+
+结果表：
+
+| Variant | input | cached | output | reasoning | total | tool_calls | files_read | retries | quality | pass |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| A 原始 prompt |  |  |  |  |  |  |  |  |  |  |
+| B task packet |  |  |  |  |  |  |  |  |  |  |
+
 快速入口：
 
 - [英文基础示例](examples/basic.en.md)
@@ -325,4 +409,3 @@ B: 编译后的 Machine Task Packet
 ## 编码说明
 
 本仓库 Markdown 文件按 UTF-8 保存。如果你在本地看到中文乱码，请用 UTF-8 重新打开。
-

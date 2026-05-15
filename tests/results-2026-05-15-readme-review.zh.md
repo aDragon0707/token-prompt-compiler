@@ -68,3 +68,34 @@ Machine Task Packet 的优势不是让模型“更聪明”，
 以及 README 是否不再触发“测试方法不明显 / 安装不明确 / 字段解释不足”的反馈。
 ```
 
+## V2 测试补充
+
+输入：
+
+```text
+A 组和 B 组都限制 exactly 3 points。
+```
+
+共同命中问题：
+
+- 中文链接/中文区在部分测试窗口中显示乱码。
+- A/B 测试中的 `quality_score` 评分口径不够明确。
+
+A 组额外发现：
+
+- README 首屏缺少 “30 秒上手”。
+- A/B 测试规则需要结果表，明确 `total_tokens` 怎么算。
+
+B 组额外发现：
+
+- Installation 需要说明关键安装文件：`SKILL.md`、`references/`、`agents/openai.yaml`。
+
+本轮改进：
+
+- 增加 `30-Second Quick Start` / `30 秒上手`。
+- 增加 Required files。
+- 增加 `total_tokens` 计算方式。
+- 增加 `quality_score = 1-5` 评分说明。
+- 增加 A/B result table。
+- 增加 `.editorconfig`，声明 UTF-8 BOM，提升 Windows 工具识别稳定性。
+
