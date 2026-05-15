@@ -15,6 +15,8 @@ Do not merely shorten the user's words. Preserve the decision surface:
 goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
 ```
 
+This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers.
+
 ## Compilation Workflow
 
 1. Extract intent.
@@ -26,6 +28,7 @@ goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
    - Name allowed files, URLs, tools, and time horizon when known.
    - Name forbidden or out-of-scope work.
    - If boundaries are missing, choose conservative defaults instead of expanding.
+   - Ask at most one question if a missing boundary can cause destructive work or a wrong deliverable.
 
 3. Minimize context.
    - Prefer paths, receipts, summaries, and source maps over full history.
@@ -38,6 +41,12 @@ goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
 
 5. Add a stop rule.
    - Stop when evidence is missing, scope expands, two attempts fail, or the task needs a human decision.
+
+6. Choose an execution path.
+   - `prompt_only`: return the packet only.
+   - `execute_now`: execute from the packet.
+   - `worker_packet`: prepare for another agent/model.
+   - `ab_test`: produce A/B variants and measurement fields.
 
 ## Output Shape
 
@@ -72,6 +81,20 @@ Gemini CLI: prefer explicit file scope, structured output, and grounding require
 DeepSeek: prefer stable prefix first, JSON mode when parsing matters, and cache-hit friendly repeated instructions.
 OpenAI Agents: prefer tools, handoffs, trace/eval fields, and structured outputs.
 ```
+
+## A/B Test Mode
+
+When the user asks to test token reduction, output:
+
+```text
+A: original prompt
+B: compiled packet
+Fixed conditions:
+Metrics: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_calls, retries, task_passed, quality_score
+Pass rule: >=25% total token reduction, quality_delta >= -1, task_passed=true
+```
+
+See `references/ab-test.md` for the fuller measurement protocol.
 
 ## Token Policy
 
@@ -132,3 +155,12 @@ A good compiled prompt is:
 - explicit about what evidence proves completion;
 - explicit about what not to do;
 - usable by another agent without rereading the whole conversation.
+
+## References
+
+Load only when needed:
+
+- `references/spec.md`: full packet spec and field semantics.
+- `references/adapters.md`: model-specific adapter notes.
+- `references/ab-test.md`: token reduction measurement protocol.
+- `references/related-work.md`: positioning against similar skills and workflows.

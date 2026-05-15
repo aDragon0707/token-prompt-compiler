@@ -57,6 +57,8 @@ Token policy:
 Adapter notes:
 ```
 
+For full field semantics, see [`SPEC.md`](SPEC.md) and [`references/spec.md`](references/spec.md).
+
 ## Use Cases
 
 - Compress long user reflections into actionable machine-readable tasks.
@@ -95,6 +97,13 @@ Useful references to study:
 - Claude Code skills documentation: https://code.claude.com/docs/en/skills
 - Spec-driven development skills: https://terminalskills.io/skills/spec-driven-dev
 - GitHub token-efficiency workflow notes: https://github.blog/ai-and-ml/github-copilot/improving-token-efficiency-in-github-agentic-workflows/
+
+Internal references:
+
+- [`references/spec.md`](references/spec.md)
+- [`references/adapters.md`](references/adapters.md)
+- [`references/ab-test.md`](references/ab-test.md)
+- [`references/related-work.md`](references/related-work.md)
 
 ## Installation
 

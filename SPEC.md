@@ -1,5 +1,9 @@
 # Human-to-Machine Task Packet Spec
 
+Detailed spec now lives in `references/spec.md`.
+
+This root file is kept as a short public entry point.
+
 This project treats prompt writing as compilation:
 
 ```text
@@ -23,22 +27,14 @@ Token policy:
 Adapter notes:
 ```
 
-## Field Meanings
+For field meanings, compilation classes, and examples, see:
 
-| Field | Purpose |
-|---|---|
-| Goal | The actual job to complete |
-| Why now | The reason this task matters now |
-| Allowed scope | Files, URLs, tools, or areas the model may use |
-| Read first | The first 3-5 inputs to inspect |
-| Do not touch | Boundaries that prevent drift |
-| Actions | Ordered work steps |
-| Evidence required | What proves claims or completion |
-| Verification | Tests, checks, or review gates |
-| Output format | Shape, language, and length |
-| Stop rule | When the agent must stop or ask |
-| Token policy | How to avoid wasted context |
-| Adapter notes | Model-specific execution hints |
+```text
+references/spec.md
+references/adapters.md
+references/ab-test.md
+references/related-work.md
+```
 
 ## Token Principle
 
@@ -53,4 +49,3 @@ handoff
 ```
 
 Shorter is not always better. A good packet may add a few schema tokens to prevent retries, unsupported claims, or excessive exploration.
-

@@ -30,3 +30,13 @@ Stop rule: Stop if project entry points are unclear after 5 files.
 Token policy: Do not read the whole repo; prefer rg and targeted file reads.
 Adapter notes: For Codex, cite file paths and avoid edits. For Claude Code, this can become a read-only planning subagent task. For DeepSeek, keep this packet as the stable prefix and place project-specific variables after it.
 ```
+
+## A/B Test Variant
+
+```text
+A: Use the original request directly.
+B: Use the compiled Machine Task Packet.
+Fixed conditions: same model, same files, same output length limit.
+Metrics: input_tokens, output_tokens, tool_calls, files_read, retries, task_passed, quality_score.
+Pass rule: B reduces total tokens by at least 25% while quality_score drops by no more than 1 point.
+```
