@@ -1,0 +1,4 @@
+interface:
+  display_name: "Token Prompt Compiler"
+  short_description: "Turn messy requests into token-efficient Codex task packets."
+  default_prompt: "Compile my natural-language request into a token-efficient Codex task packet."

@@ -1,0 +1,134 @@
+---
+name: token-prompt-compiler
+description: Convert messy human-language requests, long reflections, strategy notes, or vague asks into token-efficient machine-readable task packets for Codex, Claude Code, Gemini CLI, OpenAI Agents, DeepSeek, and other LLM/agent systems. Use when the user asks to save tokens, reduce token use, rewrite a request as a better prompt, turn human words into an agent-friendly prompt, create a task packet, clarify scope, prepare worker prompts, or avoid agent drift while still completing work well.
+---
+
+# Token Prompt Compiler
+
+## Core Rule
+
+Before executing a broad or messy request, compile it into the smallest machine-readable task packet that preserves intent, evidence needs, and acceptance criteria.
+
+Do not merely shorten the user's words. Preserve the decision surface:
+
+```text
+goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
+```
+
+## Compilation Workflow
+
+1. Extract intent.
+   - Identify the real job, not every sentence.
+   - Separate immediate task from long-term strategy.
+   - Mark vague desires as assumptions, not instructions.
+
+2. Set boundaries.
+   - Name allowed files, URLs, tools, and time horizon when known.
+   - Name forbidden or out-of-scope work.
+   - If boundaries are missing, choose conservative defaults instead of expanding.
+
+3. Minimize context.
+   - Prefer paths, receipts, summaries, and source maps over full history.
+   - Read at most 3-5 starting files unless the task explicitly requires more.
+   - Convert long logs or webpages into references plus excerpts.
+
+4. Define verification.
+   - Include commands, expected artifacts, or evidence fields.
+   - Require test exit code, diff summary, source URL, file path, or screenshot hash when relevant.
+
+5. Add a stop rule.
+   - Stop when evidence is missing, scope expands, two attempts fail, or the task needs a human decision.
+
+## Output Shape
+
+When the user asks for a prompt only, output this:
+
+```text
+Machine Task Packet
+Goal:
+Why now:
+Allowed scope:
+Read first:
+Do not touch:
+Actions:
+Evidence required:
+Verification:
+Output format:
+Stop rule:
+Token policy:
+Adapter notes:
+```
+
+When the user asks to execute after compiling, first show the packet only if it changes the task materially; otherwise execute from the packet.
+
+## Adapter Notes
+
+Use the same packet across models, but tune the adapter note:
+
+```text
+Codex: prefer file paths, commands, diffs, tests, receipts, and strict edit scope.
+Claude Code: prefer worktree boundaries, subagent roles, hooks, and stop conditions.
+Gemini CLI: prefer explicit file scope, structured output, and grounding requirements.
+DeepSeek: prefer stable prefix first, JSON mode when parsing matters, and cache-hit friendly repeated instructions.
+OpenAI Agents: prefer tools, handoffs, trace/eval fields, and structured outputs.
+```
+
+## Token Policy
+
+Use these defaults:
+
+```text
+static_prefix: reuse stable rules, schemas, and project memory by reference
+dynamic_task: keep to the current task only
+evidence_tail: include only latest relevant evidence
+tool_output: summarize and reference full logs by path
+model_policy: cheap model for extraction, strong model for final judgment
+reasoning_policy: use high reasoning only for ambiguity, architecture, safety, or verification
+```
+
+## Rewrite Patterns
+
+Messy:
+
+```text
+Help me look at these materials, organize them, and think about what to do next.
+```
+
+Compiled:
+
+```text
+Goal: Review the provided materials and produce a decision memo.
+Allowed scope: Only the provided files/links.
+Actions: Extract 5 useful signals, 3 risks, 3 next actions.
+Evidence required: Cite file paths/URLs for each signal.
+Output format: Chinese memo under 800 words.
+Stop rule: Stop if required sources are unavailable.
+```
+
+Messy:
+
+```text
+Optimize this project. Do not mess it up. Make it look better and more professional.
+```
+
+Compiled:
+
+```text
+Goal: Improve the visible UI polish without changing product behavior.
+Allowed scope: Frontend files for the current page only.
+Read first: Main HTML/CSS/component entry points.
+Actions: Fix layout, spacing, hierarchy, responsive overflow.
+Verification: Browser screenshot at desktop and mobile widths.
+Output format: Changed files, visual checks, remaining risks.
+Stop rule: Stop before backend/data model changes.
+```
+
+## Quality Bar
+
+A good compiled prompt is:
+
+- shorter than the original when the original is noisy;
+- more specific than the original when the original is vague;
+- explicit about what evidence proves completion;
+- explicit about what not to do;
+- usable by another agent without rereading the whole conversation.
