@@ -19,6 +19,20 @@ The main token-saving mechanism is context control, not prettier formatting. Kee
 
 This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers.
 
+## Router Handoff
+
+If the task is mainly about model choice, provider choice, token/cost strategy, prompt caching, probes, or deciding which skill should run, let `agent-cost-router` decide the route first.
+
+When called by `agent-cost-router`, obey the route instead of re-routing:
+
+```text
+inputs from router: goal, scope, evidence_budget, packet_tier, stop_rule
+output to router/worker: Tiny Packet, Standard Packet, Worker Packet, Evidence Receipt, or Micro Receipt
+do not output: model routing analysis, provider pricing strategy, post-task audit
+```
+
+After execution, leave continuity and score/cost deltas to `audit-evolution`.
+
 ## Compilation Workflow
 
 1. Extract intent.
