@@ -78,6 +78,24 @@ The same packet can be adapted to different systems:
 | DeepSeek | stable prefix, JSON mode, cache-hit friendly repeated instructions |
 | OpenAI Agents | tools, handoffs, tracing, eval fields, structured outputs |
 
+## Related Work
+
+Token Prompt Compiler is closest to these families of tools, but sits one step earlier:
+
+| Family | What they do | How this project differs |
+|---|---|---|
+| Spec-driven development skills | Turn a feature idea into requirements, design, plans, and implementation steps | Token Prompt Compiler first turns messy human language into a compact task contract that any later spec workflow can consume |
+| Skill Studio / automation design tools | Interview the user and export a structured automation or skill design | Token Prompt Compiler is lighter: it avoids long interviews unless boundaries are missing |
+| TDD / multi-agent coding skills | Enforce test-first execution, subagent isolation, and implementation phases | Token Prompt Compiler prepares the task packet before execution so TDD workers read less context |
+| Token usage auditors | Measure token usage after runs and identify expensive workflows | Token Prompt Compiler reduces waste before the run by controlling scope, tool output, and stop rules |
+
+Useful references to study:
+
+- Anthropic Agent Skills examples and spec: https://github.com/anthropics/skills
+- Claude Code skills documentation: https://code.claude.com/docs/en/skills
+- Spec-driven development skills: https://terminalskills.io/skills/spec-driven-dev
+- GitHub token-efficiency workflow notes: https://github.blog/ai-and-ml/github-copilot/improving-token-efficiency-in-github-agentic-workflows/
+
 ## Installation
 
 To use it as a Codex skill, clone this repository into your Codex skills directory:
@@ -182,6 +200,24 @@ Stop rule: Stop if required sources are unavailable.
 | Gemini CLI | 明确文件范围、结构化输出、grounding |
 | DeepSeek | 稳定前缀、JSON mode、利于缓存命中的重复指令 |
 | OpenAI Agents | tools、handoff、trace、eval、structured outputs |
+
+## 可参考的类似方向
+
+这个项目和下面几类工具相近，但它更前置：
+
+| 类型 | 它们做什么 | 我们的差异 |
+|---|---|---|
+| Spec-driven development skills | 把功能想法变成需求、设计、计划、实现步骤 | 我们先把混乱人话编译成一个紧凑任务合同，后续 spec workflow 可以吃这个合同 |
+| Skill Studio / 自动化设计工具 | 通过访谈收集需求，再导出 skill 或自动化设计 | 我们更轻，不做长访谈，除非任务边界真的缺失 |
+| TDD / 多 agent 编码技能 | 强制测试优先、subagent 隔离、分阶段实现 | 我们发生在执行前，让 TDD worker 少读上下文 |
+| Token usage auditor | 运行后统计 token，找最贵 workflow | 我们在运行前减少浪费：控制范围、工具输出和停止条件 |
+
+值得研究：
+
+- Anthropic Agent Skills examples and spec: https://github.com/anthropics/skills
+- Claude Code skills documentation: https://code.claude.com/docs/en/skills
+- Spec-driven development skills: https://terminalskills.io/skills/spec-driven-dev
+- GitHub token-efficiency workflow notes: https://github.blog/ai-and-ml/github-copilot/improving-token-efficiency-in-github-agentic-workflows/
 
 ## 核心判断
 
