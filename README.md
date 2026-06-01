@@ -262,6 +262,7 @@ Start here:
 - [Basic English example](examples/basic.en.md)
 - [Basic Chinese example](examples/basic.zh.md)
 - [README A/B test](tests/small-task-ab-test.zh.md)
+- [Prompt Compiler Lab static page A/B result](tests/results/prompt-compiler-lab-static-page-ab-20260601.zh.md)
 - [A/B protocol](references/ab-test.md)
 
 ## Use Cases
@@ -461,6 +462,7 @@ quality_score = 1-5 分，由同一个评审按同一套标准打分
 - [英文基础示例](examples/basic.en.md)
 - [中文基础示例](examples/basic.zh.md)
 - [README A/B 测试](tests/small-task-ab-test.zh.md)
+- [Prompt Compiler Lab 静态页面 A/B 结果](tests/results/prompt-compiler-lab-static-page-ab-20260601.zh.md)
 - [A/B 测试协议](references/ab-test.md)
 
 ## 模型适配

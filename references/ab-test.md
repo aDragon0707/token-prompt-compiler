@@ -146,3 +146,35 @@ Shorter visible output can still cost more.
 Overly rigid line, character, or required-string constraints may increase provider output_tokens.
 Prefer short-bullet guidance plus "no meta/postscript" unless strict schema is needed downstream.
 ```
+
+## Behavior Quality A/B Tests
+
+Not every A/B test is about token reduction. Some tests should measure whether a compiled prompt improves the final artifact.
+
+For artifact-building tasks, compare:
+
+```text
+A = broad human prompt
+B = compiled prompt
+C = compiled prompt + hard validator + self-repair gate
+```
+
+Record feature coverage separately from prompt clarity. A compiled prompt can look cleaner while producing a weaker artifact if the validator is only implied.
+
+Use exact acceptance checks when possible:
+
+```text
+required strings
+required files
+forbidden dependencies
+syntax checks
+browser checks
+mobile overflow checks
+secret redaction checks
+```
+
+Claim boundary:
+
+```text
+Prompt compilation improves reliability only when it preserves the agent's useful autonomy and adds executable validation.
+```
