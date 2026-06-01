@@ -2,11 +2,11 @@
 
 **English** | [中文](#中文)
 
-Token Prompt Compiler turns messy human-language requests into token-efficient, machine-readable task packets for LLMs and agent systems.
+Token Prompt Compiler turns messy human-language requests into token-efficient Prompt IR, machine-readable task packets, linted prompts, and GPT/OpenAI or Claude adapters for LLMs and agent systems.
 
 Think of it as a **pre-flight checklist for agents**: scope, evidence, verification, and stop rules before the model starts working.
 
-It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, Gemini CLI, DeepSeek, OpenAI Agents, or another LLM agent can execute with less wasted context.
+It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, OpenAI/GPT, Claude, Gemini CLI, DeepSeek, or another LLM agent can execute with less wasted context.
 
 ## 30-Second Quick Start
 
@@ -16,6 +16,14 @@ Paste this into Codex, Claude, Gemini, DeepSeek, or another agent:
 Use token-prompt-compiler to compile this request into a token-efficient Machine Task Packet, then execute it:
 
 [your messy request]
+```
+
+For prompt optimization instead of execution:
+
+```text
+Use token-prompt-compiler to turn this messy request into Prompt IR, then produce GPT/OpenAI and Claude versions with a validator checklist:
+
+[your messy prompt]
 ```
 
 Tiny example:
@@ -127,6 +135,18 @@ Output format: Chinese memo under 800 words.
 Stop rule: Stop if required sources are unavailable.
 ```
 
+For prompt work, it also compiles:
+
+```text
+messy human request
+-> Prompt IR
+-> GPT/OpenAI or Claude adapter
+-> lint score
+-> validator checklist
+```
+
+Phase 1 focuses deeply on GPT/OpenAI and Claude. Gemini CLI, GitHub Models, and DeepSeek are kept as reserved adapter stubs.
+
 ## Output Format
 
 ```text
@@ -189,7 +209,7 @@ Required files:
 
 ```text
 SKILL.md is required.
-references/ should be kept for optional spec, adapter, and A/B testing details.
+references/ should be kept for Prompt IR, lint rubric, adapters, official-tool notes, spec, and A/B testing details.
 agents/openai.yaml is optional UI metadata for Codex-like environments.
 ```
 

@@ -1,13 +1,13 @@
 ---
 name: token-prompt-compiler
-description: Convert messy human-language requests, long reflections, strategy notes, or vague asks into token-efficient machine-readable task packets for Codex, Claude Code, Gemini CLI, OpenAI Agents, DeepSeek, and other LLM/agent systems. Use when the user asks to save tokens, reduce token use, rewrite a request as a better prompt, turn human words into an agent-friendly prompt, create a task packet, clarify scope, prepare worker prompts, or avoid agent drift while still completing work well.
+description: Convert messy human-language requests, long reflections, strategy notes, vague asks, or weak prompts into token-efficient Prompt IR, machine-readable task packets, GPT/OpenAI or Claude prompt variants, lint scores, validator checklists, and worker handoff packets. Use when the user asks to save tokens, reduce token use, rewrite/optimize/review a prompt, turn human words into an agent-friendly prompt, create a task packet, clarify scope, prepare worker prompts, adapt a prompt for GPT/OpenAI or Claude, or avoid agent drift while preserving evidence and acceptance criteria. Use for broad/messy tasks; skip full packets for small already-scoped coding work and hand execution to karpathy-skill.
 ---
 
 # Token Prompt Compiler
 
 ## Core Rule
 
-Before executing a broad or messy request, compile it into the smallest machine-readable task packet that preserves intent, evidence needs, and acceptance criteria.
+Before executing a broad or messy request, compile it into the smallest useful Prompt IR or machine-readable task packet that preserves intent, boundaries, evidence needs, output contract, and acceptance criteria.
 
 Do not merely shorten the user's words. Preserve the decision surface:
 
@@ -17,7 +17,96 @@ goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
 
 The main token-saving mechanism is context control, not prettier formatting. Keep full logs, long documents, and broad history on disk; feed the model only a compact evidence receipt, the current task, and the minimum rules needed for the decision.
 
-This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers.
+This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers. For prompt optimization tasks, compile to Prompt IR first, then emit the requested GPT/OpenAI or Claude adapter.
+
+## Scale Gate
+
+Compile only as much as the task needs:
+
+```text
+Small: already scoped, one clear action -> no packet; execute with karpathy-skill.
+Medium: some ambiguity, several files, or handoff risk -> Tiny Packet.
+Large: multi-agent, long context, safety risk, or external deliverable -> Standard/Full Packet.
+```
+
+If a packet does not change the next action, skip the packet and execute.
+
+Compile-only means compile-only: when the user asks for a prompt, task packet, rewrite, or scope clarification, do not inspect the repo, read files, run tools, or output tool calls unless the user explicitly asks you to execute. Work only from the provided request and any provided artifacts.
+
+## Phase 1 Compiler Rule
+
+Use Prompt IR when the user asks to optimize, review, normalize, adapt, or compile a prompt, or when the request is messy enough that the target model would need clearer boundaries.
+
+Default Phase 1 pipeline:
+
+```text
+messy request -> Prompt IR -> GPT/OpenAI and/or Claude adapter -> lint score -> validator checklist
+```
+
+Do not call official prompt optimization APIs by default. If the user asks to use OpenAI, Anthropic, Vertex, GitHub Models, or another official optimizer, explain the optional adapter boundary and required credentials/approval instead of silently using external services.
+
+Read as needed:
+
+- `references/prompt-ir-schema.md`: Prompt IR fields, required core, optional enrichments.
+- `references/lint-rubric.md`: prompt lint scoring and pass thresholds.
+- `references/adapters.md`: GPT/OpenAI and Claude dialect adapters; other model stubs.
+- `references/official-tools.md`: official optimizer/eval/tool boundary map.
+
+## Codex Local Cost Rules
+
+When Codex uses this skill locally, default to this order:
+
+```text
+1. Direct execution for small scoped tasks
+2. Micro Receipt when continuing from prior work
+3. Tiny Packet by default for messy medium tasks
+4. Standard Packet only when evidence or output shape matters
+5. Full Packet only for multi-file/tool/safety/worker tasks
+6. Full logs stay on disk; prompt gets paths, facts, numbers, and next action
+```
+
+Use this Micro Receipt when continuing work:
+
+```text
+Micro Receipt
+Goal:
+Known facts:
+Decision boundary:
+Next action:
+Stop if:
+Full logs:
+```
+
+Use Evidence Receipt when source context is large and the next agent only needs a compact evidence ledger:
+
+```text
+Evidence Receipt
+Task:
+Sources checked:
+Facts:
+Missing evidence:
+Decision boundary:
+Next test:
+Full logs:
+```
+
+Local runtime rules:
+
+- Do not reread full history when a receipt or result file exists.
+- Prefer `rg`, targeted file reads, and result JSON summaries over broad scans.
+- Keep progress updates short; save long evidence to files.
+- Avoid rigid line/character constraints unless a downstream parser requires them.
+- Do not trust visible brevity; token/cost claims need provider usage or measured cost.
+- If a task is small and already scoped, skip Full Packet and use Tiny Packet or direct execution.
+- If context is broad, first create or update a receipt, then reason from the receipt.
+- If the user asked only for a packet, do not gather more context. Put missing context under `Unknowns` or `Stop rule`.
+
+Cache vs receipt rule:
+
+- Cache hit makes repeated long context cheaper; Micro Receipt avoids sending long context.
+- Prefer stable short prefix + Micro Receipt + dynamic task tail.
+- Do not treat high cache-read tokens as proof of good context design.
+- If usage is visible, compare cached full-context cost against receipt-based cost.
 
 ## Router Handoff
 
@@ -27,11 +116,26 @@ When called by `agent-cost-router`, obey the route instead of re-routing:
 
 ```text
 inputs from router: goal, scope, evidence_budget, packet_tier, stop_rule
-output to router/worker: Tiny Packet, Standard Packet, Worker Packet, Evidence Receipt, or Micro Receipt
+output: Tiny Packet, Standard Packet, Worker Packet, Evidence Receipt, or Micro Receipt
 do not output: model routing analysis, provider pricing strategy, post-task audit
 ```
 
 After execution, leave continuity and score/cost deltas to `audit-evolution`.
+
+## Karpathy Handoff
+
+Every executable packet should make the implementation discipline obvious:
+
+```text
+Assumptions:
+Allowed edits:
+Do not touch:
+Success criteria:
+Verification:
+Stop rule:
+```
+
+Prefer one precise verification command or artifact over a broad checklist.
 
 ## Compilation Workflow
 
@@ -62,118 +166,10 @@ After execution, leave continuity and score/cost deltas to `audit-evolution`.
    - `prompt_only`: return the packet only.
    - `execute_now`: execute from the packet.
    - `worker_packet`: prepare for another agent/model.
-   - `ab_test`: produce A/B variants and measurement fields.
    - `evidence_receipt`: compress broad context into a short evidence ledger before final judgment.
-
-## Packet Tiers
-
-Use the smallest tier that can pass verification:
-
-```text
-Tiny Packet:
-Goal:
-Actions:
-Stop rule:
-```
-
-Use Tiny Packet for single-file, already-scoped, low-risk tasks.
-
-```text
-Standard Packet:
-Goal:
-Allowed scope:
-Actions:
-Evidence required:
-Output format:
-Stop rule:
-```
-
-Use Standard Packet for most reviews, small implementation tasks, and handoffs.
-
-```text
-Full Packet:
-Goal:
-Why now:
-Allowed scope:
-Read first:
-Do not touch:
-Actions:
-Evidence required:
-Verification:
-Output format:
-Stop rule:
-Token policy:
-Adapter notes:
-```
-
-Use Full Packet only when ambiguity, multiple files, tools, workers, safety, or verification justify the extra input tokens.
-
-## Evidence Receipt
-
-When the source context is large, create a short receipt instead of passing the whole context forward:
-
-```text
-Evidence Receipt
-Task:
-Sources checked:
-Facts:
-Missing evidence:
-Decision boundary:
-Next test:
-Full logs:
-```
-
-Rules:
-
-- Full logs and raw outputs stay on disk.
-- The model sees paths, hashes, exit codes, key excerpts, and short findings.
-- Quality score and token saving stay separate.
-- Judge total provider cost, not visible answer length or prompt length alone.
-- Remember that task packets may increase input tokens on small tasks.
-
-Use a Micro Receipt when the next task only needs a claim boundary or final decision:
-
-```text
-Micro Receipt
-Task:
-Facts:
-Rules:
-Claim:
-Next:
-```
-
-Micro Receipt works best when the full evidence has already been audited and saved elsewhere. Include exact numbers only when they change the decision.
-
-## Runtime Cost Controls
-
-For local CLI runners and agent shells, the wrapper can cost more than the task. Prefer:
-
-```text
-minimal_runtime: bare/minimal mode when available
-fixed_model: avoid automatic multi-model routing during measurement
-micro_receipt: pass only facts needed for the next decision
-loose_short_output: ask for short bullets, not rigid per-line character math
-no_meta: no word counts, no explanations of compliance, no postscript
-```
-
-Avoid over-constraining output with many exact string, line, or character requirements. In local tests, visible output could shrink while provider `output_tokens` and total cost rose.
-
-## Cache vs Receipt Rule
-
-Prompt caching and receipts solve different problems:
-
-```text
-cache_hit: makes repeated long prefixes cheaper
-micro_receipt: avoids sending the long prefix at all
-```
-
-Decision rule:
-
-- If the long context is stable and must remain active, put stable rules first so cache can hit.
-- If the next decision only needs facts, replace the long context with a Micro Receipt.
-- Best case: stable short prefix + Micro Receipt + dynamic task tail.
-- Do not treat high cache-read tokens as proof of good context design; it may only mean an oversized prompt became cheaper, not small.
-- Report both `cached_tokens` and uncached/dynamic tokens when usage is available.
+   - `ab_test`: produce A/B variants and measurement fields.
+   - `prompt_lint`: score and improve an existing prompt without executing it.
+   - `model_adapter`: emit GPT/OpenAI and/or Claude variants from Prompt IR.
 
 ## Output Shape
 
@@ -197,9 +193,44 @@ Adapter notes:
 
 When the user asks to execute after compiling, first show the packet only if it changes the task materially; otherwise execute from the packet.
 
+When the user asks for a packet only, never output `<bash>`, tool calls, repo scans, or "let me inspect" preambles. The deliverable is the packet.
+
+For small tasks, use this Tiny Packet instead:
+
+```text
+Tiny Packet
+Goal:
+Scope:
+Do:
+Verify:
+Stop if:
+```
+
+When the user asks to optimize, review, or fix a prompt, output this unless they request a full packet:
+
+```text
+Prompt Lint
+Scores:
+Critical gaps:
+Prompt IR:
+Improved prompt:
+Validator checklist:
+Adapter notes:
+```
+
+When the user asks for GPT/OpenAI or Claude variants, output:
+
+```text
+Prompt IR:
+GPT/OpenAI version:
+Claude version:
+Validator checklist:
+Known tradeoffs:
+```
+
 ## Adapter Notes
 
-Use the same packet across models, but tune the adapter note:
+Use the same Prompt IR or packet across models, but tune the adapter note. For detailed GPT/OpenAI and Claude dialects, read `references/adapters.md`.
 
 ```text
 Codex: prefer file paths, commands, diffs, tests, receipts, and strict edit scope.
@@ -221,15 +252,6 @@ Metrics: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_call
 Pass rule: >=25% total token reduction, quality_delta >= -1, task_passed=true
 ```
 
-For context-saving tests, compare:
-
-```text
-A: broad context / full documents / full logs
-B: compact evidence receipt + minimum packet + referenced full logs on disk
-```
-
-This tests the real savings mechanism: fewer irrelevant input tokens, shorter required output, fewer retries, and fewer tool calls.
-
 See `references/ab-test.md` for the fuller measurement protocol.
 
 ## Token Policy
@@ -243,10 +265,6 @@ evidence_tail: include only latest relevant evidence
 tool_output: summarize and reference full logs by path
 model_policy: cheap model for extraction, strong model for final judgment
 reasoning_policy: use high reasoning only for ambiguity, architecture, safety, or verification
-packet_tier: tiny by default, standard when evidence/format matters, full only when justified
-receipt_tier: evidence receipt for broad context, micro receipt for final claim/decision
-cache_policy: stable short prefix first, dynamic task last, but prefer receipt over huge cached context
-claim_policy: do not claim token savings unless provider usage or cost verifies it
 ```
 
 ## Rewrite Patterns
@@ -300,7 +318,10 @@ A good compiled prompt is:
 
 Load only when needed:
 
+- `references/prompt-ir-schema.md`: Prompt IR field semantics, required core, and optional enrichments.
+- `references/lint-rubric.md`: scoring prompts for clarity, boundaries, output contract, validator, token efficiency, and model fit.
 - `references/spec.md`: full packet spec and field semantics.
 - `references/adapters.md`: model-specific adapter notes.
+- `references/official-tools.md`: optional official optimizer/eval/tool boundary map; do not call external services by default.
 - `references/ab-test.md`: token reduction measurement protocol.
 - `references/related-work.md`: positioning against similar skills and workflows.

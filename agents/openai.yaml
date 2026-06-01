@@ -1,4 +1,4 @@
 interface:
   display_name: "Token Prompt Compiler"
-  short_description: "Turn messy requests into token-efficient Codex task packets."
-  default_prompt: "Compile my natural-language request into a token-efficient Codex task packet."
+  short_description: "Compile messy intent into Prompt IR, model adapters, and validator-ready packets."
+  default_prompt: "Compile my messy request into Prompt IR first, then produce the smallest useful GPT/OpenAI or Claude-ready prompt packet with scope, boundaries, output contract, validator, and stop rule. Use a Tiny Packet or skip the packet if the task is already clear."

@@ -32,6 +32,9 @@ For field meanings, compilation classes, and examples, see:
 ```text
 references/spec.md
 references/adapters.md
+references/prompt-ir-schema.md
+references/lint-rubric.md
+references/official-tools.md
 references/ab-test.md
 references/related-work.md
 ```
