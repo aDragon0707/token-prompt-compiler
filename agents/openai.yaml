@@ -1,4 +1,4 @@
 interface:
   display_name: "Token Prompt Compiler"
-  short_description: "Compile messy intent into Prompt IR, model adapters, and validator-ready packets."
-  default_prompt: "Compile my messy request into Prompt IR first, then produce the smallest useful GPT/OpenAI or Claude-ready prompt packet with scope, boundaries, output contract, validator, and stop rule. Use a Tiny Packet or skip the packet if the task is already clear."
+  short_description: "Compile messy intent into minimal SACP contracts, model adapters, hard validators, executable checks, and repair-gated packets."
+  default_prompt: "Compile my messy request into the smallest useful SACP v0.1 contract first, then emit Prompt IR or GPT/OpenAI/Claude adapters only if model-specific execution matters. Include boundaries, output contract, validator, repair policy, autonomy budget, and stop rule. Use Tiny SACP or skip the packet if the task is already clear."

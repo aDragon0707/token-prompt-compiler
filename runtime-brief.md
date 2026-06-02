@@ -2,13 +2,13 @@
 
 Use for messy, vague, broad, long, or handoff-bound requests. Skip full packets for small clear coding tasks.
 
-Core job: compile human language into the smallest useful machine task packet:
+Core job: compile human language into the smallest useful SACP task contract:
 
 ```text
-goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
+objective -> boundaries -> inputs -> output -> validator -> repair -> stop rule
 ```
 
-For prompt optimization, compile messy requests into Prompt IR first; emit GPT/OpenAI or Claude adapters only when model-specific execution matters.
+For prompt optimization, compile messy requests into SACP first; emit Prompt IR or GPT/OpenAI/Claude adapters only when model-specific execution matters. For artifact or execution tasks, include an autonomy budget, hard validator, executable validator spec, and self-repair gate.
 
 Scale gate:
 
@@ -23,12 +23,12 @@ Compile-only means compile-only. If the user asks for a prompt, task packet, rew
 Tiny Packet:
 
 ```text
-Goal:
-Scope:
-Do:
-Do not:
-Evidence:
-Verify:
+Tiny SACP
+sacp_version: 0.1
+Objective:
+Boundary:
+Output:
+Validator:
 Stop if:
 ```
 

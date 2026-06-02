@@ -1,6 +1,6 @@
 # API-Level A/B Test Protocol
 
-Goal: verify whether Machine Task Packet reduces total model cost, not merely whether the answer looks more orderly.
+Goal: verify whether a SACP contract or task packet reduces total model cost, not merely whether the answer looks more orderly.
 
 ## Test Design
 
@@ -8,7 +8,7 @@ Variants:
 
 ```text
 A = original human-language prompt
-B = compiled Machine Task Packet
+B = compiled SACP contract or task packet
 ```
 
 Fixed conditions:

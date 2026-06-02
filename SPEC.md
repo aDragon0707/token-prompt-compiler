@@ -1,13 +1,13 @@
-# Human-to-Machine Task Packet Spec
+# SACP Task Contract Spec
 
 Detailed spec now lives in `references/spec.md`.
 
 This root file is kept as a short public entry point.
 
-This project treats prompt writing as compilation:
+This project treats prompt writing as SACP compilation:
 
 ```text
-human language -> machine-readable task packet -> model/agent adapter -> execution -> receipt
+human language -> SACP task contract -> model/task adapter -> execution -> validator -> receipt
 ```
 
 ## Packet Fields
@@ -31,9 +31,13 @@ For field meanings, compilation classes, and examples, see:
 
 ```text
 references/spec.md
+references/sacp-core.md
 references/adapters.md
+references/task-adapters.md
 references/prompt-ir-schema.md
 references/lint-rubric.md
+references/validator-gates.md
+references/executable-validator-spec.md
 references/official-tools.md
 references/ab-test.md
 references/related-work.md

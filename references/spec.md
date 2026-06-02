@@ -1,9 +1,11 @@
 # Human-to-Machine Task Packet Spec
 
+This is the legacy packet reference. Use `sacp-core.md` as the primary protocol, and use this file only when the user explicitly asks for a Machine Task Packet or a worker packet in the older shape.
+
 This project treats prompt writing as compilation:
 
 ```text
-human language -> machine-readable task packet -> model/agent adapter -> execution -> receipt
+human language -> SACP contract -> optional machine-readable task packet -> model/agent adapter -> execution -> receipt
 ```
 
 ## Packet Fields
@@ -63,4 +65,3 @@ Shorter is not always better. A good packet may add a few schema tokens to preve
 | `worker_packet` | Another agent/model will run it | Packet plus adapter notes |
 | `spec_seed` | A spec-driven workflow follows | Packet plus open questions |
 | `ab_test` | The user wants token savings measured | A/B variants plus metrics |
-

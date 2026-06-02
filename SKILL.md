@@ -1,23 +1,23 @@
 ---
 name: token-prompt-compiler
-description: Convert messy human-language requests, long reflections, strategy notes, vague asks, or weak prompts into token-efficient Prompt IR, machine-readable task packets, GPT/OpenAI or Claude prompt variants, lint scores, validator checklists, and worker handoff packets. Use when the user asks to save tokens, reduce token use, rewrite/optimize/review a prompt, turn human words into an agent-friendly prompt, create a task packet, clarify scope, prepare worker prompts, adapt a prompt for GPT/OpenAI or Claude, or avoid agent drift while preserving evidence and acceptance criteria. Use for broad/messy tasks; skip full packets for small already-scoped coding work and hand execution to karpathy-skill.
+description: Compile messy human-language requests, long reflections, strategy notes, vague asks, or weak prompts into minimal SACP v0.1 task contracts, Prompt IR, machine-readable packets, GPT/OpenAI or Claude prompt variants, autonomy budgets, lint scores, hard validators, executable validator specs, self-repair gates, validator checklists, and worker handoff packets. Use when the user asks to save tokens, reduce token use, rewrite/optimize/review a prompt, turn human words into an agent-friendly prompt, create a task contract, clarify scope, prepare worker prompts, adapt a prompt for GPT/OpenAI or Claude, or avoid agent drift while preserving evidence and acceptance criteria. Use for broad/messy tasks; skip full packets for small already-scoped coding work and hand execution to karpathy-skill.
 ---
 
 # Token Prompt Compiler
 
 ## Core Rule
 
-Before executing a broad or messy request, compile it into the smallest useful Prompt IR or machine-readable task packet that preserves intent, boundaries, evidence needs, output contract, and acceptance criteria.
+Before executing a broad or messy request, compile it into the smallest useful SACP task contract, Prompt IR, or machine-readable packet that preserves intent, boundaries, evidence needs, output contract, validation, repair behavior, and stop conditions.
 
 Do not merely shorten the user's words. Preserve the decision surface:
 
 ```text
-goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
+objective -> boundaries -> inputs -> output -> validator -> repair -> stop rule
 ```
 
 The main token-saving mechanism is context control, not prettier formatting. Keep full logs, long documents, and broad history on disk; feed the model only a compact evidence receipt, the current task, and the minimum rules needed for the decision.
 
-This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers. For prompt optimization tasks, compile to Prompt IR first, then emit the requested GPT/OpenAI or Claude adapter.
+This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers. SACP is the protocol skeleton; Prompt IR is the model-neutral representation; GPT/OpenAI or Claude prompts are adapter outputs.
 
 ## Scale Gate
 
@@ -33,24 +33,39 @@ If a packet does not change the next action, skip the packet and execute.
 
 Compile-only means compile-only: when the user asks for a prompt, task packet, rewrite, or scope clarification, do not inspect the repo, read files, run tools, or output tool calls unless the user explicitly asks you to execute. Work only from the provided request and any provided artifacts.
 
-## Phase 1 Compiler Rule
+## SACP Compiler Rule
 
-Use Prompt IR when the user asks to optimize, review, normalize, adapt, or compile a prompt, or when the request is messy enough that the target model would need clearer boundaries.
+Use SACP when the user asks to optimize, review, normalize, adapt, or compile a prompt, or when the request is messy enough that the target model would need clearer boundaries, validators, or stop rules.
 
-Default Phase 1 pipeline:
+Default pipeline:
 
 ```text
-messy request -> Prompt IR -> GPT/OpenAI and/or Claude adapter -> lint score -> validator checklist
+messy request -> minimal SACP -> optional Prompt IR -> optional model/task adapter -> validator -> self-repair gate
 ```
 
 Do not call official prompt optimization APIs by default. If the user asks to use OpenAI, Anthropic, Vertex, GitHub Models, or another official optimizer, explain the optional adapter boundary and required credentials/approval instead of silently using external services.
 
 Read as needed:
 
+- `references/sacp-core.md`: SACP v0.1 fields, Tiny/Standard/Full tiers, and anti-patterns.
 - `references/prompt-ir-schema.md`: Prompt IR fields, required core, optional enrichments.
 - `references/lint-rubric.md`: prompt lint scoring and pass thresholds.
 - `references/adapters.md`: GPT/OpenAI and Claude dialect adapters; other model stubs.
+- `references/task-adapters.md`: task-type validators for web artifacts, code, research, writing, and handoffs.
+- `references/validator-gates.md`: task-type validators and self-repair gates.
+- `references/executable-validator-spec.md`: validator specs and no-dependency Node.js script templates.
 - `references/official-tools.md`: official optimizer/eval/tool boundary map.
+
+## Preserve Useful Autonomy
+
+For open-ended artifact or product tasks, do not over-specify away the model's useful judgment. Lock the risks and leave small improvements open.
+
+```text
+Hard locks: scope, files, dependencies, required visible sections, required outputs, safety boundaries, validation command.
+Autonomy budget: allow small expected controls, polish, examples, cleanup, or local checks if they improve usability and do not violate scope.
+```
+
+If the task has artifact risk, compile requirements into `hard_validator`, `validator_spec`, and `self_repair_gate`, but also include an `autonomy_budget` so the worker can use sensible judgment inside the contract.
 
 ## Codex Local Cost Rules
 
@@ -158,6 +173,7 @@ Prefer one precise verification command or artifact over a broad checklist.
 4. Define verification.
    - Include commands, expected artifacts, or evidence fields.
    - Require test exit code, diff summary, source URL, file path, or screenshot hash when relevant.
+   - For artifact or execution tasks, add `hard_validator`, `validator_spec`, and `self_repair_gate`, not just a soft checklist.
 
 5. Add a stop rule.
    - Stop when evidence is missing, scope expands, two attempts fail, or the task needs a human decision.
@@ -173,37 +189,53 @@ Prefer one precise verification command or artifact over a broad checklist.
 
 ## Output Shape
 
-When the user asks for a prompt only, output this:
+When the user asks for a contract, packet, or prompt rewrite, output the smallest useful SACP tier.
+
+Use Tiny SACP for small or already-scoped tasks:
+
+```text
+Tiny SACP
+sacp_version: 0.1
+Objective:
+Boundary:
+Output:
+Validator:
+Stop if:
+```
+
+Use Standard SACP for most prompt optimization, handoff, artifact, and medium ambiguity tasks:
+
+```text
+Standard SACP
+sacp_version: 0.1
+Objective:
+Inputs:
+Input boundaries:
+Constraints:
+Output contract:
+Validator:
+Repair policy:
+Autonomy budget:
+Stop rule:
+```
+
+When the user asks to execute after compiling, first show the packet only if it changes the task materially; otherwise execute from the packet.
+
+When the user asks for a packet only, never output `<bash>`, tool calls, repo scans, or "let me inspect" preambles. The deliverable is the SACP contract or packet.
+
+Use this legacy packet shape only when the user explicitly asks for a Machine Task Packet:
 
 ```text
 Machine Task Packet
 Goal:
-Why now:
 Allowed scope:
-Read first:
-Do not touch:
+Inputs:
 Actions:
 Evidence required:
 Verification:
 Output format:
 Stop rule:
-Token policy:
 Adapter notes:
-```
-
-When the user asks to execute after compiling, first show the packet only if it changes the task materially; otherwise execute from the packet.
-
-When the user asks for a packet only, never output `<bash>`, tool calls, repo scans, or "let me inspect" preambles. The deliverable is the packet.
-
-For small tasks, use this Tiny Packet instead:
-
-```text
-Tiny Packet
-Goal:
-Scope:
-Do:
-Verify:
-Stop if:
 ```
 
 When the user asks to optimize, review, or fix a prompt, output this unless they request a full packet:
@@ -212,21 +244,53 @@ When the user asks to optimize, review, or fix a prompt, output this unless they
 Prompt Lint
 Scores:
 Critical gaps:
-Prompt IR:
+SACP:
+Prompt IR: optional, only when useful
 Improved prompt:
-Validator checklist:
+Hard validator:
+Validator spec:
+Validation script:
+Self-repair gate:
 Adapter notes:
 ```
+
+For artifact-building prompt lint, include both `prompt_lint_score` and `artifact_quality_score`. Do not let clean wording hide a weak artifact validator.
 
 When the user asks for GPT/OpenAI or Claude variants, output:
 
 ```text
-Prompt IR:
+SACP:
+Prompt IR: optional, only when useful
 GPT/OpenAI version:
 Claude version:
-Validator checklist:
+Hard validator:
+Validator spec:
+Validation script:
+Self-repair gate:
 Known tradeoffs:
 ```
+
+When the user asks to optimize a webpage/tool-building prompt, use this static artifact shape:
+
+```text
+SACP:
+- task_type: static_web_artifact
+- objective:
+- inputs:
+- input_boundaries:
+- output_contract:
+- hard_validator:
+- validator_spec:
+- self_repair_gate:
+- autonomy_budget:
+
+GPT/OpenAI version:
+Claude version:
+Validation script:
+Known tradeoffs:
+```
+
+For `static_web_artifact`, derive required visible strings and interactions from the user's task. Make `Validation script` a no-dependency Node.js checker by default unless the user asks for another runtime. Do not default every webpage to Prompt Compiler Lab, GPT/Claude sections, or secret redaction unless the task calls for them.
 
 ## Adapter Notes
 
@@ -318,10 +382,14 @@ A good compiled prompt is:
 
 Load only when needed:
 
+- `references/sacp-core.md`: SACP field semantics, tiers, Prompt IR mapping, and anti-patterns.
 - `references/prompt-ir-schema.md`: Prompt IR field semantics, required core, and optional enrichments.
 - `references/lint-rubric.md`: scoring prompts for clarity, boundaries, output contract, validator, token efficiency, and model fit.
 - `references/spec.md`: full packet spec and field semantics.
 - `references/adapters.md`: model-specific adapter notes.
+- `references/task-adapters.md`: task-type validators and adapter defaults without overfitting to one example.
+- `references/validator-gates.md`: hard validator and self-repair templates by task type.
+- `references/executable-validator-spec.md`: executable validator spec fields and static web script template.
 - `references/official-tools.md`: optional official optimizer/eval/tool boundary map; do not call external services by default.
 - `references/ab-test.md`: token reduction measurement protocol.
 - `references/related-work.md`: positioning against similar skills and workflows.

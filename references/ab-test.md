@@ -10,7 +10,7 @@ Prove a compiled task packet reduces token waste without lowering task quality.
 
 ```text
 A = original human-language request
-B = compiled Machine Task Packet
+B = compiled SACP contract or task packet
 ```
 
 Test only one variable at a time.
@@ -114,7 +114,7 @@ Compiled task packets can reduce total cost when they replace broad context with
 Unsafe claim without provider usage evidence:
 
 ```text
-Machine Task Packets always save tokens.
+SACP contracts or task packets always save tokens.
 ```
 
 Known caveat:

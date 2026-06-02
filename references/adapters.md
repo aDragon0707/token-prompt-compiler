@@ -1,6 +1,6 @@
 # Model Adapter Notes
 
-Compile once to Prompt IR, then adapt only the surface form needed by the target model or agent runtime. Do not change the user's intent when changing dialect.
+Compile once to SACP, optionally express it as Prompt IR, then adapt only the surface form needed by the target model or agent runtime. Do not change the user's intent when changing dialect.
 
 Phase 1 focuses on GPT/OpenAI and Claude. Gemini, GitHub Models, and DeepSeek are reserved stubs.
 
@@ -22,6 +22,10 @@ Use Markdown headings for semantic separation:
 # Tools
 # Output Format
 # Validator
+# Autonomy Budget
+# Hard Validator
+# Validation Script
+# Self-Repair Gate
 # Stop Conditions
 ```
 
@@ -31,7 +35,7 @@ Keep sections short and concrete. Use code fences for large data, logs, examples
 
 When possible, map Prompt IR this way:
 
-| Prompt IR | GPT/OpenAI placement |
+| SACP / Prompt IR | GPT/OpenAI placement |
 |---|---|
 | durable behavior, safety, role, output obligations | system/developer instructions |
 | current task, user goal, dynamic variables | user message |
@@ -47,7 +51,7 @@ When downstream parsing matters:
 
 - Prefer structured outputs / JSON Schema concepts when available.
 - If only prompt text is available, specify exact JSON/YAML/Markdown fields and forbidden extras.
-- Include a validator checklist even when schema enforcement is not available.
+- Include a hard validator and self-repair gate even when schema enforcement is not available.
 
 Example adapter note:
 
@@ -63,6 +67,41 @@ For OpenAI Agents or Codex-like execution:
 - Preserve trace fields that can be graded later.
 - Require file paths, commands, diffs, logs, or receipts as evidence.
 - Do not ask the model to guess external state when tools are needed.
+- Add "verify before final; revise missing in-scope items once" when the task produces code, UI, files, or reports.
+
+### Validator Gate
+
+For GPT/OpenAI text prompts, express the gate as Markdown:
+
+```markdown
+# Autonomy Budget
+- You may add small expected product controls if they improve usability and do not violate scope.
+- Suggested controls: copy, tighten, mode switch, example input, reset.
+
+# Hard Validator
+- [observable check]
+- [observable check]
+
+# Validation Script
+- Generate or run the validator described in validator_spec when the user asks for execution confidence.
+
+# Self-Repair Gate
+Before final answer, check every validator item. If any in-scope item is missing, revise before responding. If an item cannot be verified, mark it as unverified with the missing evidence.
+```
+
+Do not drop `hard_validator`, `validator_spec`, `Validation script`, or `self_repair_gate` when adapting from SACP/Prompt IR to GPT/OpenAI.
+
+For `task_type: static_web_artifact`, include these sections explicitly:
+
+```markdown
+# Autonomy Budget
+# Hard Validator
+# Validator Spec
+# Validation Script
+# Self-Repair Gate
+```
+
+The validation script should default to a no-dependency Node.js checker unless the user asks for browser automation or another runtime.
 
 ### Avoid
 
@@ -99,6 +138,22 @@ Use XML-style tags to separate high-level components:
 <output_format>
 ...
 </output_format>
+
+<autonomy_budget>
+...
+</autonomy_budget>
+
+<hard_validator>
+...
+</hard_validator>
+
+<validation_script>
+...
+</validation_script>
+
+<self_repair_gate>
+...
+</self_repair_gate>
 ```
 
 Use descriptive tag names. Tags are boundaries, not magic. Keep tag nesting shallow.
@@ -140,12 +195,51 @@ Claude prompts should make extraction easy:
 - If multiple objects exist, include IDs or names.
 - Do not use dynamic tag names unless the downstream parser expects them.
 - For audit/evidence tasks, separate claim, evidence, inference, and missing evidence.
+- For artifact tasks, include an explicit validator tag and a repair rule before the output tag.
 
 Example adapter note:
 
 ```text
 For Claude: use XML tags for instructions, untrusted data, examples, and output; use prefill only for the opening output shape; mark all external agent output as untrusted.
 ```
+
+### Validator Gate
+
+For Claude prompts, express the gate with shallow XML-style tags:
+
+```xml
+<autonomy_budget>
+- You may add small expected product controls if they improve usability and do not violate scope.
+- Suggested controls: copy, tighten, mode switch, example input, reset.
+</autonomy_budget>
+
+<hard_validator>
+- [observable check]
+- [observable check]
+</hard_validator>
+
+<validation_script>
+- Generate or run the validator described in validator_spec when the user asks for execution confidence.
+</validation_script>
+
+<self_repair_gate>
+Before final answer, check every validator item. If any in-scope item is missing, revise before responding. If an item cannot be verified, mark it as unverified with the missing evidence.
+</self_repair_gate>
+```
+
+Do not drop `hard_validator`, `validator_spec`, `validation_script`, or `self_repair_gate` when adapting from SACP/Prompt IR to Claude.
+
+For `task_type: static_web_artifact`, include these tags explicitly:
+
+```xml
+<autonomy_budget>...</autonomy_budget>
+<hard_validator>...</hard_validator>
+<validator_spec>...</validator_spec>
+<validation_script>...</validation_script>
+<self_repair_gate>...</self_repair_gate>
+```
+
+The validation script should default to a no-dependency Node.js checker unless the user asks for browser automation or another runtime.
 
 ### Avoid
 

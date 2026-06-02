@@ -7,7 +7,7 @@ Use this file to decide whether to mention, recommend, or plan an official tool 
 ## Default Rule
 
 ```text
-Base compile is local: messy request -> Prompt IR -> GPT/Claude adapter -> lint/validator.
+Base compile is local: messy request -> SACP -> optional Prompt IR -> GPT/Claude adapter -> lint/validator.
 Official tools are optional: use only on explicit request or provider-comparison tasks.
 ```
 
@@ -30,7 +30,7 @@ Use for:
 
 Local adapter behavior:
 
-- Generate Prompt IR first.
+- Generate SACP first; express as Prompt IR only when adapter or eval fields need it.
 - Emit Markdown-section GPT/OpenAI prompt.
 - Include structured output or JSON Schema guidance when parsing matters.
 - Suggest eval/optimizer use only when the user asks for official tooling.
@@ -49,7 +49,7 @@ Use for:
 
 Local adapter behavior:
 
-- Generate Prompt IR first.
+- Generate SACP first; express as Prompt IR only when adapter or eval fields need it.
 - Emit XML-tagged Claude prompt.
 - Mark untrusted data explicitly.
 - Use prefill only for output shape, not conclusions.

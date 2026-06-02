@@ -2,9 +2,9 @@
 
 **English** | [中文](#中文)
 
-Token Prompt Compiler turns messy human-language requests into token-efficient Prompt IR, machine-readable task packets, linted prompts, and GPT/OpenAI or Claude adapters for LLMs and agent systems.
+Token Prompt Compiler turns messy human-language requests into token-efficient SACP v0.1 task contracts, Prompt IR, machine-readable task packets, linted prompts, GPT/OpenAI or Claude adapters, autonomy budgets, hard validators, executable validator specs, and self-repair gates for LLMs and agent systems.
 
-Think of it as a **pre-flight checklist for agents**: scope, evidence, verification, and stop rules before the model starts working.
+Think of it as a **pre-flight contract for agents**: objective, boundaries, inputs, output contract, validator, repair policy, and stop rules before the model starts working.
 
 It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, OpenAI/GPT, Claude, Gemini CLI, DeepSeek, or another LLM agent can execute with less wasted context.
 
@@ -13,7 +13,7 @@ It works as a Codex skill, but the core idea is model-agnostic: compile human in
 Paste this into Codex, Claude, Gemini, DeepSeek, or another agent:
 
 ```text
-Use token-prompt-compiler to compile this request into a token-efficient Machine Task Packet, then execute it:
+Use token-prompt-compiler to compile this request into a minimal SACP task contract, then execute it:
 
 [your messy request]
 ```
@@ -21,7 +21,7 @@ Use token-prompt-compiler to compile this request into a token-efficient Machine
 For prompt optimization instead of execution:
 
 ```text
-Use token-prompt-compiler to turn this messy request into Prompt IR, then produce GPT/OpenAI and Claude versions with a validator checklist:
+Use token-prompt-compiler to turn this messy request into SACP, then produce GPT/OpenAI and Claude versions with a hard validator:
 
 [your messy prompt]
 ```
@@ -46,7 +46,7 @@ Most prompt optimization focuses on making prompts shorter. This project focuses
 The goal is not simply to reduce words. The goal is to preserve the decision surface:
 
 ```text
-goal -> scope -> inputs -> actions -> evidence -> verification -> stop rule
+objective -> boundaries -> inputs -> output -> validator -> repair -> stop rule
 ```
 
 This helps LLM agents spend fewer tokens guessing intent, rereading history, exploring irrelevant files, or producing long unsupported summaries.
@@ -70,7 +70,7 @@ Use three packet tiers:
 |---|---|---|
 | Tiny | Single-file, clear task | Goal / Actions / Stop rule |
 | Standard | Most reviews and small implementation tasks | Goal / Scope / Actions / Evidence / Output / Stop |
-| Full | Multi-file, tool-using, multi-agent, high-risk work | Full Machine Task Packet |
+| Full | Multi-file, tool-using, multi-agent, high-risk work | Full SACP or worker packet |
 
 Measured local Claude Code result for a context-saving test:
 
@@ -79,7 +79,7 @@ Measured local Claude Code result for a context-saving test:
 | A | Full documents and full result logs | 31,289 | 4,159 | $0.493160 | 9/10 |
 | B | Evidence Receipt + minimum protocol | 1,129 | 377 | $0.032960 | 8/10 |
 
-Result: B reduced total cost by 93.3% while quality dropped by 1 point. This supports the narrower claim: token-prompt-compiler can save cost when it replaces broad context with a compact evidence receipt and a minimum task contract. It does **not** prove every Machine Task Packet saves tokens.
+Result: B reduced total cost by 93.3% while quality dropped by 1 point. This supports the narrower claim: token-prompt-compiler can save cost when it replaces broad context with a compact evidence receipt and a minimum task contract. It does **not** prove every SACP contract or task packet saves tokens.
 
 Further local reduction with Claude Code:
 
@@ -139,10 +139,11 @@ For prompt work, it also compiles:
 
 ```text
 messy human request
--> Prompt IR
+-> SACP task contract
+-> optional Prompt IR
 -> GPT/OpenAI or Claude adapter
 -> lint score
--> validator checklist
+-> hard validator and self-repair gate
 ```
 
 Phase 1 focuses deeply on GPT/OpenAI and Claude. Gemini CLI, GitHub Models, and DeepSeek are kept as reserved adapter stubs.
@@ -150,33 +151,31 @@ Phase 1 focuses deeply on GPT/OpenAI and Claude. Gemini CLI, GitHub Models, and 
 ## Output Format
 
 ```text
-Machine Task Packet
-Goal:
-Why now:
-Allowed scope:
-Read first:
-Do not touch:
-Actions:
-Evidence required:
-Verification:
-Output format:
+Standard SACP
+sacp_version: 0.1
+Objective:
+Inputs:
+Input boundaries:
+Constraints:
+Output contract:
+Validator:
+Repair policy:
+Autonomy budget:
 Stop rule:
-Token policy:
-Adapter notes:
 ```
 
 Short field guide:
 
 | Field | Meaning |
 |---|---|
-| `Why now` | The urgency or context for doing this task now |
-| `Read first` | The first 3-5 inputs the agent should inspect |
-| `Evidence required` | What proves the answer or completion |
+| `Input boundaries` | Which material is instruction, data, untrusted data, context, or out of scope |
+| `Output contract` | What artifact, format, language, fields, or file must be produced |
+| `Validator` | Observable checks that prove success or reveal failure |
+| `Repair policy` | What to fix before final output when validation fails |
+| `Autonomy budget` | Where the agent may use judgment without expanding scope |
 | `Stop rule` | When the agent should stop instead of drifting |
-| `Token policy` | How to avoid wasted context, logs, and output |
-| `Adapter notes` | Model-specific hints for Codex, Claude Code, Gemini, DeepSeek, or OpenAI Agents |
 
-For full field semantics, see [`SPEC.md`](SPEC.md) and [`references/spec.md`](references/spec.md).
+For full field semantics, see [`references/sacp-core.md`](references/sacp-core.md). Legacy Machine Task Packet semantics remain in [`references/spec.md`](references/spec.md).
 
 ## Installation
 
@@ -209,7 +208,7 @@ Required files:
 
 ```text
 SKILL.md is required.
-references/ should be kept for Prompt IR, lint rubric, adapters, official-tool notes, spec, and A/B testing details.
+references/ should be kept for SACP core, Prompt IR, lint rubric, model adapters, task adapters, validator gates, executable validator specs, official-tool notes, spec, and A/B testing details.
 agents/openai.yaml is optional UI metadata for Codex-like environments.
 ```
 
@@ -219,12 +218,12 @@ Minimum verification:
 Confirm that token-prompt-compiler appears in your skill list, or run the Example Trigger below.
 ```
 
-To use it with another model, copy the `Machine Task Packet` format from this README or `SKILL.md` into that model's system/project instructions.
+To use it with another model, copy the SACP output shape from this README or `SKILL.md` into that model's system/project instructions.
 
 ## Example Trigger
 
 ```text
-Use token-prompt-compiler to turn my request into a token-efficient machine-readable task packet, then execute it.
+Use token-prompt-compiler to turn my request into a minimal SACP task contract, then execute it.
 
 [paste messy request here]
 ```
@@ -235,7 +234,7 @@ Use an A/B test:
 
 ```text
 A: original human-language prompt
-B: compiled Machine Task Packet
+B: compiled SACP task contract
 Fixed conditions: same model, same files, same reasoning effort, same output limit
 Measure: input_tokens, cached_tokens, output_tokens, reasoning_tokens, tool_calls, files_read, retries, quality_score
 Pass rule: B saves at least 25% total tokens while quality drops by no more than 1 point
@@ -263,7 +262,12 @@ Start here:
 - [Basic Chinese example](examples/basic.zh.md)
 - [README A/B test](tests/small-task-ab-test.zh.md)
 - [Prompt Compiler Lab static page A/B result](tests/results/prompt-compiler-lab-static-page-ab-20260601.zh.md)
+- [SACP static web artifact positive case](tests/results/sacp-static-web-artifact-compiler-20260602.zh.md)
+- [SACP core](references/sacp-core.md)
+- [Task adapters](references/task-adapters.md)
 - [A/B protocol](references/ab-test.md)
+- [Validator gates](references/validator-gates.md)
+- [Executable validator spec](references/executable-validator-spec.md)
 
 ## Use Cases
 
@@ -325,7 +329,7 @@ All Markdown files in this repository are intended to be UTF-8. If Chinese text 
 
 ## 中文
 
-Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”，压缩成更省 token、更适合机器执行的任务包。
+Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”，压缩成更省 token、更适合机器执行的 SACP 任务合同。
 
 它不是“压缩文字”，而是把人话需求编译成 agent 开工前的任务合同：范围、证据、验证方式和停止条件先写清楚，再让模型执行。
 
@@ -336,7 +340,7 @@ Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”�
 把这段粘贴给 Codex、Claude、Gemini、DeepSeek 或其他 agent：
 
 ```text
-Use token-prompt-compiler to compile this request into a token-efficient Machine Task Packet, then execute it:
+Use token-prompt-compiler to compile this request into a minimal SACP task contract, then execute it:
 
 [your messy request]
 ```
@@ -394,38 +398,36 @@ Stop rule: Stop if required sources are unavailable.
 ## 输出格式
 
 ```text
-Machine Task Packet
-Goal:
-Why now:
-Allowed scope:
-Read first:
-Do not touch:
-Actions:
-Evidence required:
-Verification:
-Output format:
+Standard SACP
+sacp_version: 0.1
+Objective:
+Inputs:
+Input boundaries:
+Constraints:
+Output contract:
+Validator:
+Repair policy:
+Autonomy budget:
 Stop rule:
-Token policy:
-Adapter notes:
 ```
 
-几个不直观字段：
+如果用户明确要求旧版 Machine Task Packet，可以继续使用 legacy packet shape。几个不直观字段：
 
 | 字段 | 含义 |
 |---|---|
-| `Why now` | 为什么现在要做这件事 |
-| `Read first` | agent 最先应该读的 3-5 个入口 |
-| `Evidence required` | 什么证据能证明结论或完成状态 |
+| `Input boundaries` | 哪些是指令、数据、不可信数据、上下文或禁止范围 |
+| `Output contract` | 最终要交付什么形态、语言、字段或文件 |
+| `Validator` | 什么证据能证明任务完成，什么算失败 |
+| `Repair policy` | 缺项或失败时是否先修一次再回复 |
+| `Autonomy budget` | 哪些地方允许 agent 自主补充，哪些不能越界 |
 | `Stop rule` | 什么时候必须停下，避免跑偏 |
-| `Token policy` | 怎么避免浪费上下文、日志和输出 |
-| `Adapter notes` | 针对 Codex、Claude Code、Gemini、DeepSeek、OpenAI Agents 的执行提示 |
 
 ## 怎么用
 
 你可以这样对任何模型说：
 
 ```text
-先用 token-prompt-compiler，把我下面这段话翻译成你最喜欢的省 token machine-readable task packet，然后再做。
+先用 token-prompt-compiler，把我下面这段话编译成最小可用 SACP 任务合同，然后再做。
 
 [粘贴你的自然语言需求]
 ```
@@ -436,7 +438,7 @@ Adapter notes:
 
 ```text
 A: 原始人话 prompt
-B: 编译后的 Machine Task Packet
+B: 编译后的 SACP task contract
 固定条件：同一个模型、同一批文件、同一个 reasoning effort、同一个输出长度限制
 记录指标：input_tokens、cached_tokens、output_tokens、reasoning_tokens、tool_calls、files_read、retries、quality_score
 通过标准：B 至少减少 25% total tokens，并且质量下降不超过 1 分
@@ -463,7 +465,12 @@ quality_score = 1-5 分，由同一个评审按同一套标准打分
 - [中文基础示例](examples/basic.zh.md)
 - [README A/B 测试](tests/small-task-ab-test.zh.md)
 - [Prompt Compiler Lab 静态页面 A/B 结果](tests/results/prompt-compiler-lab-static-page-ab-20260601.zh.md)
+- [SACP 静态网页正例](tests/results/sacp-static-web-artifact-compiler-20260602.zh.md)
+- [SACP 核心协议](references/sacp-core.md)
+- [任务类型适配](references/task-adapters.md)
 - [A/B 测试协议](references/ab-test.md)
+- [硬验收与自修复门](references/validator-gates.md)
+- [可执行验收规范](references/executable-validator-spec.md)
 
 ## 模型适配
 
