@@ -21,6 +21,12 @@ const outPath = args.out || `tests/api-ab-result-${new Date().toISOString().repl
 const temperature = args.temperature === undefined ? 0 : Number(args.temperature);
 const maxOutputTokens = Number(args.max_output_tokens || 700);
 const reasoningEffort = args.reasoning_effort || "low";
+const execute = Boolean(args.execute);
+const maxBudgetUsd = args.max_budget_usd === undefined ? 0.5 : Number(args.max_budget_usd);
+
+if (args.dry_run && execute) {
+  fail("Use either --dry-run or --execute, not both");
+}
 
 if (!["openai", "deepseek"].includes(provider)) {
   fail(`Unsupported provider: ${provider}`);
@@ -34,16 +40,39 @@ if (!Number.isInteger(runs) || runs < 1) {
   fail("--runs must be a positive integer");
 }
 
+if (!Number.isFinite(maxBudgetUsd) || maxBudgetUsd <= 0) {
+  fail("--max-budget-usd must be a positive number");
+}
+
+const testCase = await readJsonFile(casePath);
+const runOrder = order.split("");
+
+if (!execute) {
+  process.stdout.write(`${JSON.stringify({
+    mode: "dry-run",
+    execute: false,
+    provider,
+    model,
+    case_path: casePath,
+    runs,
+    order,
+    out_path: outPath,
+    max_budget_usd: maxBudgetUsd,
+    planned_calls: runs * runOrder.length,
+    input_file_count: (testCase.input_files || []).length,
+    variant_ids: Object.keys(testCase.variants || {}),
+  }, null, 2)}\n`);
+  process.exit(0);
+}
+
 const apiKey = provider === "openai" ? process.env.OPENAI_API_KEY : process.env.DEEPSEEK_API_KEY;
 if (!apiKey) {
   fail(`Missing ${provider === "openai" ? "OPENAI_API_KEY" : "DEEPSEEK_API_KEY"}`);
 }
 
-const testCase = JSON.parse(await fs.readFile(casePath, "utf8"));
 const caseDir = path.dirname(path.resolve(casePath));
 const sharedEvidence = await loadSharedEvidence(testCase, caseDir);
 const variants = buildVariants(testCase, sharedEvidence);
-const runOrder = order.split("");
 const records = [];
 
 for (let runIndex = 0; runIndex < runs; runIndex += 1) {
@@ -75,11 +104,21 @@ const result = summarize({
   temperature,
   maxOutputTokens,
   reasoningEffort,
+  maxBudgetUsd,
 });
 
 await fs.mkdir(path.dirname(path.resolve(outPath)), { recursive: true });
 await fs.writeFile(outPath, `${JSON.stringify(result, null, 2)}\n`, "utf8");
 process.stdout.write(`${outPath}\n`);
+
+async function readJsonFile(filePath) {
+  try {
+    const raw = await fs.readFile(filePath, "utf8");
+    return JSON.parse(raw.replace(/^\uFEFF/, ""));
+  } catch (error) {
+    fail(`Failed to read JSON case ${filePath}: ${error.message}`);
+  }
+}
 
 async function runVariant(options) {
   const started = performance.now();
@@ -188,7 +227,12 @@ async function loadSharedEvidence(testCase, caseDir) {
   const parts = [];
   for (const file of testCase.input_files || []) {
     const filePath = path.isAbsolute(file.path) ? file.path : path.resolve(caseDir, file.path);
-    const content = await fs.readFile(filePath, "utf8");
+    let content;
+    try {
+      content = await fs.readFile(filePath, "utf8");
+    } catch (error) {
+      fail(`Failed to read evidence ${file.label || path.basename(file.path)}: ${error.code || error.message}`);
+    }
     parts.push(`FILE: ${file.label || file.path}\nPATH: ${file.path}\n---\n${content}\n---`);
   }
   return parts.join("\n\n");
@@ -279,7 +323,7 @@ function scoreOutput(outputText, rubric = {}) {
   };
 }
 
-function summarize({ provider, model, testCase, records, runs, order, temperature, maxOutputTokens, reasoningEffort }) {
+function summarize({ provider, model, testCase, records, runs, order, temperature, maxOutputTokens, reasoningEffort, maxBudgetUsd }) {
   const byVariant = groupBy(records, (record) => record.variant_id);
   const variantSummaries = {};
   for (const [variantId, variantRecords] of Object.entries(byVariant)) {
@@ -307,6 +351,7 @@ function summarize({ provider, model, testCase, records, runs, order, temperatur
       temperature,
       max_output_tokens: maxOutputTokens,
       reasoning_effort: reasoningEffort,
+      max_budget_usd: maxBudgetUsd,
       input_files: testCase.input_files || [],
     },
     important_assumptions: [
@@ -448,11 +493,17 @@ function parseArgs(argv) {
 
 function printHelp() {
   process.stdout.write(`Usage:
-  node scripts/run-api-ab-test.mjs --provider openai --model gpt-5.4-mini --case tests/api-ab-case.zh.json --runs 3 --order AB --out tests/results/openai-ab.json
+  node scripts/run-api-ab-test.mjs --provider openai --case tests/api-ab-case.zh.json
+  node scripts/run-api-ab-test.mjs --execute --provider openai --model gpt-5.4-mini --case tests/api-ab-case.zh.json --runs 3 --order AB --out tests/results/openai-ab.json --max-budget-usd 0.50
+
+Execution:
+  Default mode is dry-run. It prints the planned provider/model/case/runs and does not read evidence files, require API keys, call provider APIs, or write result files.
+  Use --execute to allow provider API calls and result file writes.
+  Use --max-budget-usd <number> to record the intended budget in result metadata; this Phase 1 runner does not enforce provider spend.
 
 Environment:
-  OPENAI_API_KEY      Required for --provider openai
-  DEEPSEEK_API_KEY    Required for --provider deepseek
+  OPENAI_API_KEY      Required only with --execute --provider openai
+  DEEPSEEK_API_KEY    Required only with --execute --provider deepseek
 
 Notes:
   - The script records usage fields and leaves quality_score for manual scoring.
