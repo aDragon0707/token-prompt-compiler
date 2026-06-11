@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Smoke validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Show runtime
+        run: |
+          node --version
+          npm --version
+
+      - name: Syntax check scripts
+        run: |
+          node --check scripts/run-api-ab-test.mjs
+          node --check scripts/run-claude-local-ab-test.mjs
+          node --check scripts/tpc.mjs
+          node --check scripts/phase1-smoke.mjs
+
+      - name: Run smoke harness
+        run: npm run smoke
+
+      - name: Run repository validation
+        run: npm run validate
