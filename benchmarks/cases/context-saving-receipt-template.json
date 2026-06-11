@@ -1,0 +1,40 @@
+{
+  "benchmark_id": "context-saving-receipt-template",
+  "claim_type": "context_saving",
+  "runner_status": "template_only",
+  "why_template_only": "The current runner feeds the same shared evidence to A and B. A true context-saving test needs variant-specific evidence so A can receive broad context while B receives a compact evidence receipt.",
+  "variant_design": {
+    "A": {
+      "name": "broad_context",
+      "evidence_shape": "Full documents, full logs, and original human request.",
+      "purpose": "Baseline for cost and quality with broad context."
+    },
+    "B": {
+      "name": "compact_receipt",
+      "evidence_shape": "Evidence Receipt plus minimum SACP task contract and paths to full logs.",
+      "purpose": "Candidate route for reduced context and lower total cost."
+    }
+  },
+  "metrics": [
+    "input_tokens",
+    "cached_tokens",
+    "output_tokens",
+    "reasoning_tokens",
+    "provider_total_tokens",
+    "tool_calls",
+    "retries",
+    "task_passed",
+    "quality_score",
+    "total_cost"
+  ],
+  "pass_rule": {
+    "required_token_saving_ratio": 0.25,
+    "required_quality_delta_min": -1,
+    "required_task_passed": true,
+    "retry_rule": "B retries must be less than or equal to A retries when measured."
+  },
+  "claim_boundary": {
+    "safe": "This template defines the future shape of a context-saving benchmark.",
+    "unsafe": "This template proves SACP or task packets save tokens."
+  }
+}

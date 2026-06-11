@@ -8,6 +8,7 @@
   },
   "scripts": {
     "validate": "node scripts/tpc.mjs validate",
-    "smoke": "node scripts/phase1-smoke.mjs"
+    "smoke": "node scripts/phase1-smoke.mjs",
+    "benchmark:smoke": "node scripts/benchmark-smoke.mjs"
   }
 }
