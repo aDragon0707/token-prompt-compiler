@@ -220,6 +220,24 @@ Confirm that token-prompt-compiler appears in your skill list, or run the Exampl
 
 To use it with another model, copy the SACP output shape from this README or `SKILL.md` into that model's system/project instructions.
 
+### CLI quick start
+
+The CLI is optional and uses only local Node.js checks by default.
+
+```bash
+npm run validate
+npm run smoke
+node scripts/tpc.mjs ab-test --dry-run
+```
+
+Dry-run is the default for API A/B tests. It prints the planned provider, model, case file, run count, and output path without reading evidence files, requiring API keys, calling provider APIs, or writing result files.
+
+Real provider calls require an explicit execution flag and the matching API key:
+
+```bash
+node scripts/tpc.mjs ab-test --execute --provider openai --max-budget-usd 0.50
+```
+
 ## Example Trigger
 
 ```text
