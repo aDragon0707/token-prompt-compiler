@@ -238,6 +238,8 @@ Real provider calls require an explicit execution flag and the matching API key:
 node scripts/tpc.mjs ab-test --execute --provider openai --max-budget-usd 0.50
 ```
 
+In Phase 1, `--max-budget-usd` is recorded with the run metadata; it is not an enforced provider spend cap.
+
 ## Example Trigger
 
 ```text

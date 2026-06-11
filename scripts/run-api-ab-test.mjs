@@ -227,7 +227,12 @@ async function loadSharedEvidence(testCase, caseDir) {
   const parts = [];
   for (const file of testCase.input_files || []) {
     const filePath = path.isAbsolute(file.path) ? file.path : path.resolve(caseDir, file.path);
-    const content = await fs.readFile(filePath, "utf8");
+    let content;
+    try {
+      content = await fs.readFile(filePath, "utf8");
+    } catch (error) {
+      fail(`Failed to read evidence ${file.label || path.basename(file.path)}: ${error.code || error.message}`);
+    }
     parts.push(`FILE: ${file.label || file.path}\nPATH: ${file.path}\n---\n${content}\n---`);
   }
   return parts.join("\n\n");
@@ -494,7 +499,7 @@ function printHelp() {
 Execution:
   Default mode is dry-run. It prints the planned provider/model/case/runs and does not read evidence files, require API keys, call provider APIs, or write result files.
   Use --execute to allow provider API calls and result file writes.
-  Use --max-budget-usd <number> as an execution budget guard; default is 0.50.
+  Use --max-budget-usd <number> to record the intended budget in result metadata; this Phase 1 runner does not enforce provider spend.
 
 Environment:
   OPENAI_API_KEY      Required only with --execute --provider openai

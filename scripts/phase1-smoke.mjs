@@ -44,6 +44,11 @@ try {
     stdoutIncludes: ["ab-test", "validate"],
   });
 
+  check("runner help budget wording", [process.execPath, ["scripts/run-api-ab-test.mjs", "--help"]], {
+    status: 0,
+    stdoutIncludes: ["does not enforce provider spend"],
+  });
+
   const dryRun = check(
     "cli dry-run missing evidence",
     [
@@ -89,6 +94,27 @@ try {
   );
 
   check(
+    "execute missing evidence no stack",
+    [
+      process.execPath,
+      [
+        "scripts/run-api-ab-test.mjs",
+        "--provider",
+        "openai",
+        "--execute",
+        "--case",
+        tempCase,
+      ],
+    ],
+    {
+      statusNot: 0,
+      env: { OPENAI_API_KEY: "dummy" },
+      stderrIncludes: ["Failed to read evidence"],
+      stderrExcludes: ["node:internal", "Bearer"],
+    },
+  );
+
+  check(
     "default dry-run",
     [process.execPath, ["scripts/run-api-ab-test.mjs", "--provider", "openai", "--case", tempCase]],
     {
@@ -119,7 +145,7 @@ if (failed.length > 0) {
 function check(name, [command, args], expectation) {
   const run = spawnSync(command, args, {
     cwd: root,
-    env: baseEnv,
+    env: { ...baseEnv, ...(expectation.env || {}) },
     encoding: "utf8",
     shell: false,
   });
