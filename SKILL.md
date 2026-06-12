@@ -1,6 +1,6 @@
 ---
 name: token-prompt-compiler
-description: Compile messy human-language requests, long reflections, strategy notes, vague asks, or weak prompts into minimal SACP v0.1 task contracts, Prompt IR, machine-readable packets, GPT/OpenAI or Claude prompt variants, autonomy budgets, lint scores, hard validators, executable validator specs, self-repair gates, validator checklists, and worker handoff packets. Use when the user asks to save tokens, reduce token use, rewrite/optimize/review a prompt, turn human words into an agent-friendly prompt, create a task contract, clarify scope, prepare worker prompts, adapt a prompt for GPT/OpenAI or Claude, or avoid agent drift while preserving evidence and acceptance criteria. Use for broad/messy tasks; skip full packets for small already-scoped coding work and hand execution to karpathy-skill.
+description: Use when a user asks to compile messy requests, optimize or review prompts, reduce context/token waste, create SACP task contracts, adapt prompts for GPT/OpenAI or Claude, prepare agent handoff packets, define validators, or benchmark token/cost claims.
 ---
 
 # Token Prompt Compiler
@@ -19,6 +19,36 @@ The main token-saving mechanism is context control, not prettier formatting. Kee
 
 This skill is the pre-spec layer: compile human language before sending work to spec-driven development, TDD, implementation, review, or multi-agent workers. SACP is the protocol skeleton; Prompt IR is the model-neutral representation; GPT/OpenAI or Claude prompts are adapter outputs.
 
+## Intent Gate
+
+First classify the user's intent. The skill name only selects this capability; it does not provide the task material, execution mode, or desired output.
+
+| User intent | Default action |
+|---|---|
+| Bare invocation: user only says `use token-prompt-compiler`, `使用 token-prompt-compiler`, or similar | Ask one concise question for `task material + mode + desired output`; do not invent a task. |
+| `compile-only`, prompt rewrite, task packet, or scope clarification | Return the smallest useful SACP or Prompt Lint output; do not inspect files or execute tools unless explicitly requested. |
+| Compile then execute | Compile first only when it changes the next action materially, then execute within the compiled boundaries. |
+| `prompt_lint`, optimize/review/fix a prompt | Score the prompt, repair critical gaps, and run the Prompt Quality Gate before final output. |
+| `model_adapter`, GPT/OpenAI version, Claude version | Keep one SACP/Prompt IR source of truth, then emit model-specific variants. |
+| Benchmark, token saving, cost proof, A/B test | Produce fixed conditions and measurement fields; do not claim token savings without provider usage evidence. |
+
+## Reference Router
+
+Load only the references needed for the chosen intent. Do not batch-read `references/`.
+
+| Need | Read |
+|---|---|
+| SACP fields, tiers, Prompt IR mapping, anti-patterns | `references/sacp-core.md` |
+| Prompt IR fields or model-neutral intermediate representation | `references/prompt-ir-schema.md` |
+| Prompt scoring, lint thresholds, quality repair | `references/lint-rubric.md` |
+| Prompt reflection policy and final prompt quality gate | `references/prompt-quality-gate.md` |
+| GPT/OpenAI, Claude, Gemini, DeepSeek, or OpenAI Agents adaptation | `references/adapters.md` |
+| Task-type validator defaults | `references/task-adapters.md` |
+| Hard validators and self-repair templates | `references/validator-gates.md` |
+| No-dependency executable validator specs | `references/executable-validator-spec.md` |
+| Optional official optimizer/eval/tool boundaries | `references/official-tools.md` |
+| Token/cost A/B protocol or benchmark claim boundary | `references/ab-test.md` |
+
 ## Scale Gate
 
 Compile only as much as the task needs:
@@ -33,6 +63,11 @@ If a packet does not change the next action, skip the packet and execute.
 
 Compile-only means compile-only: when the user asks for a prompt, task packet, rewrite, or scope clarification, do not inspect the repo, read files, run tools, or output tool calls unless the user explicitly asks you to execute. Work only from the provided request and any provided artifacts.
 
+Plan Escalation Rule:
+
+- Do not use Plan Mode for compile-only, simple prompt rewrites, or one-off `prompt_lint`.
+- Use Plan Mode for complex repo execution, PR/merge work, real API calls or costs, multi-agent handoffs, destructive risk, unclear ownership, or high-risk execution where the implementation path needs agreement.
+
 ## SACP Compiler Rule
 
 Use SACP when the user asks to optimize, review, normalize, adapt, or compile a prompt, or when the request is messy enough that the target model would need clearer boundaries, validators, or stop rules.
@@ -40,7 +75,7 @@ Use SACP when the user asks to optimize, review, normalize, adapt, or compile a 
 Default pipeline:
 
 ```text
-messy request -> minimal SACP -> optional Prompt IR -> optional model/task adapter -> validator -> self-repair gate
+messy request -> minimal SACP -> optional Prompt IR -> optional model/task adapter -> validator -> Prompt Quality Gate -> self-repair gate
 ```
 
 Do not call official prompt optimization APIs by default. If the user asks to use OpenAI, Anthropic, Vertex, GitHub Models, or another official optimizer, explain the optional adapter boundary and required credentials/approval instead of silently using external services.
@@ -50,6 +85,7 @@ Read as needed:
 - `references/sacp-core.md`: SACP v0.1 fields, Tiny/Standard/Full tiers, and anti-patterns.
 - `references/prompt-ir-schema.md`: Prompt IR fields, required core, optional enrichments.
 - `references/lint-rubric.md`: prompt lint scoring and pass thresholds.
+- `references/prompt-quality-gate.md`: reflection_policy, skip/light/full selection, and final prompt repair.
 - `references/adapters.md`: GPT/OpenAI and Claude dialect adapters; other model stubs.
 - `references/task-adapters.md`: task-type validators for web artifacts, code, research, writing, and handoffs.
 - `references/validator-gates.md`: task-type validators and self-repair gates.
@@ -66,6 +102,18 @@ Autonomy budget: allow small expected controls, polish, examples, cleanup, or lo
 ```
 
 If the task has artifact risk, compile requirements into `hard_validator`, `validator_spec`, and `self_repair_gate`, but also include an `autonomy_budget` so the worker can use sensible judgment inside the contract.
+
+## Prompt Quality Gate
+
+Use `reflection_policy` only to improve the generated prompt or packet; do not use it to start doing the user's downstream task.
+
+```text
+skip: simple one-off prompt where SACP fields are already clear.
+light: normal prompt optimization; check objective, boundary, output contract, validator, and stop rule once.
+full: reusable prompt, worker handoff, multi-model adapter, compile-then-execute, benchmark claim, or high-risk execution.
+```
+
+Return the repaired prompt or packet, not a long hidden-thought-style reflection. If the final prompt still lacks task material, execution mode, or output contract, ask one concise question instead of guessing.
 
 ## Codex Local Cost Rules
 
@@ -246,6 +294,7 @@ Scores:
 Critical gaps:
 SACP:
 Prompt IR: optional, only when useful
+Reflection policy:
 Improved prompt:
 Hard validator:
 Validator spec:
@@ -261,6 +310,7 @@ When the user asks for GPT/OpenAI or Claude variants, output:
 ```text
 SACP:
 Prompt IR: optional, only when useful
+Reflection policy:
 GPT/OpenAI version:
 Claude version:
 Hard validator:
@@ -385,6 +435,7 @@ Load only when needed:
 - `references/sacp-core.md`: SACP field semantics, tiers, Prompt IR mapping, and anti-patterns.
 - `references/prompt-ir-schema.md`: Prompt IR field semantics, required core, and optional enrichments.
 - `references/lint-rubric.md`: scoring prompts for clarity, boundaries, output contract, validator, token efficiency, and model fit.
+- `references/prompt-quality-gate.md`: skip/light/full prompt reflection policy and final prompt repair.
 - `references/spec.md`: full packet spec and field semantics.
 - `references/adapters.md`: model-specific adapter notes.
 - `references/task-adapters.md`: task-type validators and adapter defaults without overfitting to one example.

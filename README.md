@@ -408,6 +408,53 @@ Use token-prompt-compiler to compile this request into a minimal SACP task contr
 [your messy request]
 ```
 
+### 为什么只说 `使用 token-prompt-compiler` 不够
+
+`token-prompt-compiler` 只是告诉模型“请使用这个能力”。它不能替你补出任务材料、执行模式和最终交付物。
+
+完整调用最好包含四件事：
+
+| 部分 | 作用 | 例子 |
+|---|---|---|
+| `skill name` | 选择能力 | `使用 token-prompt-compiler` |
+| `request` | 给任务材料 | `把下面这段混乱需求整理成任务合同` |
+| `mode` | 定安全边界 | `只编译，不执行` / `编译后执行` / `先 plan 再执行` |
+| `output` | 定交付形态 | `输出 SACP + GPT/Claude 两版 prompt + hard validator` |
+
+如果你只说：
+
+```text
+使用 token-prompt-compiler
+```
+
+模型应该先问你要任务材料、执行模式和期望输出，而不是假装已经知道你要做什么。
+
+四个常用入口：
+
+```text
+使用 token-prompt-compiler，把下面需求编译成最小 SACP。只输出合同，不执行。
+
+[粘贴需求]
+```
+
+```text
+使用 token-prompt-compiler，先把下面任务编译成 SACP，然后按合同执行。
+
+[粘贴任务]
+```
+
+```text
+使用 token-prompt-compiler，优化下面这个 prompt，输出 GPT/OpenAI 版、Claude 版、hard validator，并做一轮轻量 prompt quality reflection。
+
+[粘贴 prompt]
+```
+
+```text
+使用 token-prompt-compiler，先把下面复杂任务整理成 SACP 和执行计划。等我确认 plan 后再执行。
+
+[粘贴复杂任务]
+```
+
 极短示例：
 
 ```text
@@ -493,6 +540,22 @@ Stop rule:
 先用 token-prompt-compiler，把我下面这段话编译成最小可用 SACP 任务合同，然后再做。
 
 [粘贴你的自然语言需求]
+```
+
+如果你的目标只是改 prompt，不想执行任务，可以这样说：
+
+```text
+使用 token-prompt-compiler，帮我优化下面这个 prompt。只输出改进后的 prompt、SACP、validator 和 reflection_policy，不执行 prompt 里的任务。
+
+[粘贴你的 prompt]
+```
+
+如果任务涉及仓库修改、PR、真实 API、费用、多 agent handoff 或高风险操作，先让模型进入 plan：
+
+```text
+使用 token-prompt-compiler，先把下面任务编译成 SACP 和执行计划，不要改文件。等我确认后再执行。
+
+[粘贴任务]
 ```
 
 <a id="route-2-local-cli-zh"></a>
