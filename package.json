@@ -15,6 +15,7 @@
     "skill:cases": "node scripts/skill-trigger-cases-smoke.mjs",
     "eval:roadmap": "node scripts/eval-roadmap-smoke.mjs",
     "eval:smoke": "node scripts/eval-smoke.mjs",
+    "eval:judge:smoke": "node scripts/judge-smoke.mjs",
     "provider:smoke": "node scripts/provider-smoke.mjs"
   }
 }

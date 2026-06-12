@@ -1,0 +1,4965 @@
+{
+  "schema_version": "skill-effect-judge-summary.v1",
+  "generated_at": "2026-06-12T14:12:00.034Z",
+  "input_paths": [
+    "eval-runs/initial-stepfun.json",
+    "eval-runs/initial-tokendance.json",
+    "eval-runs/frontier-stepfun-step37.json",
+    "eval-runs/frontier-tokendance-a.json",
+    "eval-runs/frontier-tokendance-b.json",
+    "eval-runs/frontier-tokendance-c.json",
+    "eval-runs/frontier-tokendance-kimi.json"
+  ],
+  "judge_provider": "tokendance",
+  "judge_model": "glm-5.1",
+  "source_record_count": 312,
+  "judged_record_count": 312,
+  "metrics": {
+    "records": 312,
+    "judge_ok_rate": 0.939,
+    "task_pass_rate": 0.253,
+    "trigger_pass_rate": 0.532,
+    "boundary_pass_rate": 0.497,
+    "reference_route_pass_rate": 0.288,
+    "claim_boundary_violation_rate": 0.054,
+    "over_packet_rate": 0.224,
+    "avg_total_score": 5.072,
+    "avg_source_input_tokens": 1594.186,
+    "avg_source_output_tokens": 909.558,
+    "avg_source_total_tokens": 2503.744,
+    "avg_source_latency_sec": 21.725,
+    "avg_judge_latency_sec": 25.816,
+    "failure_types": {
+      "wrong_intent": 68,
+      "missed_clarification": 23,
+      "under_specified_output": 185,
+      "reference_overused": 4,
+      "over_packet": 66,
+      "reference_not_used": 110,
+      "unsupported_token_claim": 17,
+      "judge_parse_error": 12,
+      "executed_when_forbidden": 7,
+      "judge_transport_error": 7
+    }
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 104,
+      "judge_ok_rate": 0.933,
+      "task_pass_rate": 0.125,
+      "trigger_pass_rate": 0.337,
+      "boundary_pass_rate": 0.317,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.115,
+      "over_packet_rate": 0.365,
+      "avg_total_score": 3.721,
+      "avg_source_input_tokens": 72.375,
+      "avg_source_output_tokens": 1087.712,
+      "avg_source_total_tokens": 1160.087,
+      "avg_source_latency_sec": 20.441,
+      "avg_judge_latency_sec": 25.746,
+      "failure_types": {
+        "wrong_intent": 35,
+        "missed_clarification": 14,
+        "under_specified_output": 73,
+        "reference_not_used": 41,
+        "over_packet": 36,
+        "unsupported_token_claim": 12,
+        "judge_parse_error": 3,
+        "judge_transport_error": 4,
+        "executed_when_forbidden": 6
+      }
+    },
+    "B": {
+      "records": 104,
+      "judge_ok_rate": 0.942,
+      "task_pass_rate": 0.308,
+      "trigger_pass_rate": 0.654,
+      "boundary_pass_rate": 0.625,
+      "reference_route_pass_rate": 0.288,
+      "claim_boundary_violation_rate": 0.029,
+      "over_packet_rate": 0.154,
+      "avg_total_score": 6.018,
+      "avg_source_input_tokens": 1221.837,
+      "avg_source_output_tokens": 764.596,
+      "avg_source_total_tokens": 1986.433,
+      "avg_source_latency_sec": 18.015,
+      "avg_judge_latency_sec": 24.593,
+      "failure_types": {
+        "under_specified_output": 55,
+        "reference_overused": 4,
+        "wrong_intent": 12,
+        "reference_not_used": 35,
+        "over_packet": 14,
+        "unsupported_token_claim": 3,
+        "judge_parse_error": 5,
+        "missed_clarification": 5,
+        "executed_when_forbidden": 1,
+        "judge_transport_error": 1
+      }
+    },
+    "C": {
+      "records": 104,
+      "judge_ok_rate": 0.942,
+      "task_pass_rate": 0.327,
+      "trigger_pass_rate": 0.606,
+      "boundary_pass_rate": 0.548,
+      "reference_route_pass_rate": 0.327,
+      "claim_boundary_violation_rate": 0.019,
+      "over_packet_rate": 0.154,
+      "avg_total_score": 5.476,
+      "avg_source_input_tokens": 3488.346,
+      "avg_source_output_tokens": 876.365,
+      "avg_source_total_tokens": 4364.712,
+      "avg_source_latency_sec": 26.72,
+      "avg_judge_latency_sec": 27.11,
+      "failure_types": {
+        "wrong_intent": 21,
+        "under_specified_output": 57,
+        "over_packet": 16,
+        "reference_not_used": 34,
+        "unsupported_token_claim": 2,
+        "judge_parse_error": 4,
+        "missed_clarification": 4,
+        "judge_transport_error": 2
+      }
+    }
+  },
+  "model_summaries": {
+    "step-3.5-flash": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.167,
+      "trigger_pass_rate": 0.333,
+      "boundary_pass_rate": 0.417,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.083,
+      "avg_total_score": 3.917,
+      "avg_source_input_tokens": 1588.625,
+      "avg_source_output_tokens": 598.958,
+      "avg_source_total_tokens": 2187.583,
+      "avg_source_latency_sec": 7.103,
+      "avg_judge_latency_sec": 19.908,
+      "failure_types": {
+        "wrong_intent": 12,
+        "missed_clarification": 1,
+        "under_specified_output": 21,
+        "reference_overused": 1,
+        "over_packet": 1,
+        "reference_not_used": 4
+      }
+    },
+    "deepseek-v3.2": {
+      "records": 24,
+      "judge_ok_rate": 0.917,
+      "task_pass_rate": 0.167,
+      "trigger_pass_rate": 0.625,
+      "boundary_pass_rate": 0.375,
+      "reference_route_pass_rate": 0.208,
+      "claim_boundary_violation_rate": 0.125,
+      "over_packet_rate": 0.5,
+      "avg_total_score": 5.063,
+      "avg_source_input_tokens": 1575.625,
+      "avg_source_output_tokens": 476.333,
+      "avg_source_total_tokens": 2051.958,
+      "avg_source_latency_sec": 51.617,
+      "avg_judge_latency_sec": 27.774,
+      "failure_types": {
+        "over_packet": 12,
+        "under_specified_output": 12,
+        "reference_not_used": 12,
+        "wrong_intent": 2,
+        "unsupported_token_claim": 3,
+        "missed_clarification": 1,
+        "reference_overused": 1,
+        "judge_parse_error": 2
+      }
+    },
+    "qwen3.5-flash": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.417,
+      "trigger_pass_rate": 0.708,
+      "boundary_pass_rate": 0.667,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.375,
+      "avg_total_score": 6.573,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 1480.333,
+      "avg_source_total_tokens": 3107.375,
+      "avg_source_latency_sec": 11.891,
+      "avg_judge_latency_sec": 26.055,
+      "failure_types": {
+        "wrong_intent": 5,
+        "missed_clarification": 1,
+        "under_specified_output": 13,
+        "over_packet": 8,
+        "reference_not_used": 15,
+        "unsupported_token_claim": 1
+      }
+    },
+    "glm-4.5-air": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.167,
+      "trigger_pass_rate": 0.542,
+      "boundary_pass_rate": 0.333,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.292,
+      "avg_total_score": 4.667,
+      "avg_source_input_tokens": 1536.5,
+      "avg_source_output_tokens": 539.667,
+      "avg_source_total_tokens": 2076.167,
+      "avg_source_latency_sec": 11.833,
+      "avg_judge_latency_sec": 25.051,
+      "failure_types": {
+        "wrong_intent": 6,
+        "missed_clarification": 3,
+        "under_specified_output": 16,
+        "reference_not_used": 9,
+        "over_packet": 7,
+        "unsupported_token_claim": 1
+      }
+    },
+    "step-3.7-flash": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.125,
+      "trigger_pass_rate": 0.292,
+      "boundary_pass_rate": 0.5,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.083,
+      "avg_total_score": 4.063,
+      "avg_source_input_tokens": 1588.625,
+      "avg_source_output_tokens": 580.542,
+      "avg_source_total_tokens": 2169.167,
+      "avg_source_latency_sec": 6.49,
+      "avg_judge_latency_sec": 19.1,
+      "failure_types": {
+        "over_packet": 2,
+        "under_specified_output": 21,
+        "reference_not_used": 5,
+        "wrong_intent": 9,
+        "reference_overused": 1
+      }
+    },
+    "deepseek-v4-pro": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.125,
+      "trigger_pass_rate": 0.208,
+      "boundary_pass_rate": 0.375,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.042,
+      "avg_total_score": 3.375,
+      "avg_source_input_tokens": 1575.625,
+      "avg_source_output_tokens": 639.417,
+      "avg_source_total_tokens": 2215.042,
+      "avg_source_latency_sec": 11.223,
+      "avg_judge_latency_sec": 17.918,
+      "failure_types": {
+        "missed_clarification": 3,
+        "under_specified_output": 21,
+        "reference_not_used": 4,
+        "over_packet": 1,
+        "wrong_intent": 9,
+        "unsupported_token_claim": 1
+      }
+    },
+    "qwen3.7-max": {
+      "records": 24,
+      "judge_ok_rate": 0.958,
+      "task_pass_rate": 0.417,
+      "trigger_pass_rate": 0.792,
+      "boundary_pass_rate": 0.667,
+      "reference_route_pass_rate": 0.375,
+      "claim_boundary_violation_rate": 0.083,
+      "over_packet_rate": 0.292,
+      "avg_total_score": 6.729,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 1774.417,
+      "avg_source_total_tokens": 3401.458,
+      "avg_source_latency_sec": 34.635,
+      "avg_judge_latency_sec": 26.786,
+      "failure_types": {
+        "over_packet": 6,
+        "judge_parse_error": 1,
+        "missed_clarification": 3,
+        "reference_not_used": 12,
+        "under_specified_output": 10,
+        "unsupported_token_claim": 2,
+        "wrong_intent": 1
+      }
+    },
+    "glm-5.1": {
+      "records": 24,
+      "judge_ok_rate": 0.75,
+      "task_pass_rate": 0.25,
+      "trigger_pass_rate": 0.458,
+      "boundary_pass_rate": 0.5,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.083,
+      "over_packet_rate": 0.042,
+      "avg_total_score": 4.521,
+      "avg_source_input_tokens": 1535.5,
+      "avg_source_output_tokens": 587.333,
+      "avg_source_total_tokens": 2122.833,
+      "avg_source_latency_sec": 15.668,
+      "avg_judge_latency_sec": 42.768,
+      "failure_types": {
+        "under_specified_output": 10,
+        "executed_when_forbidden": 1,
+        "wrong_intent": 4,
+        "reference_not_used": 4,
+        "judge_transport_error": 5,
+        "reference_overused": 1,
+        "unsupported_token_claim": 2,
+        "over_packet": 1,
+        "missed_clarification": 1,
+        "judge_parse_error": 1
+      }
+    },
+    "minimax-m3": {
+      "records": 24,
+      "judge_ok_rate": 0.958,
+      "task_pass_rate": 0.083,
+      "trigger_pass_rate": 0.417,
+      "boundary_pass_rate": 0.5,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.083,
+      "avg_total_score": 4.292,
+      "avg_source_input_tokens": 1678.667,
+      "avg_source_output_tokens": 630.083,
+      "avg_source_total_tokens": 2308.75,
+      "avg_source_latency_sec": 17.355,
+      "avg_judge_latency_sec": 24.839,
+      "failure_types": {
+        "wrong_intent": 6,
+        "missed_clarification": 4,
+        "under_specified_output": 21,
+        "reference_not_used": 5,
+        "over_packet": 1,
+        "judge_parse_error": 1
+      }
+    },
+    "seed-2.0-pro": {
+      "records": 24,
+      "judge_ok_rate": 0.917,
+      "task_pass_rate": 0.417,
+      "trigger_pass_rate": 0.625,
+      "boundary_pass_rate": 0.542,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0.208,
+      "over_packet_rate": 0.333,
+      "avg_total_score": 6.063,
+      "avg_source_input_tokens": 1691.333,
+      "avg_source_output_tokens": 1534.792,
+      "avg_source_total_tokens": 3226.125,
+      "avg_source_latency_sec": 37.411,
+      "avg_judge_latency_sec": 26.765,
+      "failure_types": {
+        "wrong_intent": 2,
+        "missed_clarification": 2,
+        "executed_when_forbidden": 2,
+        "over_packet": 8,
+        "under_specified_output": 5,
+        "judge_parse_error": 2,
+        "unsupported_token_claim": 5,
+        "reference_not_used": 13
+      }
+    },
+    "hy3-preview": {
+      "records": 24,
+      "judge_ok_rate": 0.875,
+      "task_pass_rate": 0.292,
+      "trigger_pass_rate": 0.708,
+      "boundary_pass_rate": 0.625,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.333,
+      "avg_total_score": 5.7,
+      "avg_source_input_tokens": 1557.042,
+      "avg_source_output_tokens": 384.042,
+      "avg_source_total_tokens": 1941.083,
+      "avg_source_latency_sec": 9.282,
+      "avg_judge_latency_sec": 26.877,
+      "failure_types": {
+        "wrong_intent": 2,
+        "missed_clarification": 2,
+        "executed_when_forbidden": 1,
+        "over_packet": 8,
+        "reference_not_used": 10,
+        "judge_transport_error": 2,
+        "under_specified_output": 11,
+        "unsupported_token_claim": 1,
+        "judge_parse_error": 1
+      }
+    },
+    "qwen3.6-max-preview": {
+      "records": 24,
+      "judge_ok_rate": 0.875,
+      "task_pass_rate": 0.458,
+      "trigger_pass_rate": 0.75,
+      "boundary_pass_rate": 0.583,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.25,
+      "avg_total_score": 6.333,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 2032.958,
+      "avg_source_total_tokens": 3660,
+      "avg_source_latency_sec": 55.44,
+      "avg_judge_latency_sec": 28.839,
+      "failure_types": {
+        "wrong_intent": 1,
+        "over_packet": 6,
+        "executed_when_forbidden": 2,
+        "reference_not_used": 12,
+        "under_specified_output": 6,
+        "judge_parse_error": 3,
+        "unsupported_token_claim": 1,
+        "missed_clarification": 2
+      }
+    },
+    "kimi-k2.7-code": {
+      "records": 24,
+      "judge_ok_rate": 0.958,
+      "task_pass_rate": 0.208,
+      "trigger_pass_rate": 0.458,
+      "boundary_pass_rate": 0.375,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.208,
+      "avg_total_score": 4.638,
+      "avg_source_input_tokens": 1515.75,
+      "avg_source_output_tokens": 565.375,
+      "avg_source_total_tokens": 2081.125,
+      "avg_source_latency_sec": 12.482,
+      "avg_judge_latency_sec": 22.931,
+      "failure_types": {
+        "wrong_intent": 9,
+        "executed_when_forbidden": 1,
+        "over_packet": 5,
+        "under_specified_output": 18,
+        "reference_not_used": 5,
+        "judge_parse_error": 1
+      }
+    }
+  },
+  "case_summaries": {
+    "bare-invocation": {
+      "records": 39,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.667,
+      "trigger_pass_rate": 0.744,
+      "boundary_pass_rate": 0.846,
+      "reference_route_pass_rate": 1,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.231,
+      "avg_total_score": 7.879,
+      "avg_source_input_tokens": 814.077,
+      "avg_source_output_tokens": 516.513,
+      "avg_source_total_tokens": 1330.59,
+      "avg_source_latency_sec": 11.616,
+      "avg_judge_latency_sec": 23.031,
+      "failure_types": {
+        "wrong_intent": 8,
+        "missed_clarification": 7,
+        "under_specified_output": 8,
+        "over_packet": 8,
+        "executed_when_forbidden": 4
+      }
+    },
+    "compile-only": {
+      "records": 39,
+      "judge_ok_rate": 0.897,
+      "task_pass_rate": 0.333,
+      "trigger_pass_rate": 0.59,
+      "boundary_pass_rate": 0.641,
+      "reference_route_pass_rate": 0.205,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.179,
+      "avg_total_score": 5.224,
+      "avg_source_input_tokens": 1329.667,
+      "avg_source_output_tokens": 828.179,
+      "avg_source_total_tokens": 2157.846,
+      "avg_source_latency_sec": 17.739,
+      "avg_judge_latency_sec": 28.206,
+      "failure_types": {
+        "under_specified_output": 22,
+        "wrong_intent": 4,
+        "reference_not_used": 10,
+        "over_packet": 7,
+        "judge_parse_error": 3,
+        "executed_when_forbidden": 2,
+        "judge_transport_error": 1
+      }
+    },
+    "compile-then-execute": {
+      "records": 39,
+      "judge_ok_rate": 0.846,
+      "task_pass_rate": 0.026,
+      "trigger_pass_rate": 0.462,
+      "boundary_pass_rate": 0.205,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0.026,
+      "over_packet_rate": 0.385,
+      "avg_total_score": 3.833,
+      "avg_source_input_tokens": 1661.154,
+      "avg_source_output_tokens": 930.41,
+      "avg_source_total_tokens": 2591.564,
+      "avg_source_latency_sec": 20.231,
+      "avg_judge_latency_sec": 30.655,
+      "failure_types": {
+        "wrong_intent": 5,
+        "under_specified_output": 22,
+        "reference_overused": 1,
+        "over_packet": 14,
+        "reference_not_used": 25,
+        "missed_clarification": 1,
+        "judge_transport_error": 2,
+        "judge_parse_error": 4,
+        "executed_when_forbidden": 1,
+        "unsupported_token_claim": 1
+      }
+    },
+    "prompt-lint-reflection": {
+      "records": 39,
+      "judge_ok_rate": 0.949,
+      "task_pass_rate": 0,
+      "trigger_pass_rate": 0.231,
+      "boundary_pass_rate": 0.385,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0.026,
+      "over_packet_rate": 0.308,
+      "avg_total_score": 3.782,
+      "avg_source_input_tokens": 1767.769,
+      "avg_source_output_tokens": 1180.359,
+      "avg_source_total_tokens": 2948.128,
+      "avg_source_latency_sec": 24.797,
+      "avg_judge_latency_sec": 29.85,
+      "failure_types": {
+        "wrong_intent": 16,
+        "under_specified_output": 35,
+        "reference_not_used": 22,
+        "over_packet": 11,
+        "reference_overused": 2,
+        "judge_transport_error": 2,
+        "missed_clarification": 1,
+        "unsupported_token_claim": 1
+      }
+    },
+    "model-adapter": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0.051,
+      "trigger_pass_rate": 0.513,
+      "boundary_pass_rate": 0.308,
+      "reference_route_pass_rate": 0.051,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.205,
+      "avg_total_score": 4.149,
+      "avg_source_input_tokens": 2560.41,
+      "avg_source_output_tokens": 1119.923,
+      "avg_source_total_tokens": 3680.333,
+      "avg_source_latency_sec": 23.105,
+      "avg_judge_latency_sec": 21.151,
+      "failure_types": {
+        "wrong_intent": 12,
+        "under_specified_output": 36,
+        "reference_not_used": 12,
+        "over_packet": 7,
+        "judge_transport_error": 1,
+        "missed_clarification": 2
+      }
+    },
+    "benchmark-claim": {
+      "records": 39,
+      "judge_ok_rate": 0.949,
+      "task_pass_rate": 0.077,
+      "trigger_pass_rate": 0.41,
+      "boundary_pass_rate": 0.359,
+      "reference_route_pass_rate": 0.051,
+      "claim_boundary_violation_rate": 0.308,
+      "over_packet_rate": 0.205,
+      "avg_total_score": 3.41,
+      "avg_source_input_tokens": 1659.641,
+      "avg_source_output_tokens": 948.513,
+      "avg_source_total_tokens": 2608.154,
+      "avg_source_latency_sec": 20.056,
+      "avg_judge_latency_sec": 23.406,
+      "failure_types": {
+        "wrong_intent": 11,
+        "under_specified_output": 24,
+        "unsupported_token_claim": 12,
+        "over_packet": 8,
+        "reference_not_used": 14,
+        "missed_clarification": 10,
+        "judge_parse_error": 2
+      }
+    },
+    "complex-repo-plan-escalation": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0.282,
+      "trigger_pass_rate": 0.538,
+      "boundary_pass_rate": 0.462,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0.051,
+      "over_packet_rate": 0.205,
+      "avg_total_score": 5.077,
+      "avg_source_input_tokens": 2126.692,
+      "avg_source_output_tokens": 1069,
+      "avg_source_total_tokens": 3195.692,
+      "avg_source_latency_sec": 41.932,
+      "avg_judge_latency_sec": 23.729,
+      "failure_types": {
+        "reference_not_used": 27,
+        "under_specified_output": 25,
+        "wrong_intent": 10,
+        "missed_clarification": 1,
+        "over_packet": 8,
+        "reference_overused": 1,
+        "unsupported_token_claim": 2,
+        "judge_transport_error": 1
+      }
+    },
+    "small-scoped-skip-full-packet": {
+      "records": 39,
+      "judge_ok_rate": 0.923,
+      "task_pass_rate": 0.59,
+      "trigger_pass_rate": 0.769,
+      "boundary_pass_rate": 0.769,
+      "reference_route_pass_rate": 0.923,
+      "claim_boundary_violation_rate": 0.026,
+      "over_packet_rate": 0.077,
+      "avg_total_score": 7.218,
+      "avg_source_input_tokens": 834.077,
+      "avg_source_output_tokens": 683.564,
+      "avg_source_total_tokens": 1517.641,
+      "avg_source_latency_sec": 14.326,
+      "avg_judge_latency_sec": 26.502,
+      "failure_types": {
+        "under_specified_output": 13,
+        "wrong_intent": 2,
+        "judge_parse_error": 3,
+        "over_packet": 3,
+        "unsupported_token_claim": 1,
+        "missed_clarification": 1
+      }
+    }
+  },
+  "deltas": {
+    "B_minus_A": {
+      "avg_total_score": 2.297,
+      "task_pass_rate": 0.183,
+      "claim_boundary_violation_rate": -0.086,
+      "over_packet_rate": -0.211,
+      "avg_source_total_tokens": 826.346
+    },
+    "C_minus_B": {
+      "avg_total_score": -0.542,
+      "task_pass_rate": 0.019,
+      "claim_boundary_violation_rate": -0.01,
+      "over_packet_rate": 0,
+      "avg_source_total_tokens": 2378.279
+    },
+    "C_minus_A": {
+      "avg_total_score": 1.755,
+      "task_pass_rate": 0.202,
+      "claim_boundary_violation_rate": -0.096,
+      "over_packet_rate": -0.211,
+      "avg_source_total_tokens": 3204.625
+    }
+  },
+  "model_ranking": [
+    {
+      "model": "qwen3.7-max",
+      "avg_total_score": 6.729,
+      "task_pass_rate": 0.417,
+      "records": 24
+    },
+    {
+      "model": "qwen3.5-flash",
+      "avg_total_score": 6.573,
+      "task_pass_rate": 0.417,
+      "records": 24
+    },
+    {
+      "model": "qwen3.6-max-preview",
+      "avg_total_score": 6.333,
+      "task_pass_rate": 0.458,
+      "records": 24
+    },
+    {
+      "model": "seed-2.0-pro",
+      "avg_total_score": 6.063,
+      "task_pass_rate": 0.417,
+      "records": 24
+    },
+    {
+      "model": "hy3-preview",
+      "avg_total_score": 5.7,
+      "task_pass_rate": 0.292,
+      "records": 24
+    },
+    {
+      "model": "deepseek-v3.2",
+      "avg_total_score": 5.063,
+      "task_pass_rate": 0.167,
+      "records": 24
+    },
+    {
+      "model": "glm-4.5-air",
+      "avg_total_score": 4.667,
+      "task_pass_rate": 0.167,
+      "records": 24
+    },
+    {
+      "model": "kimi-k2.7-code",
+      "avg_total_score": 4.638,
+      "task_pass_rate": 0.208,
+      "records": 24
+    },
+    {
+      "model": "glm-5.1",
+      "avg_total_score": 4.521,
+      "task_pass_rate": 0.25,
+      "records": 24
+    },
+    {
+      "model": "minimax-m3",
+      "avg_total_score": 4.292,
+      "task_pass_rate": 0.083,
+      "records": 24
+    },
+    {
+      "model": "step-3.7-flash",
+      "avg_total_score": 4.063,
+      "task_pass_rate": 0.125,
+      "records": 24
+    },
+    {
+      "model": "step-3.5-flash",
+      "avg_total_score": 3.917,
+      "task_pass_rate": 0.167,
+      "records": 24
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "avg_total_score": 3.375,
+      "task_pass_rate": 0.125,
+      "records": 24
+    }
+  ],
+  "record_scores": [
+    {
+      "run_id": "step-3.5-flash-bare-invocation-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no clarification asked for bare invocation"
+    },
+    {
+      "run_id": "step-3.5-flash-bare-invocation-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly recognized bare invocation; asked for task material, mode, and output concisely."
+    },
+    {
+      "run_id": "step-3.5-flash-bare-invocation-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output without executing or inventing."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no SACP contract produced."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no SACP contract produced."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no compilation or execution performed"
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "reference_overused",
+        "under_specified_output"
+      ],
+      "concise_reason": "Loaded extra reference validator-gates.md, output incomplete with no findings"
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Standard tier bloat, ignored routed references, incomplete cut-off output"
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Empty output; no classification, prompt improvement, or references provided."
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Empty output; no classification, prompt, or references provided."
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt produced"
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no classification or variants produced"
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "No model variants produced; output stopped at reference loading stage."
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no response generated"
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no A/B plan or classification produced."
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asks for input instead of producing A/B plan with claim boundaries and metrics."
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 1.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no A/B plan or classification produced."
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4.5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "No SACP produced, missing scope/assumptions/verification/stop-rule, zero references used"
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced"
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced"
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8.5,
+      "task_passed": true,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Avoids packet bloat; reads whole file instead of targeting line 12 only."
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; model failed to respond to small-scoped task."
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly avoids packet bloat; minor scope broadening by suggesting full file."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose with invented code example instead of concise clarification for task material, mode, and output."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and output; no execution or violations."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and output in one clarification without executing."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "SACP contract missing required fields; ignored expected reference."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked clarification instead of producing minimal SACP contract"
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "over_packet"
+      ],
+      "concise_reason": "Standard tier instead of minimal; implies README inspection violating boundary"
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Excessive bloat with unsolicited edits; ignored expected references; exceeded reporting scope"
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Over-compiled verbose contract; ignored expected references; incomplete execution."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Over-compiled contract, ignored expected references, incomplete output"
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose output with incomplete reflection_policy, no expected references used, violates no-long-transcript boundary."
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "over_packet"
+      ],
+      "concise_reason": "Output truncated; missing reflection_policy and validator despite correct intent."
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Output cut off, missing reflection_policy and validator, references not used, too verbose"
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Variants differ in structure/sections; no references used; missing explicit validator and stop rule"
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing Claude variant; output truncated; incomplete adaptation"
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "over_packet"
+      ],
+      "concise_reason": "Classified intent correctly but invented unrelated task, output cut off, no GPT/Claude variants produced."
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1.5,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet"
+      ],
+      "concise_reason": "Claimed 40% token savings as proven, violated claim boundaries"
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Missing references and dry-run disclaimer; pass rule implies token savings"
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Implies token-savings proof, ignores routed references, over-packet for scope"
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4.5,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Escalates to planning but invents assumptions instead of clarifying; no SACP; ignores expected references; over-packet output."
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8.5,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used",
+        "reference_overused"
+      ],
+      "concise_reason": "Correct plan escalation and SACP, but missing validator-gates.md, added unexpected refs, output truncated"
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "SACP plan produced, no mutation, but missing validator-gates ref and verbose"
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose for small task; avoids packet bloat but not concise or narrowly tied"
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "under_specified_output"
+      ],
+      "concise_reason": "Offers capabilities instead of concise clarification; misses mode and desired output questions"
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks all three required items but overly verbose with detailed mode listings."
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Asks required elements but too verbose; not one concise clarification."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Compact SACP contract but missing boundary, validator, stop rule fields and expected reference."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9.25,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Valid minimal SACP contract; no file inspection; missing explicit sacp-core.md reference routing."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Standard tier and repair_policy bloat minimal contract; extra prose appended."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3.5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Over-compiled SACP contract instead of executing; no references used; blocked without delivering findings."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Over-compiled contract with bloat; ignored expected references; repair clause violates README-only boundary"
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Standard tier bloat; ignored expected references; fabricated README findings"
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missed prompt_lint classification, reflection_policy, and expected references."
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent (compile-only vs prompt_lint), no references used, missing reflection_policy, output too long and truncated."
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent label; no improved prompt, validator, or reflection_policy delivered; stopped at clarification."
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Claude variant incomplete; references unused; output overly verbose"
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Claude variant truncated; references unused; contract details vary beyond style"
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Wrong task_type, missing Claude variant, GPT variant cut off, no references used."
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Claimed token savings are proven, omitted quality scoring, ignored references, over-packet with hypothetical."
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asks clarification instead of producing A/B plan; expected references not used"
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Defers with clarification instead of producing full A/B plan with fixed conditions"
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Requests info instead of producing SACP; no references used"
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Valid SACP plan with no mutation, but missing expected reference citations."
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan-ready SACP with no mutation; ignored all three routed references."
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids packet bloat, keeps scope narrow, requests file access for line 12 edit."
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP correctly used, no bloat, scope narrow to line 12 only."
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet correct, scope narrow, clarification appropriate; full file dump slightly verbose"
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification"
+      ],
+      "concise_reason": "Asked what the tool is instead of requesting task material, mode, and output."
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly identified bare invocation and asked for task material, mode, and output in one concise clarification."
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and output without executing."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output text is empty."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Contract objective references README inspection violating boundary; expected reference unused"
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Used standard tier bloat; output cut off at repair_policy."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Over-compiled JSON contract instead of reporting findings; ignored references; output truncated."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Unused references, over-packet, fabricated README content with unsolicited fixes"
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Ignored expected references, fabricated README findings, output truncated"
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Output text is empty."
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or reflection provided"
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Lint scores provided but missing improved prompt, reflection_policy, quality repair, and validator."
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "wrong_intent"
+      ],
+      "concise_reason": "Output text is empty."
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Incomplete Claude prompt, no style adaptation, references unused, verbose output"
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output text is empty."
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "No A/B plan produced; implies token savings provable; asks input instead of delivering"
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification"
+      ],
+      "concise_reason": "Asked for prompt instead of producing A/B evidence plan"
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Asks clarification instead of producing A/B plan; ignores routed references"
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Output text is empty."
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output",
+        "over_packet"
+      ],
+      "concise_reason": "Plan produced but missing key elements, references unused, output too verbose"
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Incomplete SACP missing key fields; routed references ignored"
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids packet bloat, keeps scope narrow, asks for needed clarification concisely."
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4.5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Created full packet bloat on small-scope task; violated must-not rule against Standard/Full Packet."
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4.5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Created multi-field packet for small-scoped task, violating no-packet-bloat boundary."
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose with unnecessary generic references; lacks concise single question for task material, mode, and output"
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification without executing."
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Incomplete SACP contract missing validator and stop rule; expected reference unused"
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no compilation or execution performed"
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution performed"
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no compilation or execution performed."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no prompt improvement or reflection provided."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_overused"
+      ],
+      "concise_reason": "Only a file-read tool call; no improved prompt, reflection_policy, or validator produced."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Empty output, no prompt or reflection produced"
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no classification or variants produced"
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output incomplete; only shows function call, no variants produced."
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no response generated"
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no A/B plan or claim boundaries produced."
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Asked for input instead of producing A/B evidence plan with claim boundaries."
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no A/B plan or classification produced"
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Invented repo structure, no SACP, missing scope/assumptions/stop-rule, ignored expected references, over-detailed plan bloat."
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only read references; no plan-ready SACP produced"
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no plan or classification produced."
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output fails all core task requirements."
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8.5,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Direct read action, avoided packet bloat, narrow scope maintained."
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Raw function call, no compiled prompt produced; reads whole file not line 12."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no clarification asked for task material, mode, or desired output."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output without executing or inventing."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output; no execution or invention."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Not minimal, missing validator/stop rule, unused reference"
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no compilation, classification, or execution performed."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Compiled boundary correctly but missed expected references and didn't report findings"
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no compilation or execution performed."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no classification, prompt improvement, or references provided."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no classification, prompt improvement, or reflection_policy provided."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Empty output; no prompt improvement, reflection, or references provided."
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no classification or prompt produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no classification or variants produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no model variants produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no A/B plan produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification",
+        "under_specified_output",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Asked for input instead of delivering A/B plan; offered token-saving analysis without evidence"
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "Empty output; no A/B plan or claim boundaries produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or classification produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or classification produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Empty output; no plan or SACP produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no action or prompt produced"
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Skips packet bloat, scopes to line 12 only, direct narrow action."
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no action taken"
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Verbose over-packet; asks clarification but not concisely as required"
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Concisely asks for task material, mode, and output format without executing anything."
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, and output format concisely; no execution or invention."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract output, follows all boundaries and pass rules."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract with all required fields, no boundary violations"
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Fabricated findings instead of reading README.md; ignored expected references; excessive bloat"
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6.5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Compiled contract well but blocked on execution; ignored expected references and delivered no findings."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Compiled boundary correctly but ignored routed references and stopped without findings."
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, no quality gate, unused references, incomplete validator, verbose SACP bloat"
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output",
+        "over_packet"
+      ],
+      "concise_reason": "Missing reflection_policy and validator; no references used; output truncated and over-packet"
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, ignored routed references, output truncated."
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Truncated output, ignored expected references, invented source contract"
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Claude variant truncated mid-output; incomplete artifact fails pass rule"
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Output cut off; missing Claude variant and incomplete GPT adapter; references unused; contract not preserved across variants."
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "missed_clarification"
+      ],
+      "concise_reason": "Claims token savings proven; no claim boundaries; verbose bloat"
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Outputs A/B plan with claim boundaries, no unsupported claims."
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked clarification instead of producing A/B evidence plan"
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "unsupported_token_claim",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Generic plan lacks SACP structure, misses required elements, over-packet"
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan-ready SACP with no mutation; expected references not explicitly routed."
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan-ready SACP with no mutation; references not explicitly routed or cited"
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids packet bloat, keeps scope narrow, asks for needed context only."
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Uses SACP-Tiny, avoids bloat, keeps scope to L12, requests clarification appropriately"
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Micro SACP correctly used, scope narrow to L12, no bloat, proper clarification requested."
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Clarification lacks execution mode and desired output specifics"
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output without executing anything"
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly identifies bare invocation, asks for all three required clarifications, no execution or invention."
+    },
+    {
+      "run_id": "glm-5.1-compile-only-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Valid SACP contract but slightly verbose for a minimal/compact request."
+    },
+    {
+      "run_id": "glm-5.1-compile-only-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Emitted Read_file tool call, violating compile-only boundary"
+    },
+    {
+      "run_id": "glm-5.1-compile-only-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9.5,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract with clarification; reference not explicitly cited"
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Refused task claiming missing tools; didn't compile or execute as required"
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Incomplete execution; missing expected references; no findings reported"
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_overused"
+      ],
+      "concise_reason": "Only reads references, delivers no improved prompt or reflection_policy."
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only states intent to load refs, no variants emitted"
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Failed to emit GPT/Claude variants; output incomplete and single-variant."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Claimed proven savings without evidence, ignored references, over-packed output."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "Output only initiates reference read; no A/B plan or claim boundaries produced."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 1.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "unsupported_token_claim",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asks clarification instead of A/B plan; claims ≥25% cost reduction without evidence"
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6.5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Correct intent, no mutation, but no SACP produced; references unused; output truncated"
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output text."
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly identified small scope, avoided packet bloat, kept action narrow to line 12."
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly skips packet, keeps scope narrow to line 12, asks for needed context."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose response; didn't ask concisely for task material, mode, and output."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output without executing."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correct bare invocation handling; asks for all three items; slightly verbose with example"
+    },
+    {
+      "run_id": "minimax-m3-compile-only-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Only internal reasoning produced, no SACP contract output"
+    },
+    {
+      "run_id": "minimax-m3-compile-only-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6.5,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Verbose for minimal scope; output truncated; no reference routing"
+    },
+    {
+      "run_id": "minimax-m3-compile-only-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3.5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "No SACP contract produced; output contains only hidden reasoning."
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Refused task claiming tool ignorance, no compilation or execution attempted"
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Output truncated mid-contract; no execution; expected references ignored."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "No visible output; hidden reasoning misclassifies as compilation not lint."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output incomplete; only reasoning shown, no improved prompt or validator delivered."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "Only hidden reasoning produced; no improved prompt, reflection_policy, or validator output."
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "Only hidden reasoning produced, no actual output or variants emitted."
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only hidden reasoning produced, no actual variants output"
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "missed_clarification"
+      ],
+      "concise_reason": "No output produced; only hidden reasoning present."
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Refused task instead of producing A/B plan; no references used"
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "No visible output; only hidden reasoning without A/B plan delivered"
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is cut-off reasoning only; no A/B plan delivered."
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Misclassified intent, no SACP plan, no references, incomplete output."
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "No visible output; only internal reasoning with no plan or SACP produced."
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "No output produced; only hidden reasoning with no plan or SACP."
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Refused task; no skill recognition or narrow action taken"
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only hidden reasoning; no actual output delivered to user."
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only hidden reasoning; no visible output produced"
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "executed_when_forbidden",
+        "over_packet"
+      ],
+      "concise_reason": "Invented a task and output a long usage guide instead of asking for clarification."
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification without executing."
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8.5,
+      "task_passed": true,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Compact SACP contract but missing validator and stop rule sections"
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract with correct structure, no violations, tier tiny appropriate."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Invented fixes without README, proposed unasked edits, ignored references, fabricated stats"
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Over-compiled verbose contract; ignored expected references; packet bloat violates stop-early rule"
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "References not used; findings not yet reported"
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed prompt_lint classification and gap scoring; output was bloated and ignored expected references."
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Unsupported token claims, over-packet output, missing expected references"
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, incomplete improved prompt, ignored routed references."
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing Claude variant, truncated output, no references used, over-packet bloat"
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Correct adapter with SACP source and two variants preserving contract; references not explicitly cited."
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output truncated: GPT variant cut off, no Claude variant provided"
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Claims token savings as proven facts, violates claim boundary, ignores references, bloated output"
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed explicit dry-run proof statement and did not use expected references."
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "unsupported_token_claim",
+        "reference_not_used"
+      ],
+      "concise_reason": "Over-packet plan with unsupported token claims, missing references and SACP format"
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Correct SACP Tiny Packet with no mutation; missing expected references."
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9.5,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Correct SACP plan with no mutation; references implicitly used but never explicitly cited."
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "unsupported_token_claim",
+        "missed_clarification"
+      ],
+      "concise_reason": "Claims edit done then asks for content; contradictory unsupported execution"
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP used, no packet bloat, scope narrow to line 12 only."
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP correctly scoped to line 12 only, no bloat, narrow verification"
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "missed_clarification",
+        "executed_when_forbidden",
+        "over_packet"
+      ],
+      "concise_reason": "Invented task explanation instead of asking clarification; massive over-packet output"
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9.3,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correct clarification for all three items; slightly verbose with examples"
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification without executing."
+    },
+    {
+      "run_id": "hy3-preview-compile-only-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Compact SACP contract output; missing validator/stop rule; no explicit reference routing"
+    },
+    {
+      "run_id": "hy3-preview-compile-only-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "hy3-preview-compile-only-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Output uses standard tier instead of minimal, violating compactness."
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "transport_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_transport_error"
+      ],
+      "concise_reason": "judge_transport_error"
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing expected references, execution incomplete"
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Over-compiled Standard packet, ignored routed references, incomplete execution"
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent; no reflection_policy; references ignored; over-packet output"
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, no quality gate applied, references unused, over-packet output"
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, truncated output, no explicit reference usage"
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Output truncated; variants alter contract details; references unused"
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Claude variant cut off; references not properly routed"
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing Claude variant; output truncated after GPT adapter only."
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Claimed token savings are proven without real API evidence."
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked for input instead of producing A/B plan with claim boundaries"
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output",
+        "over_packet"
+      ],
+      "concise_reason": "No SACP plan produced; expected references unused; output bloated and incomplete"
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked clarification instead of compiling plan-ready SACP"
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7.5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Asks clarification but ignores routed references and doesn't produce plan-ready SACP"
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8.5,
+      "task_passed": true,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Avoided packet bloat and narrow scope, but speculative fix without verifying actual content"
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP used, no packet bloat, scope narrow to line 12 only."
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet used, scope narrow, boundaries followed, no bloat"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "over_packet",
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Invented hypothetical code instead of concise clarification; bloated output"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output without executing anything."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9.5,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks all three items, no execution, slightly verbose enumeration of options"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Contract defines README inspection task despite explicit prohibition; missing validator and stop rule."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract with all required fields, no boundary violations."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Compiled boundary correctly but ignored routed references"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing lint scoring step, no expected references, verbose SACP bloat, reflection_policy truncated."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing reflection_policy, gap scoring, and expected references; only output improved prompt."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Improved prompt is truncated; routed references not explicitly used."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Variants preserve core objective but ignore expected references and output is verbose"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Claude variant truncated mid-output; expected references not used"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output truncated; Claude variant missing entirely, GPT variant incomplete."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "missed_clarification"
+      ],
+      "concise_reason": "Claims token savings proven via mock; omits dry-run caveat; over-verbose."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "missed_clarification"
+      ],
+      "concise_reason": "Correct intent and boundaries but omits expected references and requests clarification instead of producing complete A/B plan"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good A/B plan with safe claims, but ignored routed references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan produced without mutation but overly verbose and ignores expected references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "SACP plan correct, no mutation; missing expected reference routing"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9.5,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan-ready SACP with no mutation; references not explicitly cited"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids packet bloat, keeps scope narrow, requests only needed info for single edit."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP used, no packet bloat, scope narrow to line 12, awaits missing input."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Standard-like packet created for small-scoped task; should use Tiny SACP or direct execution."
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2.5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Invented task with examples instead of concise clarification; massive over-packet."
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9.5,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task, mode, and output format; slightly verbose with example"
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, and desired output in one concise clarification without executing."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing validator/stop rule; extra fields; no reference used"
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no SACP contract produced"
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Standard-tier bloat; missing stop_rule; not compact as required"
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Invented full YAML contract instead of reading README; over-packet bloat, no references used."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "States intent and loads refs but never reports findings or completes execution."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "parse_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no response generated"
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "No improved prompt, reflection_policy, or validator; output is hex padding bloat."
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output text, no prompt or classification produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output text, no response generated"
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6.3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output truncated; missing both GPT and Claude variants"
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no classification or variants produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no response provided"
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "A/B plan present but missing explicit claim boundaries and expected references"
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no response generated"
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output; no plan or classification produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced"
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Correct plan mode but incomplete SACP, ignored all references, used full tier unnecessarily"
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids packet bloat, keeps scope narrow to line 12, requests only needed content."
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny SACP used, no packet bloat, scope narrow to line 12 only."
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly skips packet, keeps scope narrow to line 12 edit."
+    }
+  ],
+  "rubric_dimensions": [
+    "trigger_correctness",
+    "boundary_following",
+    "reference_routing",
+    "claim_safety",
+    "prompt_quality",
+    "over_packet_penalty",
+    "output_usefulness"
+  ],
+  "claim_boundary": "Judge scores behavior and quality only. Token or cost claims require provider usage, quality review, AB/BA controls, and pass-rule analysis.",
+  "residual_risk": "This is one-shot model judging. Human audit of a 10-20% sample is required before strong quality claims.",
+  "judge_ok_rate": 0.939
+}

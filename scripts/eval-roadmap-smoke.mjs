@@ -17,6 +17,8 @@ const requiredFiles = [
   "evals/results/README.md",
   "scripts/provider-smoke.mjs",
   "scripts/run-skill-effect-eval.mjs",
+  "scripts/judge-skill-effect-eval.mjs",
+  "scripts/judge-smoke.mjs",
   "scripts/eval-smoke.mjs",
 ];
 
@@ -138,6 +140,7 @@ if (exists("package.json")) {
   const pkg = readJson("package.json");
   assert(pkg.scripts?.["eval:roadmap"] === "node scripts/eval-roadmap-smoke.mjs", "package exposes eval:roadmap");
   assert(pkg.scripts?.["eval:smoke"] === "node scripts/eval-smoke.mjs", "package exposes eval:smoke");
+  assert(pkg.scripts?.["eval:judge:smoke"] === "node scripts/judge-smoke.mjs", "package exposes eval:judge:smoke");
   assert(pkg.scripts?.["provider:smoke"] === "node scripts/provider-smoke.mjs", "package exposes provider:smoke");
 }
 
@@ -145,10 +148,13 @@ if (exists(".github/workflows/ci.yml")) {
   const ci = readText(".github/workflows/ci.yml");
   assert(ci.includes("node --check scripts/eval-roadmap-smoke.mjs"), "CI syntax-checks eval-roadmap smoke");
   assert(ci.includes("node --check scripts/eval-smoke.mjs"), "CI syntax-checks eval smoke");
+  assert(ci.includes("node --check scripts/judge-smoke.mjs"), "CI syntax-checks judge smoke");
+  assert(ci.includes("node --check scripts/judge-skill-effect-eval.mjs"), "CI syntax-checks judge runner");
   assert(ci.includes("node --check scripts/provider-smoke.mjs"), "CI syntax-checks provider smoke");
   assert(ci.includes("node --check scripts/run-skill-effect-eval.mjs"), "CI syntax-checks skill effect runner");
   assert(ci.includes("npm run eval:roadmap"), "CI runs eval:roadmap");
   assert(ci.includes("npm run eval:smoke"), "CI runs eval:smoke");
+  assert(ci.includes("npm run eval:judge:smoke"), "CI runs eval:judge:smoke");
 }
 
 if (process.exitCode) {

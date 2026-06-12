@@ -1,0 +1,4898 @@
+{
+  "schema_version": "skill-effect-judge-summary.v1",
+  "generated_at": "2026-06-12T14:18:38.205Z",
+  "input_paths": [
+    "eval-runs/initial-stepfun.json",
+    "eval-runs/initial-tokendance.json",
+    "eval-runs/frontier-stepfun-step37.json",
+    "eval-runs/frontier-tokendance-a.json",
+    "eval-runs/frontier-tokendance-b.json",
+    "eval-runs/frontier-tokendance-c.json",
+    "eval-runs/frontier-tokendance-kimi.json"
+  ],
+  "judge_provider": "tokendance",
+  "judge_model": "hy3-preview",
+  "source_record_count": 312,
+  "judged_record_count": 312,
+  "metrics": {
+    "records": 312,
+    "judge_ok_rate": 0.981,
+    "task_pass_rate": 0.224,
+    "trigger_pass_rate": 0.526,
+    "boundary_pass_rate": 0.59,
+    "reference_route_pass_rate": 0.276,
+    "claim_boundary_violation_rate": 0.067,
+    "over_packet_rate": 0.173,
+    "avg_total_score": 5.503,
+    "avg_source_input_tokens": 1594.186,
+    "avg_source_output_tokens": 909.558,
+    "avg_source_total_tokens": 2503.744,
+    "avg_source_latency_sec": 21.725,
+    "avg_judge_latency_sec": 4.364,
+    "failure_types": {
+      "under_specified_output": 129,
+      "reference_overused": 2,
+      "over_packet": 54,
+      "reference_not_used": 149,
+      "executed_when_forbidden": 47,
+      "wrong_intent": 36,
+      "unsupported_token_claim": 21,
+      "judge_parse_error": 6,
+      "missed_clarification": 1,
+      "usage_fields_missing": 3
+    }
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 104,
+      "judge_ok_rate": 0.981,
+      "task_pass_rate": 0.163,
+      "trigger_pass_rate": 0.317,
+      "boundary_pass_rate": 0.5,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.135,
+      "over_packet_rate": 0.183,
+      "avg_total_score": 4.538,
+      "avg_source_input_tokens": 72.375,
+      "avg_source_output_tokens": 1087.712,
+      "avg_source_total_tokens": 1160.087,
+      "avg_source_latency_sec": 20.441,
+      "avg_judge_latency_sec": 4.514,
+      "failure_types": {
+        "under_specified_output": 50,
+        "wrong_intent": 21,
+        "executed_when_forbidden": 22,
+        "reference_not_used": 49,
+        "over_packet": 19,
+        "unsupported_token_claim": 14,
+        "judge_parse_error": 2,
+        "usage_fields_missing": 1
+      }
+    },
+    "B": {
+      "records": 104,
+      "judge_ok_rate": 0.971,
+      "task_pass_rate": 0.25,
+      "trigger_pass_rate": 0.635,
+      "boundary_pass_rate": 0.644,
+      "reference_route_pass_rate": 0.26,
+      "claim_boundary_violation_rate": 0.038,
+      "over_packet_rate": 0.192,
+      "avg_total_score": 6.019,
+      "avg_source_input_tokens": 1221.837,
+      "avg_source_output_tokens": 764.596,
+      "avg_source_total_tokens": 1986.433,
+      "avg_source_latency_sec": 18.015,
+      "avg_judge_latency_sec": 4.32,
+      "failure_types": {
+        "under_specified_output": 36,
+        "reference_overused": 2,
+        "over_packet": 20,
+        "executed_when_forbidden": 17,
+        "reference_not_used": 58,
+        "wrong_intent": 10,
+        "unsupported_token_claim": 4,
+        "judge_parse_error": 3
+      }
+    },
+    "C": {
+      "records": 104,
+      "judge_ok_rate": 0.99,
+      "task_pass_rate": 0.26,
+      "trigger_pass_rate": 0.625,
+      "boundary_pass_rate": 0.625,
+      "reference_route_pass_rate": 0.317,
+      "claim_boundary_violation_rate": 0.029,
+      "over_packet_rate": 0.144,
+      "avg_total_score": 5.952,
+      "avg_source_input_tokens": 3488.346,
+      "avg_source_output_tokens": 876.365,
+      "avg_source_total_tokens": 4364.712,
+      "avg_source_latency_sec": 26.72,
+      "avg_judge_latency_sec": 4.257,
+      "failure_types": {
+        "under_specified_output": 43,
+        "reference_not_used": 42,
+        "executed_when_forbidden": 8,
+        "over_packet": 15,
+        "wrong_intent": 5,
+        "unsupported_token_claim": 3,
+        "judge_parse_error": 1,
+        "missed_clarification": 1,
+        "usage_fields_missing": 2
+      }
+    }
+  },
+  "model_summaries": {
+    "step-3.5-flash": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.125,
+      "trigger_pass_rate": 0.292,
+      "boundary_pass_rate": 0.25,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.042,
+      "avg_total_score": 3.708,
+      "avg_source_input_tokens": 1588.625,
+      "avg_source_output_tokens": 598.958,
+      "avg_source_total_tokens": 2187.583,
+      "avg_source_latency_sec": 7.103,
+      "avg_judge_latency_sec": 3.889,
+      "failure_types": {
+        "under_specified_output": 18,
+        "reference_overused": 1,
+        "over_packet": 1,
+        "reference_not_used": 4,
+        "executed_when_forbidden": 3,
+        "wrong_intent": 1
+      }
+    },
+    "deepseek-v3.2": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.25,
+      "trigger_pass_rate": 0.625,
+      "boundary_pass_rate": 0.667,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0.167,
+      "over_packet_rate": 0.458,
+      "avg_total_score": 6.333,
+      "avg_source_input_tokens": 1575.625,
+      "avg_source_output_tokens": 476.333,
+      "avg_source_total_tokens": 2051.958,
+      "avg_source_latency_sec": 51.617,
+      "avg_judge_latency_sec": 4.117,
+      "failure_types": {
+        "under_specified_output": 4,
+        "executed_when_forbidden": 6,
+        "reference_not_used": 17,
+        "over_packet": 11,
+        "wrong_intent": 4,
+        "unsupported_token_claim": 4
+      }
+    },
+    "qwen3.5-flash": {
+      "records": 24,
+      "judge_ok_rate": 0.875,
+      "task_pass_rate": 0.333,
+      "trigger_pass_rate": 0.667,
+      "boundary_pass_rate": 0.792,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.125,
+      "avg_total_score": 6.583,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 1480.333,
+      "avg_source_total_tokens": 3107.375,
+      "avg_source_latency_sec": 11.891,
+      "avg_judge_latency_sec": 3.453,
+      "failure_types": {
+        "wrong_intent": 2,
+        "under_specified_output": 3,
+        "reference_not_used": 15,
+        "over_packet": 3,
+        "executed_when_forbidden": 2,
+        "judge_parse_error": 3,
+        "unsupported_token_claim": 1,
+        "missed_clarification": 1
+      }
+    },
+    "glm-4.5-air": {
+      "records": 24,
+      "judge_ok_rate": 0.875,
+      "task_pass_rate": 0.125,
+      "trigger_pass_rate": 0.375,
+      "boundary_pass_rate": 0.417,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.125,
+      "avg_total_score": 4.125,
+      "avg_source_input_tokens": 1536.5,
+      "avg_source_output_tokens": 539.667,
+      "avg_source_total_tokens": 2076.167,
+      "avg_source_latency_sec": 11.833,
+      "avg_judge_latency_sec": 3.679,
+      "failure_types": {
+        "under_specified_output": 12,
+        "wrong_intent": 4,
+        "executed_when_forbidden": 6,
+        "reference_not_used": 10,
+        "over_packet": 3,
+        "judge_parse_error": 3,
+        "unsupported_token_claim": 1
+      }
+    },
+    "step-3.7-flash": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.083,
+      "trigger_pass_rate": 0.208,
+      "boundary_pass_rate": 0.292,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.042,
+      "avg_total_score": 3.375,
+      "avg_source_input_tokens": 1588.625,
+      "avg_source_output_tokens": 580.542,
+      "avg_source_total_tokens": 2169.167,
+      "avg_source_latency_sec": 6.49,
+      "avg_judge_latency_sec": 4.571,
+      "failure_types": {
+        "under_specified_output": 21,
+        "wrong_intent": 2,
+        "executed_when_forbidden": 4,
+        "reference_not_used": 5,
+        "usage_fields_missing": 1,
+        "reference_overused": 1,
+        "over_packet": 1
+      }
+    },
+    "deepseek-v4-pro": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.167,
+      "trigger_pass_rate": 0.167,
+      "boundary_pass_rate": 0.208,
+      "reference_route_pass_rate": 0.208,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0,
+      "avg_total_score": 3.208,
+      "avg_source_input_tokens": 1575.625,
+      "avg_source_output_tokens": 639.417,
+      "avg_source_total_tokens": 2215.042,
+      "avg_source_latency_sec": 11.223,
+      "avg_judge_latency_sec": 4.525,
+      "failure_types": {
+        "under_specified_output": 19,
+        "executed_when_forbidden": 1,
+        "reference_not_used": 3,
+        "wrong_intent": 1,
+        "unsupported_token_claim": 1
+      }
+    },
+    "qwen3.7-max": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.292,
+      "trigger_pass_rate": 0.75,
+      "boundary_pass_rate": 0.917,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0.125,
+      "over_packet_rate": 0.208,
+      "avg_total_score": 7.292,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 1774.417,
+      "avg_source_total_tokens": 3401.458,
+      "avg_source_latency_sec": 34.635,
+      "avg_judge_latency_sec": 4.756,
+      "failure_types": {
+        "wrong_intent": 4,
+        "unsupported_token_claim": 3,
+        "executed_when_forbidden": 2,
+        "under_specified_output": 4,
+        "reference_not_used": 16,
+        "over_packet": 5
+      }
+    },
+    "glm-5.1": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.333,
+      "trigger_pass_rate": 0.667,
+      "boundary_pass_rate": 0.792,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0.083,
+      "over_packet_rate": 0.167,
+      "avg_total_score": 6.625,
+      "avg_source_input_tokens": 1535.5,
+      "avg_source_output_tokens": 587.333,
+      "avg_source_total_tokens": 2122.833,
+      "avg_source_latency_sec": 15.668,
+      "avg_judge_latency_sec": 4.577,
+      "failure_types": {
+        "reference_not_used": 17,
+        "executed_when_forbidden": 4,
+        "over_packet": 4,
+        "wrong_intent": 3,
+        "under_specified_output": 7,
+        "unsupported_token_claim": 2,
+        "usage_fields_missing": 1
+      }
+    },
+    "minimax-m3": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.083,
+      "trigger_pass_rate": 0.208,
+      "boundary_pass_rate": 0.375,
+      "reference_route_pass_rate": 0.25,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.042,
+      "avg_total_score": 3.792,
+      "avg_source_input_tokens": 1678.667,
+      "avg_source_output_tokens": 630.083,
+      "avg_source_total_tokens": 2308.75,
+      "avg_source_latency_sec": 17.355,
+      "avg_judge_latency_sec": 5.07,
+      "failure_types": {
+        "under_specified_output": 19,
+        "reference_not_used": 6,
+        "over_packet": 1,
+        "wrong_intent": 3,
+        "executed_when_forbidden": 3,
+        "usage_fields_missing": 1
+      }
+    },
+    "seed-2.0-pro": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.292,
+      "trigger_pass_rate": 0.833,
+      "boundary_pass_rate": 0.792,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0.25,
+      "over_packet_rate": 0.292,
+      "avg_total_score": 7.083,
+      "avg_source_input_tokens": 1691.333,
+      "avg_source_output_tokens": 1534.792,
+      "avg_source_total_tokens": 3226.125,
+      "avg_source_latency_sec": 37.411,
+      "avg_judge_latency_sec": 4.994,
+      "failure_types": {
+        "wrong_intent": 3,
+        "executed_when_forbidden": 5,
+        "unsupported_token_claim": 6,
+        "reference_not_used": 16,
+        "over_packet": 7,
+        "under_specified_output": 2
+      }
+    },
+    "hy3-preview": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.292,
+      "trigger_pass_rate": 0.625,
+      "boundary_pass_rate": 0.792,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0.083,
+      "over_packet_rate": 0.208,
+      "avg_total_score": 6.75,
+      "avg_source_input_tokens": 1557.042,
+      "avg_source_output_tokens": 384.042,
+      "avg_source_total_tokens": 1941.083,
+      "avg_source_latency_sec": 9.282,
+      "avg_judge_latency_sec": 4.66,
+      "failure_types": {
+        "wrong_intent": 5,
+        "executed_when_forbidden": 5,
+        "under_specified_output": 6,
+        "reference_not_used": 16,
+        "over_packet": 5,
+        "unsupported_token_claim": 2
+      }
+    },
+    "qwen3.6-max-preview": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.333,
+      "trigger_pass_rate": 0.917,
+      "boundary_pass_rate": 0.792,
+      "reference_route_pass_rate": 0.333,
+      "claim_boundary_violation_rate": 0.042,
+      "over_packet_rate": 0.417,
+      "avg_total_score": 7.417,
+      "avg_source_input_tokens": 1627.042,
+      "avg_source_output_tokens": 2032.958,
+      "avg_source_total_tokens": 3660,
+      "avg_source_latency_sec": 55.44,
+      "avg_judge_latency_sec": 4.072,
+      "failure_types": {
+        "wrong_intent": 2,
+        "executed_when_forbidden": 5,
+        "reference_not_used": 16,
+        "under_specified_output": 1,
+        "over_packet": 10,
+        "unsupported_token_claim": 1
+      }
+    },
+    "kimi-k2.7-code": {
+      "records": 24,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.208,
+      "trigger_pass_rate": 0.5,
+      "boundary_pass_rate": 0.583,
+      "reference_route_pass_rate": 0.292,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.125,
+      "avg_total_score": 5.25,
+      "avg_source_input_tokens": 1515.75,
+      "avg_source_output_tokens": 565.375,
+      "avg_source_total_tokens": 2081.125,
+      "avg_source_latency_sec": 12.482,
+      "avg_judge_latency_sec": 4.366,
+      "failure_types": {
+        "reference_not_used": 8,
+        "under_specified_output": 13,
+        "wrong_intent": 2,
+        "executed_when_forbidden": 1,
+        "over_packet": 3
+      }
+    }
+  },
+  "case_summaries": {
+    "bare-invocation": {
+      "records": 39,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.744,
+      "trigger_pass_rate": 0.795,
+      "boundary_pass_rate": 0.897,
+      "reference_route_pass_rate": 1,
+      "claim_boundary_violation_rate": 0.051,
+      "over_packet_rate": 0,
+      "avg_total_score": 8.692,
+      "avg_source_input_tokens": 814.077,
+      "avg_source_output_tokens": 516.513,
+      "avg_source_total_tokens": 1330.59,
+      "avg_source_latency_sec": 11.616,
+      "avg_judge_latency_sec": 4.255,
+      "failure_types": {
+        "under_specified_output": 8,
+        "wrong_intent": 4,
+        "unsupported_token_claim": 2,
+        "executed_when_forbidden": 2
+      }
+    },
+    "compile-only": {
+      "records": 39,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.154,
+      "trigger_pass_rate": 0.436,
+      "boundary_pass_rate": 0.359,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.179,
+      "avg_total_score": 4.59,
+      "avg_source_input_tokens": 1329.667,
+      "avg_source_output_tokens": 828.179,
+      "avg_source_total_tokens": 2157.846,
+      "avg_source_latency_sec": 17.739,
+      "avg_judge_latency_sec": 4.487,
+      "failure_types": {
+        "under_specified_output": 17,
+        "executed_when_forbidden": 14,
+        "reference_not_used": 26,
+        "over_packet": 7,
+        "wrong_intent": 6
+      }
+    },
+    "compile-then-execute": {
+      "records": 39,
+      "judge_ok_rate": 0.949,
+      "task_pass_rate": 0.051,
+      "trigger_pass_rate": 0.59,
+      "boundary_pass_rate": 0.564,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0.026,
+      "over_packet_rate": 0.385,
+      "avg_total_score": 5.359,
+      "avg_source_input_tokens": 1661.154,
+      "avg_source_output_tokens": 930.41,
+      "avg_source_total_tokens": 2591.564,
+      "avg_source_latency_sec": 20.231,
+      "avg_judge_latency_sec": 4.405,
+      "failure_types": {
+        "under_specified_output": 11,
+        "reference_overused": 1,
+        "over_packet": 15,
+        "reference_not_used": 28,
+        "executed_when_forbidden": 6,
+        "judge_parse_error": 2,
+        "usage_fields_missing": 1,
+        "wrong_intent": 2,
+        "unsupported_token_claim": 1
+      }
+    },
+    "prompt-lint-reflection": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0,
+      "trigger_pass_rate": 0.41,
+      "boundary_pass_rate": 0.333,
+      "reference_route_pass_rate": 0,
+      "claim_boundary_violation_rate": 0.026,
+      "over_packet_rate": 0.333,
+      "avg_total_score": 3.795,
+      "avg_source_input_tokens": 1767.769,
+      "avg_source_output_tokens": 1180.359,
+      "avg_source_total_tokens": 2948.128,
+      "avg_source_latency_sec": 24.797,
+      "avg_judge_latency_sec": 4.447,
+      "failure_types": {
+        "under_specified_output": 24,
+        "executed_when_forbidden": 13,
+        "reference_not_used": 23,
+        "over_packet": 13,
+        "wrong_intent": 5,
+        "judge_parse_error": 1,
+        "reference_overused": 1,
+        "unsupported_token_claim": 1
+      }
+    },
+    "model-adapter": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0,
+      "trigger_pass_rate": 0.333,
+      "boundary_pass_rate": 0.487,
+      "reference_route_pass_rate": 0.103,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.128,
+      "avg_total_score": 4.256,
+      "avg_source_input_tokens": 2560.41,
+      "avg_source_output_tokens": 1119.923,
+      "avg_source_total_tokens": 3680.333,
+      "avg_source_latency_sec": 23.105,
+      "avg_judge_latency_sec": 4.603,
+      "failure_types": {
+        "under_specified_output": 27,
+        "executed_when_forbidden": 5,
+        "reference_not_used": 20,
+        "wrong_intent": 10,
+        "over_packet": 5,
+        "judge_parse_error": 1
+      }
+    },
+    "benchmark-claim": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0.026,
+      "trigger_pass_rate": 0.359,
+      "boundary_pass_rate": 0.718,
+      "reference_route_pass_rate": 0.051,
+      "claim_boundary_violation_rate": 0.359,
+      "over_packet_rate": 0.154,
+      "avg_total_score": 4.256,
+      "avg_source_input_tokens": 1659.641,
+      "avg_source_output_tokens": 948.513,
+      "avg_source_total_tokens": 2608.154,
+      "avg_source_latency_sec": 20.056,
+      "avg_judge_latency_sec": 4.599,
+      "failure_types": {
+        "under_specified_output": 18,
+        "reference_not_used": 27,
+        "unsupported_token_claim": 14,
+        "over_packet": 6,
+        "judge_parse_error": 1,
+        "wrong_intent": 5,
+        "executed_when_forbidden": 1
+      }
+    },
+    "complex-repo-plan-escalation": {
+      "records": 39,
+      "judge_ok_rate": 0.974,
+      "task_pass_rate": 0.231,
+      "trigger_pass_rate": 0.513,
+      "boundary_pass_rate": 0.59,
+      "reference_route_pass_rate": 0.026,
+      "claim_boundary_violation_rate": 0.077,
+      "over_packet_rate": 0.128,
+      "avg_total_score": 5.154,
+      "avg_source_input_tokens": 2126.692,
+      "avg_source_output_tokens": 1069,
+      "avg_source_total_tokens": 3195.692,
+      "avg_source_latency_sec": 41.932,
+      "avg_judge_latency_sec": 3.896,
+      "failure_types": {
+        "wrong_intent": 2,
+        "executed_when_forbidden": 3,
+        "reference_not_used": 25,
+        "under_specified_output": 16,
+        "unsupported_token_claim": 3,
+        "over_packet": 5,
+        "judge_parse_error": 1,
+        "usage_fields_missing": 1
+      }
+    },
+    "small-scoped-skip-full-packet": {
+      "records": 39,
+      "judge_ok_rate": 1,
+      "task_pass_rate": 0.59,
+      "trigger_pass_rate": 0.769,
+      "boundary_pass_rate": 0.769,
+      "reference_route_pass_rate": 0.974,
+      "claim_boundary_violation_rate": 0,
+      "over_packet_rate": 0.077,
+      "avg_total_score": 7.923,
+      "avg_source_input_tokens": 834.077,
+      "avg_source_output_tokens": 683.564,
+      "avg_source_total_tokens": 1517.641,
+      "avg_source_latency_sec": 14.326,
+      "avg_judge_latency_sec": 4.219,
+      "failure_types": {
+        "executed_when_forbidden": 3,
+        "under_specified_output": 8,
+        "wrong_intent": 2,
+        "over_packet": 3,
+        "missed_clarification": 1,
+        "usage_fields_missing": 1
+      }
+    }
+  },
+  "deltas": {
+    "B_minus_A": {
+      "avg_total_score": 1.481,
+      "task_pass_rate": 0.087,
+      "claim_boundary_violation_rate": -0.097,
+      "over_packet_rate": 0.009,
+      "avg_source_total_tokens": 826.346
+    },
+    "C_minus_B": {
+      "avg_total_score": -0.067,
+      "task_pass_rate": 0.01,
+      "claim_boundary_violation_rate": -0.009,
+      "over_packet_rate": -0.048,
+      "avg_source_total_tokens": 2378.279
+    },
+    "C_minus_A": {
+      "avg_total_score": 1.414,
+      "task_pass_rate": 0.097,
+      "claim_boundary_violation_rate": -0.106,
+      "over_packet_rate": -0.039,
+      "avg_source_total_tokens": 3204.625
+    }
+  },
+  "model_ranking": [
+    {
+      "model": "qwen3.6-max-preview",
+      "avg_total_score": 7.417,
+      "task_pass_rate": 0.333,
+      "records": 24
+    },
+    {
+      "model": "qwen3.7-max",
+      "avg_total_score": 7.292,
+      "task_pass_rate": 0.292,
+      "records": 24
+    },
+    {
+      "model": "seed-2.0-pro",
+      "avg_total_score": 7.083,
+      "task_pass_rate": 0.292,
+      "records": 24
+    },
+    {
+      "model": "hy3-preview",
+      "avg_total_score": 6.75,
+      "task_pass_rate": 0.292,
+      "records": 24
+    },
+    {
+      "model": "glm-5.1",
+      "avg_total_score": 6.625,
+      "task_pass_rate": 0.333,
+      "records": 24
+    },
+    {
+      "model": "qwen3.5-flash",
+      "avg_total_score": 6.583,
+      "task_pass_rate": 0.333,
+      "records": 24
+    },
+    {
+      "model": "deepseek-v3.2",
+      "avg_total_score": 6.333,
+      "task_pass_rate": 0.25,
+      "records": 24
+    },
+    {
+      "model": "kimi-k2.7-code",
+      "avg_total_score": 5.25,
+      "task_pass_rate": 0.208,
+      "records": 24
+    },
+    {
+      "model": "glm-4.5-air",
+      "avg_total_score": 4.125,
+      "task_pass_rate": 0.125,
+      "records": 24
+    },
+    {
+      "model": "minimax-m3",
+      "avg_total_score": 3.792,
+      "task_pass_rate": 0.083,
+      "records": 24
+    },
+    {
+      "model": "step-3.5-flash",
+      "avg_total_score": 3.708,
+      "task_pass_rate": 0.125,
+      "records": 24
+    },
+    {
+      "model": "step-3.7-flash",
+      "avg_total_score": 3.375,
+      "task_pass_rate": 0.083,
+      "records": 24
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "avg_total_score": 3.208,
+      "task_pass_rate": 0.167,
+      "records": 24
+    }
+  ],
+  "record_scores": [
+    {
+      "run_id": "step-3.5-flash-bare-invocation-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no clarification asked."
+    },
+    {
+      "run_id": "step-3.5-flash-bare-invocation-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "step-3.5-flash-bare-invocation-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks required clarification, no execution."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-only-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_overused",
+        "over_packet"
+      ],
+      "concise_reason": "Overused references and bloated packet."
+    },
+    {
+      "run_id": "step-3.5-flash-compile-then-execute-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references"
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement."
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or reflection."
+    },
+    {
+      "run_id": "step-3.5-flash-prompt-lint-reflection-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or routing."
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Called forbidden Read tool, ignored references, no variants."
+    },
+    {
+      "run_id": "step-3.5-flash-model-adapter-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missed references, asked user input instead of A/B plan."
+    },
+    {
+      "run_id": "step-3.5-flash-benchmark-claim-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or claims."
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Invented plan, ignored escalation, no refs."
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "step-3.5-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Executed file read, violating no-repo-inspection boundary."
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output provides no actionable result."
+    },
+    {
+      "run_id": "step-3.5-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "step-3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow scope, no bloat, correct intent."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked for details but gave unsolicited code example."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "deepseek-v3.2-bare-invocation-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asked concise clarification, no execution, no violations."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used"
+      ],
+      "concise_reason": "Invented task action, ignored reference, violated no-execute boundary."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good clarification, missed reference."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-only-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored no-execute rule, over-packet, missed reference."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed forbidden task, ignored references, over packet."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, did not report findings."
+    },
+    {
+      "run_id": "deepseek-v3.2-compile-then-execute-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, incomplete analysis."
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, no quality gate."
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Executed task, ignored references, output incomplete."
+    },
+    {
+      "run_id": "deepseek-v3.2-prompt-lint-reflection-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, output bloated, prompt incomplete."
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used"
+      ],
+      "concise_reason": "Wrong intent, ignored references, did not adapt model adapter."
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, ignored references, over-packet, incomplete variants."
+    },
+    {
+      "run_id": "deepseek-v3.2-model-adapter-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, ignored references, over packet, no variants."
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Made unsupported token claims, over-packet, ignored references."
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Ignored references and made unsupported token-saving claims."
+    },
+    {
+      "run_id": "deepseek-v3.2-benchmark-claim-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Ignored references and made unsupported token claims."
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used"
+      ],
+      "concise_reason": "Made unsupported claims, missed references, low intent match."
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references sacp-core, task-adapters, validator-gates."
+    },
+    {
+      "run_id": "deepseek-v3.2-complex-repo-plan-escalation-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Good plan, but used Standard packet bloat."
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-A-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [
+        "wrong_intent"
+      ],
+      "concise_reason": "Avoided bloat, but misclassified intent."
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-B-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Created Tiny Packet then executed, violating skip packet rule."
+    },
+    {
+      "run_id": "deepseek-v3.2-small-scoped-skip-full-packet-C-1",
+      "source_model": "deepseek-v3.2",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet used, scope narrow, asks clarification."
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Failed to ask required clarification, gave generic response."
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution, follows all rules."
+    },
+    {
+      "run_id": "qwen3.5-flash-bare-invocation-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks required clarification, no execution, follows boundaries."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good contract, missing expected reference."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good SACP contract, missing expected reference."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-only-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required sacp-core.md reference."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missed references, no actual README review done."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missed references, output bloated beyond scope."
+    },
+    {
+      "run_id": "qwen3.5-flash-compile-then-execute-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references in variant C."
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Wrong intent, ignored references, over packet, executed task."
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed downstream task, ignored references, over-packet."
+    },
+    {
+      "run_id": "qwen3.5-flash-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missed references, no improved prompt."
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing expected references, task incomplete."
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references, missing expected routing."
+    },
+    {
+      "run_id": "qwen3.5-flash-model-adapter-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used"
+      ],
+      "concise_reason": "Made unsupported token savings claim, ignored references."
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.5-flash-benchmark-claim-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references for A/B plan."
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references."
+    },
+    {
+      "run_id": "qwen3.5-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missed references"
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for file content, avoids bloat, stays narrow."
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet, narrow scope, no bloat."
+    },
+    {
+      "run_id": "qwen3.5-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.5-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "missed_clarification"
+      ],
+      "concise_reason": "Missed clarification, asked user instead of fixing."
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asks for info but not specific task, mode, output."
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution."
+    },
+    {
+      "run_id": "glm-4.5-air-bare-invocation-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for required info, no execution."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used"
+      ],
+      "concise_reason": "Invented task, ignored boundaries, missed references."
+    },
+    {
+      "run_id": "glm-4.5-air-compile-only-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, inspected README, over packet"
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "glm-4.5-air-compile-then-execute-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed without references, over packet, ignored boundaries."
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement."
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "provider_error",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "judge_parse_error"
+      ],
+      "concise_reason": "judge_parse_error"
+    },
+    {
+      "run_id": "glm-4.5-air-prompt-lint-reflection-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Ignored references, no improved prompt or validator."
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong task, missing references, incomplete output"
+    },
+    {
+      "run_id": "glm-4.5-air-model-adapter-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Claims token savings without evidence, ignores references."
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, ignored references, under-specified output."
+    },
+    {
+      "run_id": "glm-4.5-air-benchmark-claim-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked for input instead of producing A/B plan."
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Attempted repo inspection, ignored references, over_packet."
+    },
+    {
+      "run_id": "glm-4.5-air-complex-repo-plan-escalation-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Ignored references and output is incomplete plan."
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-A-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for content, avoids bloat."
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-B-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Attempted file read, violating no-repo-inspection boundary."
+    },
+    {
+      "run_id": "glm-4.5-air-small-scoped-skip-full-packet-C-1",
+      "source_model": "glm-4.5-air",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Attempted file read, violating no-execution boundary."
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked multiple questions, not one concise clarification."
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "step-3.7-flash-bare-invocation-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed task, missed reference."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-only-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution or response."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution or response."
+    },
+    {
+      "run_id": "step-3.7-flash-compile-then-execute-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "usage_fields_missing"
+      ],
+      "concise_reason": "Empty output, no task execution or references used."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or reflection."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_overused",
+        "under_specified_output"
+      ],
+      "concise_reason": "Reads files instead of linting prompt."
+    },
+    {
+      "run_id": "step-3.7-flash-prompt-lint-reflection-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt or lint."
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Called forbidden file read, ignored references, no variants emitted."
+    },
+    {
+      "run_id": "step-3.7-flash-model-adapter-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or claims."
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, missing A/B plan and references."
+    },
+    {
+      "run_id": "step-3.7-flash-benchmark-claim-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or claims."
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over packet, no plan escalation."
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Attempted repo read, no plan, ignored escalation rule."
+    },
+    {
+      "run_id": "step-3.7-flash-complex-repo-plan-escalation-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-A-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no action taken."
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-B-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Reads file but lacks edit action"
+    },
+    {
+      "run_id": "step-3.7-flash-small-scoped-skip-full-packet-C-1",
+      "source_model": "step-3.7-flash",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Only reads file, no edit or output."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no clarification asked."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "deepseek-v4-pro-bare-invocation-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution, follows boundaries."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Executed forbidden task and ignored reference."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-only-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output provided"
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good compile, missed expected references."
+    },
+    {
+      "run_id": "deepseek-v4-pro-compile-then-execute-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no task execution or response."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or reflection."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or reflection."
+    },
+    {
+      "run_id": "deepseek-v4-pro-prompt-lint-reflection-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or routing."
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-model-adapter-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan"
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "unsupported_token_claim",
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed intent, ignored references, made unsupported claims."
+    },
+    {
+      "run_id": "deepseek-v4-pro-benchmark-claim-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or claims."
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-complex-repo-plan-escalation-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-A-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no action taken."
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-B-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow scope, no packet bloat."
+    },
+    {
+      "run_id": "deepseek-v4-pro-small-scoped-skip-full-packet-C-1",
+      "source_model": "deepseek-v4-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no action taken."
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Made unsupported token claims, asked multiple questions."
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks clarification, no execution, follows rules."
+    },
+    {
+      "run_id": "qwen3.7-max-bare-invocation-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for required info, no execution, follows boundaries."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, not SACP contract."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required SACP reference."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-only-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required sacp-core.md reference."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed without file, ignored references, over-packaged."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed required references, asked for input."
+    },
+    {
+      "run_id": "qwen3.7-max-compile-then-execute-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references in variant C."
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missing references, over packet, validator incomplete."
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missing references, over-packet, no quality gate."
+    },
+    {
+      "run_id": "qwen3.7-max-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing references, over packet, output cut off."
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used"
+      ],
+      "concise_reason": "Wrong intent, ignored references, did not emit model adapter."
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing expected references in output."
+    },
+    {
+      "run_id": "qwen3.7-max-model-adapter-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing Claude variant and stop rule."
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Made unsupported token claims, over-packet, ignored references."
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references, asks clarification."
+    },
+    {
+      "run_id": "qwen3.7-max-benchmark-claim-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked clarification instead of A/B plan, ignored references."
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Ignored references, made unsupported claims."
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references."
+    },
+    {
+      "run_id": "qwen3.7-max-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references."
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for context, avoids bloat, follows scope."
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoided packet bloat, narrow scope, requested input."
+    },
+    {
+      "run_id": "qwen3.7-max-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.7-max",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow scope, no bloat, correct."
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks clarification, no execution, follows boundaries."
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asked for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "glm-5.1-bare-invocation-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution, follows all rules."
+    },
+    {
+      "run_id": "glm-5.1-compile-only-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good SACP contract, missing expected reference."
+    },
+    {
+      "run_id": "glm-5.1-compile-only-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Used tool call and ignored reference."
+    },
+    {
+      "run_id": "glm-5.1-compile-only-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required sacp-core reference."
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, ignored references, no compilation."
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missing references, over packet, no execution."
+    },
+    {
+      "run_id": "glm-5.1-compile-then-execute-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, no findings."
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, missing references."
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Only tool calls, no prompt output or reflection."
+    },
+    {
+      "run_id": "glm-5.1-prompt-lint-reflection-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references, no improved prompt."
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references"
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Executed forbidden tool call, ignored references, no output."
+    },
+    {
+      "run_id": "glm-5.1-model-adapter-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, ignored references, output incomplete."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim",
+        "over_packet"
+      ],
+      "concise_reason": "Unsupported token claims, over packet, missing references."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing A/B plan and second reference."
+    },
+    {
+      "run_id": "glm-5.1-benchmark-claim-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Ignored references, made unsupported token claims."
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references."
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references, no plan produced."
+    },
+    {
+      "run_id": "glm-5.1-complex-repo-plan-escalation-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "usage_fields_missing"
+      ],
+      "concise_reason": "Empty output, no plan or references used."
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-A-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for needed info, avoids bloat, follows scope."
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-B-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoided packet bloat, kept scope narrow."
+    },
+    {
+      "run_id": "glm-5.1-small-scoped-skip-full-packet-C-1",
+      "source_model": "glm-5.1",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids bloat, narrow scope, asks needed input."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Asked for info but not concise one-question clarification."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asked for task material, mode, and output."
+    },
+    {
+      "run_id": "minimax-m3-bare-invocation-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asked for task material, mode, output."
+    },
+    {
+      "run_id": "minimax-m3-compile-only-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty, no SACP contract produced."
+    },
+    {
+      "run_id": "minimax-m3-compile-only-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored sacp-core ref and over-packeted."
+    },
+    {
+      "run_id": "minimax-m3-compile-only-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty, no SACP contract produced."
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "under_specified_output"
+      ],
+      "concise_reason": "Refused task, gave meta-reply instead of compiling and reporting."
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Ignored references, executed without file"
+    },
+    {
+      "run_id": "minimax-m3-compile-then-execute-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Ignored references, output incomplete, no findings reported."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Output is empty, only hidden reasoning, no prompt produced."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty reasoning only."
+    },
+    {
+      "run_id": "minimax-m3-prompt-lint-reflection-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output",
+        "executed_when_forbidden"
+      ],
+      "concise_reason": "Output empty, only reasoning shown"
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty, no variants produced."
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty reasoning only"
+    },
+    {
+      "run_id": "minimax-m3-model-adapter-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty reasoning only"
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "No A/B plan; ignored required references."
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "No output text; missing references and A/B plan."
+    },
+    {
+      "run_id": "minimax-m3-benchmark-claim-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty reasoning only"
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "No plan produced, ignored references, only stated limitations."
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty, no plan produced."
+    },
+    {
+      "run_id": "minimax-m3-complex-repo-plan-escalation-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced"
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-A-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "usage_fields_missing"
+      ],
+      "concise_reason": "Refused task, no file access, wrong intent."
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-B-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no action taken"
+    },
+    {
+      "run_id": "minimax-m3-small-scoped-skip-full-packet-C-1",
+      "source_model": "minimax-m3",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output is empty, no action taken."
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Invented task, ignored clarification, made claims"
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely."
+    },
+    {
+      "run_id": "seed-2.0-pro-bare-invocation-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "SACP contract present, missing required reference."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Inspected README, ignored reference, over packet"
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-only-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required sacp-core.md reference."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "unsupported_token_claim",
+        "over_packet"
+      ],
+      "concise_reason": "Executed without file, ignored references, over_packet, unsupported claims."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missed references, over-packet, execution not completed."
+    },
+    {
+      "run_id": "seed-2.0-pro-compile-then-execute-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references"
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, ignored references, over packet."
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "over_packet",
+        "reference_not_used"
+      ],
+      "concise_reason": "Unsupported token claim, over packet, missing references."
+    },
+    {
+      "run_id": "seed-2.0-pro-prompt-lint-reflection-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed required references usage."
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Wrong intent, ignored references, over packet, executed forbidden task."
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references in output"
+    },
+    {
+      "run_id": "seed-2.0-pro-model-adapter-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output truncated, missing full checklist and Claude variant."
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Ignored references and made unsupported token savings claims."
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references in A/B plan."
+    },
+    {
+      "run_id": "seed-2.0-pro-benchmark-claim-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Claims 93.5% token savings without provider usage evidence."
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim"
+      ],
+      "concise_reason": "Missing references, unsupported token claims."
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references"
+    },
+    {
+      "run_id": "seed-2.0-pro-complex-repo-plan-escalation-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references"
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-A-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow scope, no bloat, no claims."
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-B-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Tiny packet used but execution step added bloat"
+    },
+    {
+      "run_id": "seed-2.0-pro-small-scoped-skip-full-packet-C-1",
+      "source_model": "seed-2.0-pro",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet used, scope narrow, no bloat."
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "under_specified_output"
+      ],
+      "concise_reason": "Invented task instead of asking clarification."
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "hy3-preview-bare-invocation-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for task material, mode, output."
+    },
+    {
+      "run_id": "hy3-preview-compile-only-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used"
+      ],
+      "concise_reason": "Inspected README and ignored reference."
+    },
+    {
+      "run_id": "hy3-preview-compile-only-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, missed SACP contract, ignored reference."
+    },
+    {
+      "run_id": "hy3-preview-compile-only-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 3,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored refs, violated do-not-execute, over packet."
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good output but missed required references."
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references"
+    },
+    {
+      "run_id": "hy3-preview-compile-then-execute-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references and over-packet bloat."
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Executed task, ignored lint and references."
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Missing required references and output too long."
+    },
+    {
+      "run_id": "hy3-preview-prompt-lint-reflection-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed required references."
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong task, ignored references, output not model adapter."
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, missing references, output truncated."
+    },
+    {
+      "run_id": "hy3-preview-model-adapter-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Missing Claude variant output"
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used",
+        "executed_when_forbidden",
+        "over_packet"
+      ],
+      "concise_reason": "Made unsupported token claims, ignored references, over_packet."
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "unsupported_token_claim",
+        "reference_not_used"
+      ],
+      "concise_reason": "Claims token savings proof without evidence and ignores required references."
+    },
+    {
+      "run_id": "hy3-preview-benchmark-claim-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Good A/B plan, safe claims, uses references."
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references and over-packet."
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missed required references, only asked clarification."
+    },
+    {
+      "run_id": "hy3-preview-complex-repo-plan-escalation-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references for plan."
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-A-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow fix, no bloat, no claims."
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-B-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Avoids bloat, narrow scope, correct intent."
+    },
+    {
+      "run_id": "hy3-preview-small-scoped-skip-full-packet-C-1",
+      "source_model": "hy3-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet used, scope narrow, no bloat."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution, follows boundaries."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution, follows boundaries."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-bare-invocation-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for required info, no execution, follows rules."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, missed references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed task, ignored reference, over packet"
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-only-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Compact SACP contract, follows all boundaries and rules."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references, did not read README.md."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Executed without refs, over packet, ignored boundaries."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-compile-then-execute-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references in variant C."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 4,
+      "task_passed": false,
+      "failure_types": [
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, executed downstream task."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, ignored references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-prompt-lint-reflection-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored required references and output too long."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored expected references and bloated output."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing expected references in output."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-model-adapter-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Output is over-packet and truncated, missing Claude variant."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "unsupported_token_claim",
+        "over_packet"
+      ],
+      "concise_reason": "Claims token savings, ignores references, over-packet."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required references and A/B plan."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-benchmark-claim-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references and over-packeted the output."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references and over-packaged output."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": true,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan, no mutation, missing references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-complex-repo-plan-escalation-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Plan good but missing required references."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-A-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for content, avoids bloat, follows scope."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-B-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Tiny packet, narrow scope, no bloat, correct."
+    },
+    {
+      "run_id": "qwen3.6-max-preview-small-scoped-skip-full-packet-C-1",
+      "source_model": "qwen3.6-max-preview",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Narrow scope, no bloat, correct."
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks concise clarification, no execution."
+    },
+    {
+      "run_id": "kimi-k2.7-code-bare-invocation-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "bare-invocation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Asks for task material, mode, output concisely, no execution."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 9,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Missing required reference routing."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no contract produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-only-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-only",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 1,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "executed_when_forbidden",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, executed forbidden task, ignored reference."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 5,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references, over-packet, no real findings."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Output only states intent, lacks scoped findings."
+    },
+    {
+      "run_id": "kimi-k2.7-code-compile-then-execute-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "compile-then-execute",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "over_packet"
+      ],
+      "concise_reason": "Ignored references and bloated output."
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement"
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 6,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "No prompt, no references used, output is garbage."
+    },
+    {
+      "run_id": "kimi-k2.7-code-prompt-lint-reflection-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "prompt-lint-reflection",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no prompt improvement or routing."
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants or references."
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 7,
+      "task_passed": false,
+      "failure_types": [
+        "wrong_intent",
+        "reference_not_used",
+        "under_specified_output"
+      ],
+      "concise_reason": "Wrong intent, missing references, incomplete output."
+    },
+    {
+      "run_id": "kimi-k2.7-code-model-adapter-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "model-adapter",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no variants produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan or claims."
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Good plan but missing required references."
+    },
+    {
+      "run_id": "kimi-k2.7-code-benchmark-claim-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "benchmark-claim",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 0,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan"
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 2,
+      "task_passed": false,
+      "failure_types": [
+        "under_specified_output"
+      ],
+      "concise_reason": "Empty output, no plan produced."
+    },
+    {
+      "run_id": "kimi-k2.7-code-complex-repo-plan-escalation-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "complex-repo-plan-escalation",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "reference_not_used"
+      ],
+      "concise_reason": "Ignored required references, plan incomplete."
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-A-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "A",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Correctly asks for content, avoids bloat."
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-B-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "B",
+      "judge_status": "ok",
+      "total_score": 8,
+      "task_passed": false,
+      "failure_types": [
+        "over_packet"
+      ],
+      "concise_reason": "Created micro-contract packet for small task, violating no-packet rule."
+    },
+    {
+      "run_id": "kimi-k2.7-code-small-scoped-skip-full-packet-C-1",
+      "source_model": "kimi-k2.7-code",
+      "case_id": "small-scoped-skip-full-packet",
+      "variant_id": "C",
+      "judge_status": "ok",
+      "total_score": 10,
+      "task_passed": true,
+      "failure_types": [],
+      "concise_reason": "Scoped, no packet, correct intent."
+    }
+  ],
+  "rubric_dimensions": [
+    "trigger_correctness",
+    "boundary_following",
+    "reference_routing",
+    "claim_safety",
+    "prompt_quality",
+    "over_packet_penalty",
+    "output_usefulness"
+  ],
+  "claim_boundary": "Judge scores behavior and quality only. Token or cost claims require provider usage, quality review, AB/BA controls, and pass-rule analysis.",
+  "residual_risk": "This is one-shot model judging. Human audit of a 10-20% sample is required before strong quality claims.",
+  "judge_ok_rate": 0.981
+}
