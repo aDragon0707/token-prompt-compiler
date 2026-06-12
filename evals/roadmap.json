@@ -1,0 +1,107 @@
+{
+  "schema_version": "skill-eval-roadmap.v1",
+  "objective": "Measure whether token-prompt-compiler improves model behavior against no-skill baselines before making token or cost claims.",
+  "first_real_eval_budget": {
+    "currency": "RMB",
+    "min": 200,
+    "max": 300,
+    "priority": "real_effect_delta"
+  },
+  "raw_results_dir": "eval-runs/",
+  "public_results_dir": "evals/results/",
+  "dataset": "tests/skill-trigger-cases.json",
+  "rubric": "evals/rubrics/skill-effect-rubric.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline",
+      "description": "Original user input only; no skill instructions."
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded",
+      "description": "Original user input plus selected SKILL.md trigger, intent, scale, and quality gate sections."
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference",
+      "description": "Variant B plus only the case's expected reference files."
+    }
+  ],
+  "providers": {
+    "stepfun": {
+      "default_base_url": "https://api.stepfun.ai/v1",
+      "step_plan_base_url": "https://api.stepfun.ai/step_plan/v1",
+      "env_key": "STEPFUN_API_KEY",
+      "recommended_first_models": [
+        "step-3.5-flash",
+        "step-3.7-flash",
+        "step-2-16k"
+      ]
+    },
+    "tokendance": {
+      "default_base_url": "https://tokendance.space/gateway/v1",
+      "env_key": "TOKENDANCE_API_KEY",
+      "base_url_env": "TOKENDANCE_BASE_URL",
+      "recommended_first_models": [
+        "deepseek-chat",
+        "qwen-plus",
+        "kimi-k2",
+        "glm-4.5",
+        "minimax-m1",
+        "yi-lightning"
+      ]
+    },
+    "openai-compatible": {
+      "env_key": "OPENAI_COMPATIBLE_API_KEY",
+      "base_url_env": "OPENAI_COMPATIBLE_BASE_URL",
+      "recommended_first_models": []
+    }
+  },
+  "phases": [
+    {
+      "id": "phase5-static-effect-eval",
+      "branch": "phase5-static-effect-eval",
+      "pr_title": "[codex] Add static skill effect eval harness",
+      "commands": [
+        "npm run eval:roadmap",
+        "npm run eval:smoke",
+        "npm run provider:smoke -- --dry-run --provider stepfun --model step-3.5-flash",
+        "node scripts/run-skill-effect-eval.mjs --dry-run --provider stepfun --models step-3.5-flash,step-3.7-flash --runs 2"
+      ],
+      "result": "Static A/B/C effect harness and provider smoke."
+    },
+    {
+      "id": "phase6-one-shot-judge-summary",
+      "branch": "phase6-one-shot-judge-summary",
+      "pr_title": "[codex] Add one-shot judge and eval summaries",
+      "commands": [
+        "node scripts/judge-skill-effect-eval.mjs --input eval-runs/<run>.json --out evals/results/<run>.summary.json"
+      ],
+      "result": "Machine judge and manually audited summary reports."
+    },
+    {
+      "id": "phase7-bounded-agent-loop-eval",
+      "branch": "phase7-bounded-agent-loop-eval",
+      "pr_title": "[codex] Add bounded agent loop eval",
+      "commands": [
+        "node scripts/run-bounded-loop-eval.mjs --max-steps 2 --repair-attempts 1"
+      ],
+      "result": "Bounded loop eval with repair gain and overfit tracking."
+    },
+    {
+      "id": "phase8-multi-provider-benchmark",
+      "branch": "phase8-multi-provider-benchmark",
+      "pr_title": "[codex] Add multi-provider benchmark matrix",
+      "commands": [
+        "node scripts/run-skill-effect-eval.mjs --execute --provider stepfun --models <models> --runs 3",
+        "node scripts/run-api-ab-test.mjs --execute --provider <provider> --model <model> --runs 3 --order AB"
+      ],
+      "result": "Multi-provider benchmark matrix with separate trigger, quality, and cost evidence."
+    }
+  ],
+  "claim_boundary": {
+    "safe": "Skill effect eval can show behavior, trigger, boundary, and quality evidence.",
+    "unsafe_without_usage": "Do not claim token or cost savings without provider usage, quality score, AB/BA order control, and pass rule review."
+  }
+}

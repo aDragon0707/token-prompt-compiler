@@ -1,0 +1,39 @@
+{
+  "schema_version": "skill-eval-providers.v1",
+  "note": "Copy to evals/providers.local.json for local use. Do not commit providers.local.json or API keys.",
+  "providers": [
+    {
+      "id": "stepfun",
+      "kind": "openai_chat_completions",
+      "base_url": "https://api.stepfun.ai/v1",
+      "api_key_env": "STEPFUN_API_KEY",
+      "models": [
+        "step-3.5-flash",
+        "step-3.7-flash",
+        "step-2-16k"
+      ]
+    },
+    {
+      "id": "tokendance",
+      "kind": "openai_chat_completions",
+      "base_url_env": "TOKENDANCE_BASE_URL",
+      "default_base_url": "https://tokendance.space/gateway/v1",
+      "api_key_env": "TOKENDANCE_API_KEY",
+      "models": [
+        "deepseek-chat",
+        "qwen-plus",
+        "kimi-k2",
+        "glm-4.5",
+        "minimax-m1",
+        "yi-lightning"
+      ]
+    },
+    {
+      "id": "openai-compatible",
+      "kind": "openai_chat_completions",
+      "base_url_env": "OPENAI_COMPATIBLE_BASE_URL",
+      "api_key_env": "OPENAI_COMPATIBLE_API_KEY",
+      "models": []
+    }
+  ]
+}

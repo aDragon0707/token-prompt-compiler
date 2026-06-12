@@ -12,6 +12,9 @@
     "benchmark:smoke": "node scripts/benchmark-smoke.mjs",
     "schema:smoke": "node scripts/schema-smoke.mjs",
     "skill:smoke": "node scripts/skill-chain-smoke.mjs",
-    "skill:cases": "node scripts/skill-trigger-cases-smoke.mjs"
+    "skill:cases": "node scripts/skill-trigger-cases-smoke.mjs",
+    "eval:roadmap": "node scripts/eval-roadmap-smoke.mjs",
+    "eval:smoke": "node scripts/eval-smoke.mjs",
+    "provider:smoke": "node scripts/provider-smoke.mjs"
   }
 }
