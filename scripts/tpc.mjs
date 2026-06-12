@@ -40,8 +40,10 @@ function runValidate() {
   const requiredFiles = [
     "README.md",
     "SKILL.md",
+    "schemas/benchmark-case.schema.json",
     "scripts/run-api-ab-test.mjs",
     "scripts/run-claude-local-ab-test.mjs",
+    "scripts/validate-json.mjs",
   ];
 
   for (const file of requiredFiles) {
@@ -86,6 +88,17 @@ function runValidate() {
 
   for (const warning of warnings) {
     process.stderr.write(`warning: ${warning}\n`);
+  }
+
+  const jsonValidation = spawnSync(process.execPath, ["scripts/validate-json.mjs"], {
+    cwd: root,
+    encoding: "utf8",
+    shell: false,
+  });
+  if (jsonValidation.stdout) process.stdout.write(jsonValidation.stdout);
+  if (jsonValidation.stderr) process.stderr.write(jsonValidation.stderr);
+  if (jsonValidation.status !== 0) {
+    errors.push("JSON schema validation failed");
   }
 
   if (errors.length > 0) {
