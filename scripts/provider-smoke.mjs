@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 
+import fs from "node:fs";
+import path from "node:path";
 import process from "node:process";
 import { performance } from "node:perf_hooks";
+import { fileURLToPath } from "node:url";
 
 const args = parseArgs(process.argv.slice(2));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const repoRoot = path.resolve(__dirname, "..");
+const envLoad = loadLocalEnv(args.env_file);
 
 if (args.help) {
   printHelp();
@@ -32,6 +39,8 @@ if (!execute) {
     base_url: baseUrl,
     endpoint: `${baseUrl}/chat/completions`,
     api_key_env: apiKeyEnv(provider),
+    env_file_loaded: envLoad.loaded,
+    env_file_keys: envLoad.keys,
     prompt_chars: smokePrompt().length,
     note: "Dry-run does not call provider APIs and does not require API keys.",
   });
@@ -91,6 +100,7 @@ writeJson({
   usage: normalizeUsage(json?.usage),
   usage_field_coverage: usageFieldCoverage(json?.usage),
   error_type: response.ok ? null : json?.error?.type || json?.error?.code || "provider_error",
+  error_message: response.ok ? null : sanitizeProviderError(json?.error?.message || json?.message || ""),
   note: "API key is never included in this output.",
 });
 
@@ -138,6 +148,66 @@ function normalizeUsage(usage = {}) {
       provider_total_tokens: usage.total_tokens,
     }),
   };
+}
+
+function loadLocalEnv(explicitPath) {
+  const candidates = [
+    explicitPath,
+    path.join(repoRoot, ".env.local"),
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    const resolved = path.resolve(candidate);
+    if (!fs.existsSync(resolved)) {
+      continue;
+    }
+
+    const loadedKeys = [];
+    const raw = fs.readFileSync(resolved, "utf8").replace(/^\uFEFF/, "");
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) {
+        continue;
+      }
+
+      const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+      if (!match) {
+        continue;
+      }
+
+      const key = match[1];
+      const value = unquoteEnvValue(match[2].trim());
+      if (process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+      loadedKeys.push(key);
+    }
+
+    return {
+      loaded: true,
+      path: resolved,
+      keys: loadedKeys.sort(),
+    };
+  }
+
+  return {
+    loaded: false,
+    keys: [],
+  };
+}
+
+function unquoteEnvValue(value) {
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    return value.slice(1, -1);
+  }
+  return value;
+}
+
+function sanitizeProviderError(message) {
+  return String(message || "")
+    .replace(/sk-[A-Za-z0-9_-]+/g, "[REDACTED_SECRET]")
+    .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, "Bearer [REDACTED_SECRET]")
+    .slice(0, 500);
 }
 
 function usageFieldCoverage(usage = {}) {
@@ -188,6 +258,7 @@ function printHelp() {
   process.stdout.write(`Usage:
   node scripts/provider-smoke.mjs --dry-run --provider stepfun --model step-3.5-flash
   node scripts/provider-smoke.mjs --execute --provider tokendance --model deepseek-chat --base-url https://tokendance.space/gateway/v1
+  node scripts/provider-smoke.mjs --execute --provider stepfun --model step-3.5-flash --env-file .env.local
 
 Environment:
   STEPFUN_API_KEY
@@ -198,6 +269,7 @@ Environment:
 
 Notes:
   Default mode is dry-run. Use --execute to call provider APIs.
+  By default, the script reads .env.local if present. Values are never printed.
 `);
 }
 
