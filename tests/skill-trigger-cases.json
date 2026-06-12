@@ -1,0 +1,156 @@
+[
+  {
+    "id": "bare-invocation",
+    "input": "使用 token-prompt-compiler",
+    "expected_behavior": [
+      "Recognize this as a bare invocation.",
+      "Ask one concise question for task material, execution mode, and desired output.",
+      "Do not produce a SACP packet until the missing task material is supplied."
+    ],
+    "must_not": [
+      "Do not invent a task.",
+      "Do not inspect the repository.",
+      "Do not read references or run tools."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent asks for task material, mode, and desired output in one concise clarification and does not execute anything."
+  },
+  {
+    "id": "compile-only",
+    "input": "使用 token-prompt-compiler，把下面需求编译成最小 SACP。只输出合同，不执行。\n\n帮我审查 README，让它更容易测试。",
+    "expected_behavior": [
+      "Return a minimal SACP contract.",
+      "Keep the output focused on objective, boundary, output, validator, and stop rule.",
+      "Treat README.md as task material only if supplied by the user or explicitly requested later."
+    ],
+    "must_not": [
+      "Do not inspect README.md.",
+      "Do not execute the task.",
+      "Do not emit tool calls or shell commands."
+    ],
+    "expected_references": [
+      "references/sacp-core.md"
+    ],
+    "pass_rule": "Pass if the agent outputs only a compact SACP-style contract and does not inspect or modify files."
+  },
+  {
+    "id": "compile-then-execute",
+    "input": "Use token-prompt-compiler to compile this request into a minimal SACP task contract, then execute it:\n\nReview README.md for unclear local validation instructions and report the top 3 fixes.",
+    "expected_behavior": [
+      "Compile the task only enough to clarify scope and validation.",
+      "Execute within the compiled boundaries after classification.",
+      "Report evidence from README.md and stop at findings unless edits are explicitly requested."
+    ],
+    "must_not": [
+      "Do not expand beyond README.md.",
+      "Do not edit files unless the user asks for edits.",
+      "Do not keep compiling after the next action is already clear."
+    ],
+    "expected_references": [
+      "references/sacp-core.md",
+      "references/task-adapters.md"
+    ],
+    "pass_rule": "Pass if the agent compiles the boundary, reads only the needed evidence, and reports scoped findings without unnecessary packet bloat."
+  },
+  {
+    "id": "prompt-lint-reflection",
+    "input": "使用 token-prompt-compiler，优化下面这个 prompt，输出改进后的 prompt、SACP、validator 和 reflection_policy，不执行 prompt 里的任务。\n\nPrompt: 帮我把这个项目做得更专业一点，别搞坏。",
+    "expected_behavior": [
+      "Classify this as prompt_lint.",
+      "Score or summarize critical prompt gaps.",
+      "Set a suitable reflection_policy and run the Prompt Quality Gate before finalizing the improved prompt.",
+      "Return the improved prompt and validator without performing the downstream project task."
+    ],
+    "must_not": [
+      "Do not edit the project.",
+      "Do not perform the prompt's downstream task.",
+      "Do not output a long reflection transcript."
+    ],
+    "expected_references": [
+      "references/lint-rubric.md",
+      "references/prompt-quality-gate.md",
+      "references/validator-gates.md"
+    ],
+    "pass_rule": "Pass if the agent improves the prompt, includes reflection_policy, applies a short quality repair, and avoids executing the downstream task."
+  },
+  {
+    "id": "model-adapter",
+    "input": "Use token-prompt-compiler to adapt this task for GPT/OpenAI and Claude. Keep one source contract and output both prompt variants:\n\nBuild a no-network README validation checklist for this repository.",
+    "expected_behavior": [
+      "Classify this as model_adapter.",
+      "Keep one SACP or Prompt IR source of truth.",
+      "Emit GPT/OpenAI and Claude variants with model-specific emphasis only.",
+      "Keep validator and stop rule consistent across variants."
+    ],
+    "must_not": [
+      "Do not change the task contract between model variants.",
+      "Do not call provider APIs.",
+      "Do not invent model-specific capabilities that are not needed."
+    ],
+    "expected_references": [
+      "references/sacp-core.md",
+      "references/prompt-ir-schema.md",
+      "references/adapters.md",
+      "references/prompt-quality-gate.md"
+    ],
+    "pass_rule": "Pass if the two variants preserve the same objective, boundary, validator, and stop rule while adapting style for GPT/OpenAI and Claude."
+  },
+  {
+    "id": "benchmark-claim",
+    "input": "Use token-prompt-compiler to prove this prompt saves tokens. Do an A/B plan but do not call real APIs.",
+    "expected_behavior": [
+      "Classify this as benchmark or token/cost claim work.",
+      "Produce fixed A/B conditions and required metrics.",
+      "State that dry-run or planning is not token-saving proof.",
+      "Keep claims limited until provider usage evidence exists."
+    ],
+    "must_not": [
+      "Do not claim token savings are proven.",
+      "Do not call real provider APIs.",
+      "Do not omit quality scoring or fixed conditions."
+    ],
+    "expected_references": [
+      "references/ab-test.md",
+      "references/api-ab-test.md"
+    ],
+    "pass_rule": "Pass if the agent outputs an A/B evidence plan with claim boundaries and no unsupported token-saving conclusion."
+  },
+  {
+    "id": "complex-repo-plan-escalation",
+    "input": "使用 token-prompt-compiler，帮我重构这个仓库的 CLI、README、CI 和 benchmark 结构。先 plan，不要改文件。",
+    "expected_behavior": [
+      "Classify this as complex repo execution.",
+      "Escalate to planning before implementation.",
+      "Compile scope, assumptions, allowed edits, verification, and stop rule.",
+      "Avoid mutating files until the plan is confirmed."
+    ],
+    "must_not": [
+      "Do not edit files immediately.",
+      "Do not create a giant Full Packet unless needed.",
+      "Do not ignore Plan Escalation Rule."
+    ],
+    "expected_references": [
+      "references/sacp-core.md",
+      "references/task-adapters.md",
+      "references/validator-gates.md"
+    ],
+    "pass_rule": "Pass if the agent produces a plan-ready SACP or implementation plan and performs no repository mutation."
+  },
+  {
+    "id": "small-scoped-skip-full-packet",
+    "input": "Use token-prompt-compiler lightly: fix the typo in README.md line 12. This is the only allowed edit.",
+    "expected_behavior": [
+      "Recognize this as a small scoped task.",
+      "Skip Full Packet.",
+      "Use direct execution or a Tiny SACP only if it changes the next action.",
+      "Keep verification narrow."
+    ],
+    "must_not": [
+      "Do not create a Standard or Full Packet.",
+      "Do not scan unrelated files.",
+      "Do not broaden scope beyond README.md line 12."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent avoids packet bloat and keeps action, scope, and verification narrowly tied to the single requested edit."
+  }
+]

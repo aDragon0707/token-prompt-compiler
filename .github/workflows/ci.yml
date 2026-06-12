@@ -38,6 +38,7 @@ jobs:
           node --check scripts/validate-json.mjs
           node --check scripts/schema-smoke.mjs
           node --check scripts/skill-chain-smoke.mjs
+          node --check scripts/skill-trigger-cases-smoke.mjs
 
       - name: Run smoke harness
         run: npm run smoke
@@ -50,6 +51,9 @@ jobs:
 
       - name: Run skill chain smoke harness
         run: npm run skill:smoke
+
+      - name: Run skill trigger case smoke harness
+        run: npm run skill:cases
 
       - name: Run repository validation
         run: npm run validate
