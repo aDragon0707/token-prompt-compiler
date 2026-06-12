@@ -16,6 +16,38 @@ function exists(relativePath) {
   return fs.existsSync(path.join(repoRoot, relativePath));
 }
 
+function sectionByHeading(markdown, heading) {
+  const lines = markdown.split(/\r?\n/);
+  const start = lines.findIndex((line) => line.trim() === heading);
+  if (start === -1) {
+    return "";
+  }
+
+  const nextHeadingOffset = lines
+    .slice(start + 1)
+    .findIndex((line) => /^##\s+/.test(line));
+  const end = nextHeadingOffset === -1 ? lines.length : start + 1 + nextHeadingOffset;
+  return lines.slice(start, end).join("\n");
+}
+
+function markdownFiles(relativeDir = "") {
+  const absoluteDir = path.join(repoRoot, relativeDir);
+  const files = [];
+  for (const entry of fs.readdirSync(absoluteDir, { withFileTypes: true })) {
+    if (entry.name === ".git" || entry.name === "node_modules") {
+      continue;
+    }
+
+    const relativePath = path.join(relativeDir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...markdownFiles(relativePath));
+    } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      files.push(relativePath.split(path.sep).join("/"));
+    }
+  }
+  return files;
+}
+
 function fail(message) {
   console.error(`FAIL ${message}`);
   process.exitCode = 1;
@@ -60,6 +92,8 @@ for (const phrase of [
 assert(skill.includes("Ask one concise question"), "bare invocation asks one concise question");
 
 assert(skill.includes("## Reference Router"), "SKILL.md has Reference Router");
+const referenceRouter = sectionByHeading(skill, "## Reference Router");
+assert(Boolean(referenceRouter), "Reference Router section can be isolated");
 const requiredReferences = [
   "references/sacp-core.md",
   "references/prompt-ir-schema.md",
@@ -73,10 +107,10 @@ const requiredReferences = [
   "references/ab-test.md",
 ];
 for (const relativePath of requiredReferences) {
-  assert(skill.includes(relativePath), `Reference Router mentions ${relativePath}`);
+  assert(referenceRouter.includes(relativePath), `Reference Router mentions ${relativePath}`);
   assert(exists(relativePath), `reference exists: ${relativePath}`);
 }
-assert(skill.includes("Do not batch-read `references/`"), "Reference Router forbids batch reference loading");
+assert(referenceRouter.includes("Do not batch-read `references/`"), "Reference Router forbids batch reference loading");
 
 const qualityGate = readText("references/prompt-quality-gate.md");
 assert(skill.includes("## Prompt Quality Gate"), "SKILL.md has Prompt Quality Gate");
@@ -99,14 +133,19 @@ assert(readme.includes("Safe:") && readme.includes("Unsafe:"), "README keeps Eng
 assert(readme.includes("安全说法") && readme.includes("不安全说法"), "README keeps Chinese claim boundary");
 assert(readme.includes("Dry-run support is not token-saving proof") || readme.includes("Dry-run 只证明"), "README states dry-run is not token-saving proof");
 
-const referenceMentions = new Set();
-for (const text of [skill, readme]) {
+const referenceMentions = new Map();
+for (const relativeMarkdownPath of markdownFiles()) {
+  const text = readText(relativeMarkdownPath);
   for (const match of text.matchAll(/(?:`|\(|\[)(references\/[^`)\]\s]+\.md)/g)) {
-    referenceMentions.add(match[1]);
+    const mentionedPath = match[1];
+    if (!referenceMentions.has(mentionedPath)) {
+      referenceMentions.set(mentionedPath, new Set());
+    }
+    referenceMentions.get(mentionedPath).add(relativeMarkdownPath);
   }
 }
-for (const relativePath of referenceMentions) {
-  assert(exists(relativePath), `referenced markdown exists: ${relativePath}`);
+for (const [relativePath, sourceFiles] of referenceMentions) {
+  assert(exists(relativePath), `referenced markdown exists: ${relativePath} from ${[...sourceFiles].join(", ")}`);
 }
 
 assert(packageJson.scripts?.["skill:smoke"] === "node scripts/skill-chain-smoke.mjs", "package.json exposes skill:smoke");
