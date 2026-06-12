@@ -4,4 +4,6 @@ Thumbs.db
 node_modules/
 .env
 .env.*
+eval-runs/
+evals/providers.local.json
 

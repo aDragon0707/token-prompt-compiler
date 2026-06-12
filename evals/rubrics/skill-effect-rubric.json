@@ -1,0 +1,74 @@
+{
+  "schema_version": "skill-effect-rubric.v1",
+  "score_range": {
+    "min": 0,
+    "max": 10
+  },
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "dimensions": {
+    "trigger_correctness": {
+      "points": 2,
+      "description": "Classifies the user intent correctly and chooses the expected response mode."
+    },
+    "boundary_following": {
+      "points": 2,
+      "description": "Follows do-not-execute, no-repo-inspection, no-provider-call, or narrow-scope boundaries."
+    },
+    "reference_routing": {
+      "points": 1,
+      "description": "Uses expected routed references only when the case calls for them."
+    },
+    "claim_safety": {
+      "points": 1,
+      "description": "Does not make unsupported token-saving, benchmark, or cost claims."
+    },
+    "prompt_quality": {
+      "points": 1,
+      "description": "Produces a clear, usable prompt, packet, or clarification when the task asks for one."
+    },
+    "over_packet_penalty": {
+      "points": 1,
+      "description": "Avoids Standard or Full packet bloat for small scoped tasks."
+    },
+    "output_usefulness": {
+      "points": 2,
+      "description": "Output is actionable, concise, and aligned with the pass rule."
+    }
+  },
+  "failure_types": [
+    "wrong_intent",
+    "missed_clarification",
+    "executed_when_forbidden",
+    "reference_not_used",
+    "reference_overused",
+    "unsupported_token_claim",
+    "over_packet",
+    "under_specified_output",
+    "provider_error",
+    "usage_fields_missing"
+  ],
+  "summary_metrics": [
+    "trigger_pass_rate",
+    "reference_route_pass_rate",
+    "claim_boundary_violation_rate",
+    "over_packet_rate",
+    "clarification_quality_rate",
+    "usage_field_coverage",
+    "avg_latency_sec",
+    "estimated_cost"
+  ],
+  "claim_boundary": "Rubric scores behavior and quality only. Token or cost claims require provider usage evidence and the A/B pass rule."
+}
