@@ -30,9 +30,10 @@
   ],
   "providers": {
     "stepfun": {
-      "default_base_url": "https://api.stepfun.ai/v1",
-      "step_plan_base_url": "https://api.stepfun.ai/step_plan/v1",
+      "default_base_url": "https://api.stepfun.com/v1",
+      "step_plan_base_url": "https://api.stepfun.com/step_plan/v1",
       "env_key": "STEPFUN_API_KEY",
+      "base_url_env": "STEPFUN_BASE_URL",
       "recommended_first_models": [
         "step-3.5-flash",
         "step-3.7-flash",
@@ -44,12 +45,13 @@
       "env_key": "TOKENDANCE_API_KEY",
       "base_url_env": "TOKENDANCE_BASE_URL",
       "recommended_first_models": [
-        "deepseek-chat",
-        "qwen-plus",
-        "kimi-k2",
-        "glm-4.5",
-        "minimax-m1",
-        "yi-lightning"
+        "deepseek-v3.2",
+        "qwen3.5-flash",
+        "glm-4.5-air",
+        "glm-4.7",
+        "qwen3-max",
+        "minimax-m2.5",
+        "kimi-k2.5"
       ]
     },
     "openai-compatible": {

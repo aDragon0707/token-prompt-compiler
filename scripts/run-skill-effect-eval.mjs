@@ -471,12 +471,12 @@ async function readJson(relativePath) {
 
 function defaultModel(providerId) {
   if (providerId === "stepfun") return "step-3.5-flash";
-  if (providerId === "tokendance") return "deepseek-chat";
+  if (providerId === "tokendance") return "deepseek-v3.2";
   return "model-id-required";
 }
 
 function defaultBaseUrl(providerId) {
-  if (providerId === "stepfun") return "https://api.stepfun.ai/v1";
+  if (providerId === "stepfun") return process.env.STEPFUN_BASE_URL || "https://api.stepfun.com/v1";
   if (providerId === "tokendance") return process.env.TOKENDANCE_BASE_URL || "https://tokendance.space/gateway/v1";
   return process.env.OPENAI_COMPATIBLE_BASE_URL || "https://example.invalid/v1";
 }
@@ -562,11 +562,12 @@ function writeJson(value) {
 function printHelp() {
   process.stdout.write(`Usage:
   node scripts/run-skill-effect-eval.mjs --dry-run --provider stepfun --models step-3.5-flash,step-3.7-flash --runs 2
-  node scripts/run-skill-effect-eval.mjs --execute --provider tokendance --models deepseek-chat,qwen-plus --runs 2
+  node scripts/run-skill-effect-eval.mjs --execute --provider tokendance --models deepseek-v3.2,qwen3.5-flash --runs 2
   node scripts/run-skill-effect-eval.mjs --execute --provider stepfun --models step-3.5-flash --runs 1 --env-file .env.local
 
 Environment:
   STEPFUN_API_KEY
+  STEPFUN_BASE_URL
   TOKENDANCE_API_KEY
   TOKENDANCE_BASE_URL
   OPENAI_COMPATIBLE_API_KEY

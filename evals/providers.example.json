@@ -5,7 +5,8 @@
     {
       "id": "stepfun",
       "kind": "openai_chat_completions",
-      "base_url": "https://api.stepfun.ai/v1",
+      "base_url_env": "STEPFUN_BASE_URL",
+      "default_base_url": "https://api.stepfun.com/v1",
       "api_key_env": "STEPFUN_API_KEY",
       "models": [
         "step-3.5-flash",
@@ -20,12 +21,13 @@
       "default_base_url": "https://tokendance.space/gateway/v1",
       "api_key_env": "TOKENDANCE_API_KEY",
       "models": [
-        "deepseek-chat",
-        "qwen-plus",
-        "kimi-k2",
-        "glm-4.5",
-        "minimax-m1",
-        "yi-lightning"
+        "deepseek-v3.2",
+        "qwen3.5-flash",
+        "glm-4.5-air",
+        "glm-4.7",
+        "qwen3-max",
+        "minimax-m2.5",
+        "kimi-k2.5"
       ]
     },
     {

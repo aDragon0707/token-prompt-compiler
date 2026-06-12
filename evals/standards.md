@@ -53,9 +53,9 @@ Source: https://platform.openai.com/docs/guides/agent-evals
 ## StepFun
 
 StepFun documents OpenAI-compatible endpoints for both normal chat completions and
-Step Plan. The normal OpenAI-compatible base URL is `https://api.stepfun.ai/v1`.
+Step Plan. The normal OpenAI-compatible base URL is `https://api.stepfun.com/v1`.
 The Step Plan OpenAI-compatible base URL is
-`https://api.stepfun.ai/step_plan/v1`.
+`https://api.stepfun.com/step_plan/v1`.
 
 Implication for this repo:
 
@@ -66,6 +66,7 @@ Implication for this repo:
 
 Sources:
 
+- https://platform.stepfun.com/docs/zh/api-reference/chat/chat-completion-create
 - https://platform.stepfun.com/docs/en/guide/openai
 - https://platform.stepfun.ai/docs/en/step-plan/quick-start
 
