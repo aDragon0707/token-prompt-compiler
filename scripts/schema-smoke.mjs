@@ -19,6 +19,7 @@ try {
 
   const invalidDir = path.join(tempDir, "invalid-cases");
   fs.mkdirSync(invalidDir, { recursive: true });
+  fs.writeFileSync(path.join(invalidDir, "README.md"), "# Fixture\n");
   fs.writeFileSync(
     path.join(invalidDir, "missing-unsafe.json"),
     JSON.stringify({
@@ -28,7 +29,7 @@ try {
       task_id: "missing-unsafe",
       runner: "run-api-ab-test",
       static_prefix: "Test prefix.",
-      input_files: [{ label: "README.md", path: "../../README.md" }],
+      input_files: [{ label: "README.md", path: "README.md" }],
       quality_rubric: {
         manual_score_total: 10,
         dimensions: ["one dimension"],
@@ -53,6 +54,46 @@ try {
     ["scripts/validate-json.mjs", "--benchmark-cases-dir", invalidDir],
     "claim_boundary.unsafe",
     "missing unsafe claim is rejected",
+  );
+
+  const badRatioDir = path.join(tempDir, "bad-ratio-cases");
+  fs.mkdirSync(badRatioDir, { recursive: true });
+  fs.writeFileSync(path.join(badRatioDir, "README.md"), "# Fixture\n");
+  fs.writeFileSync(
+    path.join(badRatioDir, "bad-ratio.json"),
+    JSON.stringify({
+      benchmark_id: "bad-ratio",
+      claim_type: "api_shared_evidence_ab",
+      runner_status: "dry_run_supported",
+      task_id: "bad-ratio",
+      runner: "run-api-ab-test",
+      static_prefix: "Test prefix.",
+      input_files: [{ label: "README.md", path: "README.md" }],
+      quality_rubric: {
+        manual_score_total: 10,
+        dimensions: ["one dimension"],
+      },
+      variants: {
+        A: "Baseline prompt",
+        B: "Compiled prompt",
+      },
+      metrics: ["input_tokens", "output_tokens", "task_passed", "quality_score", "total_cost"],
+      pass_rule: {
+        required_token_saving_ratio: 2,
+        required_quality_delta_min: -1,
+        required_task_passed: true,
+      },
+      claim_boundary: {
+        safe: "This case is structurally runnable.",
+        unsafe: "This case proves SACP or task packets save tokens.",
+      },
+    }, null, 2),
+  );
+
+  expectFail(
+    ["scripts/validate-json.mjs", "--benchmark-cases-dir", badRatioDir],
+    "pass_rule.required_token_saving_ratio",
+    "token saving ratio above 1 is rejected",
   );
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });

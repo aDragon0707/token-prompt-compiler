@@ -61,7 +61,7 @@ function validateBenchmarkCase(filePath) {
   requireEnum(json, "runner_status", ["dry_run_supported", "template_only"], relative);
   requireStringArray(json, "metrics", relative);
   requireObject(json, "pass_rule", relative);
-  requireNumber(json, "pass_rule.required_token_saving_ratio", relative);
+  requireNumberRange(json, "pass_rule.required_token_saving_ratio", 0, 1, relative);
   requireNumber(json, "pass_rule.required_quality_delta_min", relative);
   requireBoolean(json, "pass_rule.required_task_passed", relative);
   requireObject(json, "claim_boundary", relative);
@@ -186,6 +186,14 @@ function requireNumber(json, fieldPath, relative) {
   const value = get(json, fieldPath);
   if (typeof value !== "number" || Number.isNaN(value)) {
     fail(`${relative}: ${fieldPath} must be a number`);
+  }
+}
+
+function requireNumberRange(json, fieldPath, min, max, relative) {
+  requireNumber(json, fieldPath, relative);
+  const value = get(json, fieldPath);
+  if (typeof value === "number" && !Number.isNaN(value) && (value < min || value > max)) {
+    fail(`${relative}: ${fieldPath} must be between ${min} and ${max}`);
   }
 }
 
