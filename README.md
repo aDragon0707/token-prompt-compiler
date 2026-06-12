@@ -8,7 +8,22 @@ Think of it as a **pre-flight contract for agents**: objective, boundaries, inpu
 
 It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, OpenAI/GPT, Claude, Gemini CLI, DeepSeek, or another LLM agent can execute with less wasted context.
 
-## 30-Second Quick Start
+## Choose Your Route
+
+| Route | Use when | Start here |
+|---|---|---|
+| 1. Agent skill | You want Codex, Claude Code, or another agent to compile a messy request before execution | [Route 1: Agent skill quick start](#route-1-agent-skill-quick-start) |
+| 2. Local CLI dry-run | You want no-network checks, safe dry-runs, CI validation, or repository health checks | [Route 2: Local CLI dry-run](#route-2-local-cli-dry-run) |
+| 3. Benchmark evidence | You want to record token/cost evidence without making unsupported claims | [Route 3: Benchmark evidence](#route-3-benchmark-evidence) |
+
+Claim boundary:
+
+```text
+Safe: This repository provides a reproducible benchmark skeleton and no-network validators.
+Unsafe: SACP or task packets are proven to save tokens in every task.
+```
+
+## Route 1: Agent Skill Quick Start
 
 Paste this into Codex, Claude, Gemini, DeepSeek, or another agent:
 
@@ -220,13 +235,15 @@ Confirm that token-prompt-compiler appears in your skill list, or run the Exampl
 
 To use it with another model, copy the SACP output shape from this README or `SKILL.md` into that model's system/project instructions.
 
-### CLI quick start
+## Route 2: Local CLI Dry-Run
 
 The CLI is optional and uses only local Node.js checks by default.
 
 ```bash
 npm run validate
 npm run smoke
+npm run schema:smoke
+npm run benchmark:smoke
 node scripts/tpc.mjs ab-test --dry-run
 ```
 
@@ -248,7 +265,16 @@ Use token-prompt-compiler to turn my request into a minimal SACP task contract, 
 [paste messy request here]
 ```
 
-## How to Test Token Savings
+## Route 3: Benchmark Evidence
+
+The benchmark files under [`benchmarks/`](benchmarks/) define the evidence format. Current CI verifies that benchmark cases are structurally valid and that dry-run supported cases can run without network access or API keys.
+
+```bash
+npm run benchmark:smoke
+npm run schema:smoke
+```
+
+Dry-run support is not token-saving proof. A public token/cost claim needs real provider usage, fixed conditions, quality scoring, and an explicit claim boundary.
 
 Use an A/B test:
 
@@ -355,7 +381,24 @@ Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”�
 
 它可以作为 Codex skill 使用，但核心思想不是只服务 Codex，而是服务所有 LLM / Agent 系统：Codex、Claude Code、Gemini CLI、DeepSeek、OpenAI Agents，或者你自己的 multi-agent runtime。
 
-## 30 秒上手
+## 选择路线
+
+| 路线 | 适合什么时候 | 从这里开始 |
+|---|---|---|
+| 1. Agent skill | 想让 Codex、Claude Code 或其他 agent 先把混乱需求编译成任务合同再执行 | [路线 1：Agent skill 快速上手](#route-1-agent-skill-zh) |
+| 2. 本地 CLI dry-run | 想做无网络检查、安全 dry-run、CI 校验或仓库健康检查 | [路线 2：本地 CLI dry-run](#route-2-local-cli-zh) |
+| 3. Benchmark evidence | 想记录 token/cost 证据，但不做未被证明的省 token 宣称 | [路线 3：Benchmark evidence](#route-3-benchmark-evidence-zh) |
+
+宣称边界：
+
+```text
+安全说法：这个仓库提供了可复现的 benchmark skeleton 和无网络 validator。
+不安全说法：SACP 或 task packet 已经被证明在所有任务里都省 token。
+```
+
+<a id="route-1-agent-skill-zh"></a>
+
+## 路线 1：Agent Skill 快速上手
 
 把这段粘贴给 Codex、Claude、Gemini、DeepSeek 或其他 agent：
 
@@ -452,7 +495,40 @@ Stop rule:
 [粘贴你的自然语言需求]
 ```
 
-## 怎么测试
+<a id="route-2-local-cli-zh"></a>
+
+## 路线 2：本地 CLI Dry-Run
+
+CLI 是可选的，默认只做本地检查，不需要 API key，也不会调用真实模型。
+
+```bash
+npm run validate
+npm run smoke
+npm run schema:smoke
+npm run benchmark:smoke
+node scripts/tpc.mjs ab-test --dry-run
+```
+
+真实 provider 调用必须显式传 `--execute`，并提供对应 API key：
+
+```bash
+node scripts/tpc.mjs ab-test --execute --provider openai --max-budget-usd 0.50
+```
+
+当前 `--max-budget-usd` 会记录在运行元数据里，不是强制 provider 花费上限。
+
+<a id="route-3-benchmark-evidence-zh"></a>
+
+## 路线 3：Benchmark Evidence
+
+[`benchmarks/`](benchmarks/) 目录固定 benchmark case 和 result 的证据格式。当前 CI 会验证 benchmark case 结构，并确认 dry-run supported case 可以在无网络、无 API key 的情况下跑通。
+
+```bash
+npm run benchmark:smoke
+npm run schema:smoke
+```
+
+Dry-run 只证明 case 结构可运行，不证明省 token。公开 token/cost 宣称需要真实 provider usage、固定条件、质量评分和明确 claim boundary。
 
 用 A/B 测试：
 
