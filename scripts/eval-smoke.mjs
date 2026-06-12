@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -123,6 +124,15 @@ if (exists("scripts/run-skill-effect-eval.mjs")) {
 }
 
 if (exists("scripts/provider-smoke.mjs")) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "tpc-provider-smoke-"));
+  const envFile = path.join(tempDir, ".env.local");
+  fs.writeFileSync(envFile, [
+    "STEPFUN_API_KEY=local-stepfun-test-key",
+    "TOKENDANCE_API_KEY=local-tokendance-test-key",
+    "TOKENDANCE_BASE_URL=https://example.invalid/gateway/v1",
+    "",
+  ].join("\n"), "utf8");
+
   const result = spawnSync(process.execPath, [
     "scripts/provider-smoke.mjs",
     "--dry-run",
@@ -130,6 +140,8 @@ if (exists("scripts/provider-smoke.mjs")) {
     "tokendance",
     "--model",
     "deepseek-chat",
+    "--env-file",
+    envFile,
   ], {
     cwd: repoRoot,
     encoding: "utf8",
@@ -153,8 +165,13 @@ if (exists("scripts/provider-smoke.mjs")) {
     assert(parsed.mode === "dry-run", "provider smoke reports dry-run mode");
     assert(parsed.execute === false, "provider smoke execute is false");
     assert(parsed.provider === "tokendance", "provider smoke keeps provider id");
+    assert(parsed.base_url === "https://example.invalid/gateway/v1", "provider smoke reads base URL from local env file");
+    assert(parsed.env_file_loaded === true, "provider smoke reports local env file loaded");
     assert(!JSON.stringify(parsed).includes("sk-"), "provider smoke output does not contain inline key-like values");
+    assert(!JSON.stringify(parsed).includes("local-stepfun-test-key"), "provider smoke output does not contain local env values");
   }
+
+  fs.rmSync(tempDir, { recursive: true, force: true });
 }
 
 if (process.exitCode) {

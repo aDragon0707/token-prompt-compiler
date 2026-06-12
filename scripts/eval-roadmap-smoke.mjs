@@ -12,6 +12,7 @@ const requiredFiles = [
   "evals/standards.md",
   "evals/roadmap.json",
   "evals/providers.example.json",
+  "evals/provider-setup.md",
   "evals/rubrics/skill-effect-rubric.json",
   "evals/results/README.md",
   "scripts/provider-smoke.mjs",

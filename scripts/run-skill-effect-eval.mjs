@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "node:fs/promises";
+import fsSync from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { performance } from "node:perf_hooks";
@@ -10,6 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
 const args = parseArgs(process.argv.slice(2));
+const envLoad = loadLocalEnv(args.env_file);
 
 if (args.help) {
   printHelp();
@@ -89,6 +91,8 @@ if (!execute) {
     },
     raw_out_path: rawOutPath,
     summary_out_path: summaryOutPath,
+    env_file_loaded: envLoad.loaded,
+    env_file_keys: envLoad.keys,
     sample_case_id: sampleCase.id,
     sample_variants: sampleVariants,
   });
@@ -268,7 +272,7 @@ async function runOne({ provider: providerId, baseUrl: providerBaseUrl, apiKey, 
       run_index: runIndex + 1,
       status: "transport_error",
       error_type: error.name || "transport_error",
-      error_message: error.message,
+      error_message: sanitizeProviderError(error.message),
       wall_time_sec: Number(((performance.now() - started) / 1000).toFixed(3)),
       usage: normalizeUsage(null),
       output_text: "",
@@ -290,6 +294,7 @@ async function runOne({ provider: providerId, baseUrl: providerBaseUrl, apiKey, 
     status: response.ok ? "ok" : "provider_error",
     http_status: response.status,
     error_type: response.ok ? null : json?.error?.type || json?.error?.code || "provider_error",
+    error_message: response.ok ? null : sanitizeProviderError(json?.error?.message || json?.message || ""),
     wall_time_sec: Number(((performance.now() - started) / 1000).toFixed(3)),
     usage: normalizeUsage(json?.usage),
     output_text: outputText,
@@ -387,6 +392,66 @@ function normalizeUsage(usage = {}) {
       provider_total_tokens: usage?.total_tokens,
     }),
   };
+}
+
+function loadLocalEnv(explicitPath) {
+  const candidates = [
+    explicitPath,
+    path.join(repoRoot, ".env.local"),
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    const resolved = path.resolve(candidate);
+    if (!fsSync.existsSync(resolved)) {
+      continue;
+    }
+
+    const loadedKeys = [];
+    const raw = fsSync.readFileSync(resolved, "utf8").replace(/^\uFEFF/, "");
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) {
+        continue;
+      }
+
+      const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+      if (!match) {
+        continue;
+      }
+
+      const key = match[1];
+      const value = unquoteEnvValue(match[2].trim());
+      if (process.env[key] === undefined) {
+        process.env[key] = value;
+      }
+      loadedKeys.push(key);
+    }
+
+    return {
+      loaded: true,
+      path: resolved,
+      keys: loadedKeys.sort(),
+    };
+  }
+
+  return {
+    loaded: false,
+    keys: [],
+  };
+}
+
+function unquoteEnvValue(value) {
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    return value.slice(1, -1);
+  }
+  return value;
+}
+
+function sanitizeProviderError(message) {
+  return String(message || "")
+    .replace(/sk-[A-Za-z0-9_-]+/g, "[REDACTED_SECRET]")
+    .replace(/Bearer\s+[A-Za-z0-9._~+/=-]+/gi, "Bearer [REDACTED_SECRET]")
+    .slice(0, 500);
 }
 
 function usageFieldCoverage(usage) {
@@ -498,6 +563,7 @@ function printHelp() {
   process.stdout.write(`Usage:
   node scripts/run-skill-effect-eval.mjs --dry-run --provider stepfun --models step-3.5-flash,step-3.7-flash --runs 2
   node scripts/run-skill-effect-eval.mjs --execute --provider tokendance --models deepseek-chat,qwen-plus --runs 2
+  node scripts/run-skill-effect-eval.mjs --execute --provider stepfun --models step-3.5-flash --runs 1 --env-file .env.local
 
 Environment:
   STEPFUN_API_KEY
@@ -508,6 +574,7 @@ Environment:
 
 Notes:
   Default mode is dry-run. Use --execute to call provider APIs and write result files.
+  By default, the script reads .env.local if present. Values are never printed.
   Raw outputs go to eval-runs/ by default. Sanitized summaries go to evals/results/.
 `);
 }
