@@ -29,6 +29,7 @@ const requiredPhases = [
 
 const requiredEnvNames = [
   "STEPFUN_API_KEY",
+  "STEPFUN_BASE_URL",
   "TOKENDANCE_API_KEY",
   "TOKENDANCE_BASE_URL",
 ];
@@ -99,6 +100,7 @@ if (exists("evals/providers.example.json")) {
   for (const envName of requiredEnvNames) {
     assert(serialized.includes(envName), `providers example references ${envName}`);
   }
+  assert(serialized.includes("https://api.stepfun.com/v1"), "providers example uses StepFun .com chat completions base URL");
   assert(!serialized.includes("sk-"), "providers example does not contain inline API keys");
 }
 

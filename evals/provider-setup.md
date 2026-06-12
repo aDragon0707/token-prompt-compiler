@@ -15,12 +15,15 @@ Use this shape:
 
 ```dotenv
 STEPFUN_API_KEY=replace-with-stepfun-key
+STEPFUN_BASE_URL=https://api.stepfun.com/v1
 TOKENDANCE_API_KEY=replace-with-tokendance-key
 TOKENDANCE_BASE_URL=https://tokendance.space/gateway/v1
 ```
 
 The scripts read `.env.local` automatically when it exists. Existing process
 environment variables win; `.env.local` only fills missing values.
+`STEPFUN_BASE_URL` is optional because the scripts default to the official normal
+Chat Completions base URL.
 
 ## Why Not `set` or `$env` Only
 
@@ -46,7 +49,7 @@ npm run provider:smoke -- --execute --provider stepfun --model step-3.5-flash
 ```
 
 ```cmd
-npm run provider:smoke -- --execute --provider tokendance --model deepseek-chat
+npm run provider:smoke -- --execute --provider tokendance --model deepseek-v3.2
 ```
 
 If TokenDance uses a different model id, update the `--model` value after

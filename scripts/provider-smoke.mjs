@@ -72,7 +72,7 @@ const response = await fetch(`${baseUrl}/chat/completions`, {
       },
     ],
     temperature: 0,
-    max_tokens: Number(args.max_tokens || 80),
+    max_tokens: Number(args.max_tokens || 512),
   }),
 });
 
@@ -114,12 +114,12 @@ function smokePrompt() {
 
 function defaultModel(providerId) {
   if (providerId === "stepfun") return "step-3.5-flash";
-  if (providerId === "tokendance") return "deepseek-chat";
+  if (providerId === "tokendance") return "deepseek-v3.2";
   return "model-id-required";
 }
 
 function defaultBaseUrl(providerId) {
-  if (providerId === "stepfun") return "https://api.stepfun.ai/v1";
+  if (providerId === "stepfun") return process.env.STEPFUN_BASE_URL || "https://api.stepfun.com/v1";
   if (providerId === "tokendance") return process.env.TOKENDANCE_BASE_URL || "https://tokendance.space/gateway/v1";
   return process.env.OPENAI_COMPATIBLE_BASE_URL || "https://example.invalid/v1";
 }
@@ -257,11 +257,12 @@ function writeJson(value) {
 function printHelp() {
   process.stdout.write(`Usage:
   node scripts/provider-smoke.mjs --dry-run --provider stepfun --model step-3.5-flash
-  node scripts/provider-smoke.mjs --execute --provider tokendance --model deepseek-chat --base-url https://tokendance.space/gateway/v1
+  node scripts/provider-smoke.mjs --execute --provider tokendance --model deepseek-v3.2 --base-url https://tokendance.space/gateway/v1
   node scripts/provider-smoke.mjs --execute --provider stepfun --model step-3.5-flash --env-file .env.local
 
 Environment:
   STEPFUN_API_KEY
+  STEPFUN_BASE_URL
   TOKENDANCE_API_KEY
   TOKENDANCE_BASE_URL
   OPENAI_COMPATIBLE_API_KEY
