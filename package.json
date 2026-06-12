@@ -9,6 +9,7 @@
   "scripts": {
     "validate": "node scripts/tpc.mjs validate",
     "smoke": "node scripts/phase1-smoke.mjs",
-    "benchmark:smoke": "node scripts/benchmark-smoke.mjs"
+    "benchmark:smoke": "node scripts/benchmark-smoke.mjs",
+    "schema:smoke": "node scripts/schema-smoke.mjs"
   }
 }

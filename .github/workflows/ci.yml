@@ -35,9 +35,14 @@ jobs:
           node --check scripts/tpc.mjs
           node --check scripts/phase1-smoke.mjs
           node --check scripts/benchmark-smoke.mjs
+          node --check scripts/validate-json.mjs
+          node --check scripts/schema-smoke.mjs
 
       - name: Run smoke harness
         run: npm run smoke
+
+      - name: Run JSON schema smoke harness
+        run: npm run schema:smoke
 
       - name: Run benchmark smoke harness
         run: npm run benchmark:smoke

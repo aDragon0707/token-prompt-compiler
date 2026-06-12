@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aDragon0707/token-prompt-compiler/schemas/benchmark-case.schema.json",
+  "title": "Token Prompt Compiler benchmark case",
+  "description": "Schema contract for benchmark case files under benchmarks/cases. Dry-run supported cases are runnable shared-evidence A/B cases. Template-only cases document future benchmark shapes without invoking the current runner.",
+  "type": "object",
+  "required": [
+    "benchmark_id",
+    "claim_type",
+    "runner_status",
+    "metrics",
+    "pass_rule",
+    "claim_boundary"
+  ],
+  "properties": {
+    "benchmark_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "claim_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "runner_status": {
+      "type": "string",
+      "enum": ["dry_run_supported", "template_only"]
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "pass_rule": {
+      "type": "object",
+      "required": [
+        "required_token_saving_ratio",
+        "required_quality_delta_min",
+        "required_task_passed"
+      ],
+      "properties": {
+        "required_token_saving_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "required_quality_delta_min": {
+          "type": "number"
+        },
+        "required_task_passed": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": "string"
+        },
+        "retry_rule": {
+          "type": "string"
+        }
+      }
+    },
+    "claim_boundary": {
+      "type": "object",
+      "required": ["safe", "unsafe"],
+      "properties": {
+        "safe": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unsafe": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "runner_status": {
+            "const": "dry_run_supported"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "task_id",
+          "runner",
+          "static_prefix",
+          "input_files",
+          "quality_rubric",
+          "variants"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runner_status": {
+            "const": "template_only"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "why_template_only",
+          "variant_design"
+        ]
+      }
+    }
+  ]
+}

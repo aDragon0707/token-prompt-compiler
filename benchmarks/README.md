@@ -2,6 +2,8 @@
 
 This directory defines a reproducible benchmark structure for future token and cost evidence. It does not prove that SACP contracts or task packets save tokens.
 
+Benchmark case files are checked against the repository contract in `schemas/benchmark-case.schema.json` by `npm run schema:smoke` and `npm run validate`.
+
 Safe claim:
 
 ```text
