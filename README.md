@@ -429,6 +429,8 @@ Use token-prompt-compiler to compile this request into a minimal SACP task contr
 
 模型应该先问你要任务材料、执行模式和期望输出，而不是假装已经知道你要做什么。
 
+如果你想验证 skill 是否真的按预期触发，可以按 [`tests/skill-trigger-cases.md`](tests/skill-trigger-cases.md) 的 case 在新窗口里手动跑一轮。
+
 四个常用入口：
 
 ```text

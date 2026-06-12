@@ -11,6 +11,7 @@
     "smoke": "node scripts/phase1-smoke.mjs",
     "benchmark:smoke": "node scripts/benchmark-smoke.mjs",
     "schema:smoke": "node scripts/schema-smoke.mjs",
-    "skill:smoke": "node scripts/skill-chain-smoke.mjs"
+    "skill:smoke": "node scripts/skill-chain-smoke.mjs",
+    "skill:cases": "node scripts/skill-trigger-cases-smoke.mjs"
   }
 }
