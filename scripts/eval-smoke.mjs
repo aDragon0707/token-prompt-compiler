@@ -47,10 +47,16 @@ assert(exists("evals/rubrics/skill-effect-rubric.json"), "skill effect rubric ex
 assert(exists("scripts/run-skill-effect-eval.mjs"), "skill effect runner exists");
 
 let cases = [];
+const referenceCaseIds = new Set();
 if (exists("tests/skill-trigger-cases.json")) {
   cases = readJson("tests/skill-trigger-cases.json");
   assert(Array.isArray(cases), "skill trigger cases are an array");
   assert(cases.length === 8, "skill trigger case count is 8");
+  for (const testCase of cases) {
+    if ((testCase.expected_references || []).length > 0) {
+      referenceCaseIds.add(testCase.id);
+    }
+  }
 }
 
 if (exists("evals/rubrics/skill-effect-rubric.json")) {
@@ -102,7 +108,7 @@ if (exists("scripts/run-skill-effect-eval.mjs")) {
     assert(Array.isArray(parsed.variants) && parsed.variants.join(",") === "A,B,C", "skill effect runner variants are A,B,C");
     assert(parsed.raw_out_path?.startsWith("eval-runs/"), "skill effect runner raw output path stays in eval-runs/");
     assert(parsed.summary_out_path?.startsWith("evals/results/"), "skill effect runner summary output path stays in evals/results/");
-    assert(parsed.sample_case_id === "compile-only", "skill effect runner samples a case with routed references");
+    assert(referenceCaseIds.has(parsed.sample_case_id), "skill effect runner samples a case with routed references");
     assert(Array.isArray(parsed.sample_variants) && parsed.sample_variants.length === 3, "skill effect runner previews three sample variants");
     const variantB = parsed.sample_variants.find((variant) => variant.id === "B");
     const variantC = parsed.sample_variants.find((variant) => variant.id === "C");
@@ -110,6 +116,9 @@ if (exists("scripts/run-skill-effect-eval.mjs")) {
     assert(Array.isArray(variantC?.reference_paths) && variantC.reference_paths.includes("references/sacp-core.md"), "variant C preview includes routed references");
     assert((variantB?.system_chars || 0) > 1000, "variant B preview includes skill instructions");
     assert((variantC?.prompt_chars || 0) > (variantB?.prompt_chars || 0), "variant C preview adds reference context");
+    for (const variant of parsed.sample_variants) {
+      assert(variant.evaluator_metadata_leaked === false, `variant ${variant.id} preview does not leak evaluator metadata`);
+    }
   }
 }
 

@@ -65,6 +65,7 @@ if (!execute) {
       prompt_chars: variant.prompt.length,
       system_chars: variant.system.length,
       reference_paths: variant.reference_paths,
+      evaluator_metadata_leaked: containsEvaluatorMetadata(variant.prompt, variant.evaluator_metadata),
     });
   }
 
@@ -183,32 +184,25 @@ async function materializeVariant(variant, testCase) {
   const referenceBlock = variant.includeReferences
     ? await buildReferenceBlock(testCase.expected_references || [])
     : "";
+  const evaluatorMetadata = buildEvaluatorMetadata(testCase);
 
   const prompt = [
-    `Case id: ${testCase.id}`,
+    referenceBlock,
     "User input:",
     testCase.input,
-    "",
-    "Expected behavior for evaluator reference:",
-    (testCase.expected_behavior || []).map((item) => `- ${item}`).join("\n"),
-    "",
-    "Must not:",
-    (testCase.must_not || []).map((item) => `- ${item}`).join("\n"),
-    "",
-    `Pass rule: ${testCase.pass_rule}`,
-    referenceBlock,
   ].filter(Boolean).join("\n");
 
   return {
     ...variant,
     prompt,
     reference_paths: variant.includeReferences ? (testCase.expected_references || []) : [],
+    evaluator_metadata: evaluatorMetadata,
   };
 }
 
 async function buildReferenceBlock(referencePaths) {
   if (!referencePaths.length) {
-    return "Routed references: none expected for this case.";
+    return "";
   }
 
   const parts = ["Routed references. Use only these reference files; do not assume other reference content."];
@@ -217,6 +211,26 @@ async function buildReferenceBlock(referencePaths) {
     parts.push(`REFERENCE: ${relativePath}\n---\n${text}\n---`);
   }
   return parts.join("\n\n");
+}
+
+function buildEvaluatorMetadata(testCase) {
+  return {
+    case_id: testCase.id,
+    expected_behavior: testCase.expected_behavior || [],
+    must_not: testCase.must_not || [],
+    expected_references: testCase.expected_references || [],
+    pass_rule: testCase.pass_rule || "",
+  };
+}
+
+function containsEvaluatorMetadata(prompt, metadata) {
+  const candidates = [
+    ...(metadata.expected_behavior || []),
+    ...(metadata.must_not || []),
+    metadata.pass_rule,
+  ].filter(Boolean);
+
+  return candidates.some((candidate) => prompt.includes(candidate));
 }
 
 async function runOne({ provider: providerId, baseUrl: providerBaseUrl, apiKey, model, runIndex, testCase, variant, temperature: temp, maxTokens: maxOutputTokens }) {
@@ -260,6 +274,7 @@ async function runOne({ provider: providerId, baseUrl: providerBaseUrl, apiKey, 
       output_text: "",
       output_excerpt: "",
       reference_paths: variant.reference_paths,
+      evaluator_metadata: variant.evaluator_metadata,
     };
   }
 
@@ -280,6 +295,7 @@ async function runOne({ provider: providerId, baseUrl: providerBaseUrl, apiKey, 
     output_text: outputText,
     output_excerpt: outputText.slice(0, 500),
     reference_paths: variant.reference_paths,
+    evaluator_metadata: variant.evaluator_metadata,
   };
 }
 
