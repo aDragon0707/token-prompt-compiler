@@ -90,6 +90,34 @@ function assertStringArray(value, label) {
   }
 }
 
+function normalizeInput(text) {
+  return text
+    .replace(/\r\n?/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+$/g, ""))
+    .join("\n")
+    .trim();
+}
+
+function extractManualInputs(guide) {
+  const headings = [...guide.matchAll(/^### `([^`]+)`\s*$/gm)];
+  const inputs = new Map();
+
+  for (const [index, heading] of headings.entries()) {
+    const caseId = heading[1];
+    const sectionStart = heading.index + heading[0].length;
+    const sectionEnd = headings[index + 1]?.index ?? guide.length;
+    const section = guide.slice(sectionStart, sectionEnd);
+    const textBlock = section.match(/```text\s*\n([\s\S]*?)\n```/);
+
+    if (textBlock) {
+      inputs.set(caseId, textBlock[1]);
+    }
+  }
+
+  return inputs;
+}
+
 assert(exists(casesPath), `${casesPath} exists`);
 assert(exists(guidePath), `${guidePath} exists`);
 assert(exists(templatePath), `${templatePath} exists`);
@@ -136,9 +164,22 @@ for (const testCase of cases) {
 
 if (exists(guidePath)) {
   const guide = readText(guidePath);
+  const manualInputs = extractManualInputs(guide);
+
   for (const id of requiredCaseIds) {
     assert(guide.includes(id), `${guidePath} mentions ${id}`);
   }
+
+  for (const testCase of cases) {
+    assert(manualInputs.has(testCase.id), `${guidePath} has manual input block for ${testCase.id}`);
+    if (manualInputs.has(testCase.id)) {
+      assert(
+        normalizeInput(manualInputs.get(testCase.id)) === normalizeInput(testCase.input),
+        `${guidePath} manual input matches JSON for ${testCase.id}`
+      );
+    }
+  }
+
   assert(guide.includes("manual") || guide.includes("人工"), `${guidePath} explains manual evaluation`);
 }
 
