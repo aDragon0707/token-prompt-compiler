@@ -1,0 +1,76 @@
+{
+  "schema_version": "skill-effect-summary.v1",
+  "generated_at": "2026-06-12T11:39:56.872Z",
+  "provider": "stepfun",
+  "base_url": "https://api.stepfun.com/v1",
+  "models": [
+    "step-3.5-flash"
+  ],
+  "case_path": "tests/skill-trigger-cases.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "planned_calls": 24,
+  "record_count": 24,
+  "metrics": {
+    "ok_rate": 1,
+    "avg_latency_sec": 7.103,
+    "usage_field_coverage": 1
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 8.521,
+      "avg_input_tokens": 64.125,
+      "avg_output_tokens": 628.5,
+      "avg_total_tokens": 692.625,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "B": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 6.288,
+      "avg_input_tokens": 1215.125,
+      "avg_output_tokens": 545,
+      "avg_total_tokens": 1760.125,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "C": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 6.501,
+      "avg_input_tokens": 3486.625,
+      "avg_output_tokens": 623.375,
+      "avg_total_tokens": 4110,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "model_summaries": {
+    "step-3.5-flash": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 7.103,
+      "avg_input_tokens": 1588.625,
+      "avg_output_tokens": 598.958,
+      "avg_total_tokens": 2187.583,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "claim_boundary": "This summary is trigger and behavior evidence only unless manual quality and provider-priced A/B cost review are added."
+}
