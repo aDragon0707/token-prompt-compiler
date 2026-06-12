@@ -1,0 +1,48 @@
+{
+  "task_id": "benchmark-api-readme-review-ab",
+  "benchmark_id": "api-readme-review-ab",
+  "claim_type": "api_shared_evidence_ab",
+  "runner": "run-api-ab-test",
+  "runner_status": "dry_run_supported",
+  "static_prefix": "Use only the provided README evidence. Do not browse. Do not edit files. Keep quality judgment separate from token and cost judgment.",
+  "input_files": [
+    {
+      "label": "README.md",
+      "path": "../../README.md"
+    }
+  ],
+  "quality_rubric": {
+    "manual_score_total": 10,
+    "dimensions": [
+      "2 points: exactly 3 README improvement points",
+      "2 points: each point is concrete and actionable",
+      "2 points: each point maps to README content",
+      "2 points: follows scope: README only, no edits, no web",
+      "2 points: concise, no extra filler"
+    ]
+  },
+  "variants": {
+    "A": "Review the provided README and give exactly 3 concise improvement suggestions. For each suggestion, explain the issue, why it matters, and the smallest fix. Use Chinese. Do not edit files or browse.",
+    "B": "Machine Task Packet\nGoal: Review the provided README and identify exactly 3 small improvements.\nAllowed scope: Use only the shared README evidence.\nActions: For each improvement, explain Issue / Why it matters / Smallest fix.\nVerification: Output exactly 3 points, no file edits, no browsing.\nOutput: Chinese, concise bullets only.\nStop rule: Stop after the 3 points."
+  },
+  "metrics": [
+    "input_tokens",
+    "cached_tokens",
+    "output_tokens",
+    "reasoning_tokens",
+    "provider_total_tokens",
+    "task_passed",
+    "quality_score",
+    "total_cost"
+  ],
+  "pass_rule": {
+    "required_token_saving_ratio": 0.25,
+    "required_quality_delta_min": -1,
+    "required_task_passed": true,
+    "note": "This shared-evidence case may compare prompt behavior and cost under identical evidence, but it is not a true context-saving proof."
+  },
+  "claim_boundary": {
+    "safe": "This case is structurally runnable as a dry-run shared-evidence A/B benchmark.",
+    "unsafe": "This case proves SACP or task packets save tokens."
+  }
+}
