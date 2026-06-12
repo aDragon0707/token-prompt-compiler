@@ -1,0 +1,87 @@
+{
+  "schema_version": "skill-effect-summary.v1",
+  "generated_at": "2026-06-12T12:26:27.838Z",
+  "provider": "tokendance",
+  "base_url": "https://tokendance.space/gateway/v1",
+  "models": [
+    "glm-5.1",
+    "minimax-m3"
+  ],
+  "case_path": "tests/skill-trigger-cases.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "planned_calls": 48,
+  "record_count": 48,
+  "metrics": {
+    "ok_rate": 1,
+    "avg_latency_sec": 16.511,
+    "usage_field_coverage": 1
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 16,
+      "ok_rate": 1,
+      "avg_latency_sec": 18.414,
+      "avg_input_tokens": 132.875,
+      "avg_output_tokens": 713.25,
+      "avg_total_tokens": 846.125,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "B": {
+      "records": 16,
+      "ok_rate": 1,
+      "avg_latency_sec": 14.482,
+      "avg_input_tokens": 1254.875,
+      "avg_output_tokens": 500.813,
+      "avg_total_tokens": 1755.688,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "C": {
+      "records": 16,
+      "ok_rate": 1,
+      "avg_latency_sec": 16.639,
+      "avg_input_tokens": 3433.5,
+      "avg_output_tokens": 612.063,
+      "avg_total_tokens": 4045.563,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "model_summaries": {
+    "glm-5.1": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 15.668,
+      "avg_input_tokens": 1535.5,
+      "avg_output_tokens": 587.333,
+      "avg_total_tokens": 2122.833,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "minimax-m3": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 17.355,
+      "avg_input_tokens": 1678.667,
+      "avg_output_tokens": 630.083,
+      "avg_total_tokens": 2308.75,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "claim_boundary": "This summary is trigger and behavior evidence only unless manual quality and provider-priced A/B cost review are added."
+}

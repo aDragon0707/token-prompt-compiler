@@ -1,0 +1,98 @@
+{
+  "schema_version": "skill-effect-summary.v1",
+  "generated_at": "2026-06-12T12:54:06.543Z",
+  "provider": "tokendance",
+  "base_url": "https://tokendance.space/gateway/v1",
+  "models": [
+    "seed-2.0-pro",
+    "hy3-preview",
+    "qwen3.6-max-preview"
+  ],
+  "case_path": "tests/skill-trigger-cases.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "planned_calls": 72,
+  "record_count": 72,
+  "metrics": {
+    "ok_rate": 1,
+    "avg_latency_sec": 34.044,
+    "usage_field_coverage": 1
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 34.407,
+      "avg_input_tokens": 69.875,
+      "avg_output_tokens": 1362.292,
+      "avg_total_tokens": 1432.167,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "B": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 33.022,
+      "avg_input_tokens": 1240.208,
+      "avg_output_tokens": 1197.458,
+      "avg_total_tokens": 2437.667,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "C": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 34.704,
+      "avg_input_tokens": 3565.333,
+      "avg_output_tokens": 1392.042,
+      "avg_total_tokens": 4957.375,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "model_summaries": {
+    "seed-2.0-pro": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 37.411,
+      "avg_input_tokens": 1691.333,
+      "avg_output_tokens": 1534.792,
+      "avg_total_tokens": 3226.125,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "hy3-preview": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 9.282,
+      "avg_input_tokens": 1557.042,
+      "avg_output_tokens": 384.042,
+      "avg_total_tokens": 1941.083,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "qwen3.6-max-preview": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 55.44,
+      "avg_input_tokens": 1627.042,
+      "avg_output_tokens": 2032.958,
+      "avg_total_tokens": 3660,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "claim_boundary": "This summary is trigger and behavior evidence only unless manual quality and provider-priced A/B cost review are added."
+}

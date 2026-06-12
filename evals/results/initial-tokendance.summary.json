@@ -1,0 +1,98 @@
+{
+  "schema_version": "skill-effect-summary.v1",
+  "generated_at": "2026-06-12T12:10:17.194Z",
+  "provider": "tokendance",
+  "base_url": "https://tokendance.space/gateway/v1",
+  "models": [
+    "deepseek-v3.2",
+    "qwen3.5-flash",
+    "glm-4.5-air"
+  ],
+  "case_path": "tests/skill-trigger-cases.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "planned_calls": 72,
+  "record_count": 72,
+  "metrics": {
+    "ok_rate": 1,
+    "avg_latency_sec": 25.113,
+    "usage_field_coverage": 1
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 17.422,
+      "avg_input_tokens": 55.708,
+      "avg_output_tokens": 1367.542,
+      "avg_total_tokens": 1423.25,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "B": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 12.898,
+      "avg_input_tokens": 1206.708,
+      "avg_output_tokens": 521.042,
+      "avg_total_tokens": 1727.75,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "C": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 45.021,
+      "avg_input_tokens": 3476.75,
+      "avg_output_tokens": 607.75,
+      "avg_total_tokens": 4084.5,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "model_summaries": {
+    "deepseek-v3.2": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 51.617,
+      "avg_input_tokens": 1575.625,
+      "avg_output_tokens": 476.333,
+      "avg_total_tokens": 2051.958,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "qwen3.5-flash": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 11.891,
+      "avg_input_tokens": 1627.042,
+      "avg_output_tokens": 1480.333,
+      "avg_total_tokens": 3107.375,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "glm-4.5-air": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 11.833,
+      "avg_input_tokens": 1536.5,
+      "avg_output_tokens": 539.667,
+      "avg_total_tokens": 2076.167,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "claim_boundary": "This summary is trigger and behavior evidence only unless manual quality and provider-priced A/B cost review are added."
+}

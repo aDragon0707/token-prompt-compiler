@@ -21,6 +21,7 @@ const provider = args.provider || "stepfun";
 const model = args.model || defaultModel(provider);
 const baseUrl = normalizeBaseUrl(args.base_url || defaultBaseUrl(provider));
 const execute = Boolean(args.execute);
+const temperature = args.temperature === undefined ? 0 : Number(args.temperature);
 
 if (args.dry_run && execute) {
   fail("Use either --dry-run or --execute, not both");
@@ -71,7 +72,7 @@ const response = await fetch(`${baseUrl}/chat/completions`, {
         content: smokePrompt(),
       },
     ],
-    temperature: 0,
+    temperature,
     max_tokens: Number(args.max_tokens || 512),
   }),
 });
@@ -258,6 +259,7 @@ function printHelp() {
   process.stdout.write(`Usage:
   node scripts/provider-smoke.mjs --dry-run --provider stepfun --model step-3.5-flash
   node scripts/provider-smoke.mjs --execute --provider tokendance --model deepseek-v3.2 --base-url https://tokendance.space/gateway/v1
+  node scripts/provider-smoke.mjs --execute --provider tokendance --model kimi-k2.7-code --temperature 1
   node scripts/provider-smoke.mjs --execute --provider stepfun --model step-3.5-flash --env-file .env.local
 
 Environment:

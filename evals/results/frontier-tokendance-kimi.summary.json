@@ -1,0 +1,76 @@
+{
+  "schema_version": "skill-effect-summary.v1",
+  "generated_at": "2026-06-12T12:18:14.822Z",
+  "provider": "tokendance",
+  "base_url": "https://tokendance.space/gateway/v1",
+  "models": [
+    "kimi-k2.7-code"
+  ],
+  "case_path": "tests/skill-trigger-cases.json",
+  "variants": [
+    {
+      "id": "A",
+      "name": "no_skill_baseline"
+    },
+    {
+      "id": "B",
+      "name": "skill_loaded"
+    },
+    {
+      "id": "C",
+      "name": "skill_plus_routed_reference"
+    }
+  ],
+  "planned_calls": 24,
+  "record_count": 24,
+  "metrics": {
+    "ok_rate": 1,
+    "avg_latency_sec": 12.482,
+    "usage_field_coverage": 1
+  },
+  "variant_summaries": {
+    "A": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 9.406,
+      "avg_input_tokens": 56.125,
+      "avg_output_tokens": 616,
+      "avg_total_tokens": 672.125,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "B": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 11.419,
+      "avg_input_tokens": 1165.125,
+      "avg_output_tokens": 528.875,
+      "avg_total_tokens": 1694,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    },
+    "C": {
+      "records": 8,
+      "ok_rate": 1,
+      "avg_latency_sec": 16.62,
+      "avg_input_tokens": 3326,
+      "avg_output_tokens": 551.25,
+      "avg_total_tokens": 3877.25,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "model_summaries": {
+    "kimi-k2.7-code": {
+      "records": 24,
+      "ok_rate": 1,
+      "avg_latency_sec": 12.482,
+      "avg_input_tokens": 1515.75,
+      "avg_output_tokens": 565.375,
+      "avg_total_tokens": 2081.125,
+      "usage_field_coverage": 1,
+      "error_types": {}
+    }
+  },
+  "claim_boundary": "This summary is trigger and behavior evidence only unless manual quality and provider-priced A/B cost review are added."
+}
