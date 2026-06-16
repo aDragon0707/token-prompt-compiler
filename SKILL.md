@@ -61,6 +61,13 @@ Large: multi-agent, long context, safety risk, or external deliverable -> Standa
 
 If a packet does not change the next action, skip the packet and execute.
 
+Friction check:
+
+- Before emitting Standard/Full SACP, ask whether the packet adds more coordination steps than it removes ambiguity.
+- For small single-file, plan-only, read-only, or already-bounded tasks, output one lean prompt or Tiny SACP at most.
+- Do not create multi-window, multi-reviewer, phase-gated workflows unless the task has real cross-file, privacy, external-publish, API, schema, or multi-agent handoff risk.
+- If the user asks to optimize a prompt for a small task, preserve the user's intended path and compress it; do not invent governance roles or extra approval stages.
+
 Compile-only means compile-only: when the user asks for a prompt, task packet, rewrite, or scope clarification, do not inspect the repo, read files, run tools, or output tool calls unless the user explicitly asks you to execute. Work only from the provided request and any provided artifacts.
 
 Plan Escalation Rule:

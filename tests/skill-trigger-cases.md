@@ -32,6 +32,7 @@
 | `benchmark-claim` | 对 token/cost 结论保持 claim boundary，不把 dry-run 当证明。 |
 | `complex-repo-plan-escalation` | 复杂仓库任务先进入 plan，不直接改文件。 |
 | `small-scoped-skip-full-packet` | 小而明确的任务跳过 Full Packet，避免过度编译。 |
+| `small-plan-only-avoid-governance` | 小型 plan-only prompt 优化不要膨胀成多窗口治理流程。 |
 
 ## Pass / Fail Rule
 
@@ -99,4 +100,10 @@ Use token-prompt-compiler to prove this prompt saves tokens. Do an A/B plan but 
 
 ```text
 Use token-prompt-compiler lightly: fix the typo in README.md line 12. This is the only allowed edit.
+```
+
+### `small-plan-only-avoid-governance`
+
+```text
+用 token-prompt-compiler 优化一下这个 prompt：让执行窗口规划 T2.2。T2.2 只改一个 index.html，把三份 sample JSON 内嵌到 DATA，并实现 getSelectedTrace。不要执行，只要 plan-only prompt。
 ```

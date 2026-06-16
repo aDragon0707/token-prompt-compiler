@@ -21,6 +21,7 @@ const requiredCaseIds = [
   "benchmark-claim",
   "complex-repo-plan-escalation",
   "small-scoped-skip-full-packet",
+  "small-plan-only-avoid-governance",
 ];
 
 const requiredFields = [
@@ -41,6 +42,7 @@ const keywordRequirements = {
   "benchmark-claim": ["Benchmark", "provider usage evidence"],
   "complex-repo-plan-escalation": ["Plan Escalation Rule", "complex repo execution"],
   "small-scoped-skip-full-packet": ["Small: already scoped", "skip Full Packet"],
+  "small-plan-only-avoid-governance": ["Friction check", "multi-window"],
 };
 
 function readText(relativePath) {
