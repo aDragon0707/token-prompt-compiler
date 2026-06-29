@@ -37,6 +37,8 @@
 | `runtime-performance-no-trigger` | Negative trigger: runtime performance benchmark should not become token/cost benchmark. |
 | `ui-polish-no-trigger` | Negative trigger: UI/product design should route to design/frontend work. |
 | `test-failure-debug-no-trigger` | Negative trigger: test failure debugging should route to debugging/TDD work. |
+| `generic-prose-polish-no-trigger` | Negative trigger: generic prose polishing should not become prompt lint. |
+| `model-choice-no-trigger` | Negative trigger: model/provider selection should not become a model adapter packet. |
 
 ## Pass / Fail Rule
 
@@ -134,4 +136,16 @@ Make this dashboard look more polished and responsive.
 
 ```text
 Run the test suite, find the failing test, and fix the bug.
+```
+
+### `generic-prose-polish-no-trigger`
+
+```text
+Rewrite this paragraph so it sounds more polished and professional.
+```
+
+### `model-choice-no-trigger`
+
+```text
+Which model should I use for a cheap README review?
 ```

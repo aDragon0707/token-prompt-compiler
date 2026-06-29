@@ -26,6 +26,8 @@ const requiredCaseIds = [
   "runtime-performance-no-trigger",
   "ui-polish-no-trigger",
   "test-failure-debug-no-trigger",
+  "generic-prose-polish-no-trigger",
+  "model-choice-no-trigger",
 ];
 
 const negativeCaseIds = new Set([
@@ -34,6 +36,8 @@ const negativeCaseIds = new Set([
   "runtime-performance-no-trigger",
   "ui-polish-no-trigger",
   "test-failure-debug-no-trigger",
+  "generic-prose-polish-no-trigger",
+  "model-choice-no-trigger",
 ]);
 
 const requiredFields = [
@@ -59,6 +63,8 @@ const keywordRequirements = {
   "runtime-performance-no-trigger": ["When Not To Use", "runtime performance"],
   "ui-polish-no-trigger": ["When Not To Use", "UI/product design"],
   "test-failure-debug-no-trigger": ["When Not To Use", "test failure debugging"],
+  "generic-prose-polish-no-trigger": ["When Not To Use", "generic prose polishing"],
+  "model-choice-no-trigger": ["When Not To Use", "model/provider choice"],
 };
 
 function readText(relativePath) {

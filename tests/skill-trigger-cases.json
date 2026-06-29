@@ -232,5 +232,37 @@
     ],
     "expected_references": [],
     "pass_rule": "Pass if the agent does not use token-prompt-compiler and starts from tests/debugging workflow."
+  },
+  {
+    "id": "generic-prose-polish-no-trigger",
+    "input": "Rewrite this paragraph so it sounds more polished and professional.",
+    "expected_behavior": [
+      "Treat this as generic prose polishing or copy editing.",
+      "Rewrite directly or ask for the paragraph if it is missing.",
+      "Do not route through prompt lint unless the user says the text is a downstream agent prompt."
+    ],
+    "must_not": [
+      "Do not produce a SACP packet.",
+      "Do not read token-prompt-compiler references.",
+      "Do not turn ordinary prose polish into prompt optimization."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and handles this as normal writing/editing work."
+  },
+  {
+    "id": "model-choice-no-trigger",
+    "input": "Which model should I use for a cheap README review?",
+    "expected_behavior": [
+      "Treat this as model/provider choice advice.",
+      "Give a compact routing recommendation or ask for constraints if needed.",
+      "Do not create GPT/OpenAI and Claude prompt variants unless the user explicitly asks for model-specific execution prompts."
+    ],
+    "must_not": [
+      "Do not produce a model_adapter packet.",
+      "Do not read token-prompt-compiler references.",
+      "Do not convert model choice into token/cost benchmark planning."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and answers as model/provider selection guidance."
   }
 ]
