@@ -2,11 +2,13 @@
 
 **English** | [中文](#中文)
 
-Token Prompt Compiler turns messy human-language requests into token-efficient SACP v0.1 task contracts, Prompt IR, machine-readable task packets, linted prompts, GPT/OpenAI or Claude adapters, autonomy budgets, hard validators, executable validator specs, and self-repair gates for LLMs and agent systems.
+`token-prompt-compiler` is a Codex skill for turning broad, ambiguous, long-context, high-risk, or handoff requests into minimal pre-execution task contracts.
 
 Think of it as a **pre-flight contract for agents**: objective, boundaries, inputs, output contract, validator, repair policy, and stop rules before the model starts working.
 
-It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, OpenAI/GPT, Claude, Gemini CLI, DeepSeek, or another LLM agent can execute with less wasted context.
+It is not a generic prompt beautifier or a token-saving proof engine. `prompt_lint`, `model_adapter`, and token/cost A/B plans are supporting routes only when they improve downstream agent execution, handoff, validation, or measurable claim boundaries.
+
+It works as a Codex skill, but the core idea is model-agnostic: compile human intent into a compact contract that Codex, Claude Code, OpenAI/GPT, Claude, Gemini CLI, DeepSeek, or another LLM agent can execute with less guessing and tighter evidence.
 
 ## Choose Your Route
 
@@ -14,7 +16,7 @@ It works as a Codex skill, but the core idea is model-agnostic: compile human in
 |---|---|---|
 | 1. Agent skill | You want Codex, Claude Code, or another agent to compile a messy request before execution | [Route 1: Agent skill quick start](#route-1-agent-skill-quick-start) |
 | 2. Local CLI dry-run | You want no-network checks, safe dry-runs, CI validation, or repository health checks | [Route 2: Local CLI dry-run](#route-2-local-cli-dry-run) |
-| 3. Benchmark evidence | You want to record token/cost evidence without making unsupported claims | [Route 3: Benchmark evidence](#route-3-benchmark-evidence) |
+| 3. Benchmark evidence | You explicitly want to record token/cost evidence without making unsupported claims | [Route 3: Benchmark evidence](#route-3-benchmark-evidence) |
 
 Claim boundary:
 
@@ -33,7 +35,7 @@ Use token-prompt-compiler to compile this request into a minimal SACP task contr
 [your messy request]
 ```
 
-For prompt optimization instead of execution:
+For prompt optimization tied to downstream agent execution:
 
 ```text
 Use token-prompt-compiler to turn this messy request into SACP, then produce GPT/OpenAI and Claude versions with a hard validator:
@@ -150,7 +152,7 @@ Output format: Chinese memo under 800 words.
 Stop rule: Stop if required sources are unavailable.
 ```
 
-For prompt work, it also compiles:
+When explicitly asked for downstream agent prompt work, it also compiles:
 
 ```text
 messy human request
@@ -346,7 +348,7 @@ The same packet can be adapted to different systems:
 
 ## Related Work
 
-Token Prompt Compiler is closest to these families of tools, but sits one step earlier:
+Token Prompt Compiler is closest to these families of tools, but its useful position is one step earlier: the pre-execution task contract layer.
 
 | Family | What they do | How this project differs |
 |---|---|---|
@@ -375,7 +377,9 @@ All Markdown files in this repository are intended to be UTF-8. If Chinese text 
 
 ## 中文
 
-Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”，压缩成更省 token、更适合机器执行的 SACP 任务合同。
+`token-prompt-compiler` 的准确定位是 Agent 开工前的任务合同编译器：把宽泛、模糊、长上下文、高风险或需要交接的需求，压成最小可执行 SACP 任务合同。
+
+它不是通用 prompt 美化器，也不是 token-saving 证明机器。`prompt_lint`、`model_adapter` 和 token/cost A/B plan 都只是辅助路线，只有当它们服务于下游 agent 执行、交接、验证或可测宣称边界时才该使用。
 
 它不是“压缩文字”，而是把人话需求编译成 agent 开工前的任务合同：范围、证据、验证方式和停止条件先写清楚，再让模型执行。
 
@@ -387,7 +391,7 @@ Token Prompt Compiler 用来把口语化、发散、很长的“人话需求”�
 |---|---|---|
 | 1. Agent skill | 想让 Codex、Claude Code 或其他 agent 先把混乱需求编译成任务合同再执行 | [路线 1：Agent skill 快速上手](#route-1-agent-skill-zh) |
 | 2. 本地 CLI dry-run | 想做无网络检查、安全 dry-run、CI 校验或仓库健康检查 | [路线 2：本地 CLI dry-run](#route-2-local-cli-zh) |
-| 3. Benchmark evidence | 想记录 token/cost 证据，但不做未被证明的省 token 宣称 | [路线 3：Benchmark evidence](#route-3-benchmark-evidence-zh) |
+| 3. Benchmark evidence | 明确想记录 token/cost 证据，但不做未被证明的省 token 宣称 | [路线 3：Benchmark evidence](#route-3-benchmark-evidence-zh) |
 
 宣称边界：
 
@@ -446,7 +450,7 @@ Use token-prompt-compiler to compile this request into a minimal SACP task contr
 ```
 
 ```text
-使用 token-prompt-compiler，优化下面这个 prompt，输出 GPT/OpenAI 版、Claude 版、hard validator，并做一轮轻量 prompt quality reflection。
+使用 token-prompt-compiler，优化下面这个给下游 agent 执行的 prompt，输出 GPT/OpenAI 版、Claude 版、hard validator，并做一轮轻量 prompt quality reflection。
 
 [粘贴 prompt]
 ```

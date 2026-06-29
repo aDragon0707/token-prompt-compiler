@@ -21,7 +21,24 @@ const requiredCaseIds = [
   "benchmark-claim",
   "complex-repo-plan-escalation",
   "small-scoped-skip-full-packet",
+  "plain-pr-review-no-trigger",
+  "single-typo-no-trigger",
+  "runtime-performance-no-trigger",
+  "ui-polish-no-trigger",
+  "test-failure-debug-no-trigger",
+  "generic-prose-polish-no-trigger",
+  "model-choice-no-trigger",
 ];
+
+const negativeCaseIds = new Set([
+  "plain-pr-review-no-trigger",
+  "single-typo-no-trigger",
+  "runtime-performance-no-trigger",
+  "ui-polish-no-trigger",
+  "test-failure-debug-no-trigger",
+  "generic-prose-polish-no-trigger",
+  "model-choice-no-trigger",
+]);
 
 const requiredFields = [
   "id",
@@ -41,6 +58,13 @@ const keywordRequirements = {
   "benchmark-claim": ["Benchmark", "provider usage evidence"],
   "complex-repo-plan-escalation": ["Plan Escalation Rule", "complex repo execution"],
   "small-scoped-skip-full-packet": ["Small: already scoped", "skip Full Packet"],
+  "plain-pr-review-no-trigger": ["When Not To Use", "ordinary code review"],
+  "single-typo-no-trigger": ["When Not To Use", "single exact edit"],
+  "runtime-performance-no-trigger": ["When Not To Use", "runtime performance"],
+  "ui-polish-no-trigger": ["When Not To Use", "UI/product design"],
+  "test-failure-debug-no-trigger": ["When Not To Use", "test failure debugging"],
+  "generic-prose-polish-no-trigger": ["When Not To Use", "generic prose polishing"],
+  "model-choice-no-trigger": ["When Not To Use", "model/provider choice"],
 };
 
 function readText(relativePath) {
@@ -155,6 +179,14 @@ for (const testCase of cases) {
   for (const relativePath of testCase.expected_references) {
     assert(relativePath.startsWith("references/"), `${testCase.id} expected reference uses references/: ${relativePath}`);
     assert(exists(relativePath), `${testCase.id} expected reference exists: ${relativePath}`);
+  }
+
+  if (negativeCaseIds.has(testCase.id)) {
+    assert(testCase.expected_references.length === 0, `${testCase.id} does not route to token-prompt-compiler references`);
+    assert(
+      /does not use token-prompt-compiler/i.test(testCase.pass_rule),
+      `${testCase.id} pass rule requires no token-prompt-compiler use`
+    );
   }
 
   for (const keyword of keywordRequirements[testCase.id] ?? []) {

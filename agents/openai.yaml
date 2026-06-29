@@ -1,4 +1,4 @@
 interface:
-  display_name: "Token Prompt Compiler"
-  short_description: "Compile messy intent into minimal SACP contracts, model adapters, hard validators, executable checks, and repair-gated packets."
-  default_prompt: "Compile my messy request into the smallest useful SACP v0.1 contract first, then emit Prompt IR or GPT/OpenAI/Claude adapters only if model-specific execution matters. Include boundaries, output contract, validator, repair policy, autonomy budget, and stop rule. Use Tiny SACP or skip the packet if the task is already clear."
+  display_name: "Agent Task Contract Compiler"
+  short_description: "Compile broad or ambiguous agent work into a minimal execution contract with scope, validator, repair policy, and stop rule."
+  default_prompt: "Compile my broad or ambiguous request into the smallest useful SACP v0.1 task contract before execution. Include boundaries, output contract, validator, repair policy, autonomy budget, and stop rule. Use prompt_lint or model_adapter only if the prompt will drive downstream agent execution. Skip the packet if the next action is already clear."

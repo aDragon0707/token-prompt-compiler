@@ -69,9 +69,16 @@ const skill = readText("SKILL.md");
 const readme = readText("README.md");
 const packageJson = JSON.parse(readText("package.json"));
 const workflow = readText(".github/workflows/ci.yml");
+const skillWordCount = skill.match(/\S+/g)?.length || 0;
 
 const frontmatter = skill.match(/^---\n([\s\S]*?)\n---/);
 assert(Boolean(frontmatter), "SKILL.md has YAML frontmatter");
+assert(skillWordCount <= 1600, "SKILL.md stays under 1600 words");
+assert(!skill.includes("Read as needed:"), "SKILL.md does not duplicate Reference Router with Read as needed list");
+assert(!skill.includes("## References"), "SKILL.md does not duplicate Reference Router with terminal References section");
+for (const privateSkillName of ["karpathy-skill", "agent-cost-router", "audit-evolution"]) {
+  assert(!skill.includes(privateSkillName), `SKILL.md avoids local-only dependency name: ${privateSkillName}`);
+}
 
 const description = frontmatter?.[1].match(/^description:\s*(.+)$/m)?.[1]?.trim() ?? "";
 assert(description.startsWith("Use when"), "description starts with Use when");
@@ -105,6 +112,9 @@ const requiredReferences = [
   "references/executable-validator-spec.md",
   "references/official-tools.md",
   "references/ab-test.md",
+  "references/api-ab-test.md",
+  "references/output-shapes.md",
+  "references/codex-local-runtime.md",
 ];
 for (const relativePath of requiredReferences) {
   assert(referenceRouter.includes(relativePath), `Reference Router mentions ${relativePath}`);
