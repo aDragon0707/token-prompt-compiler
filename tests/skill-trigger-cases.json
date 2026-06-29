@@ -152,5 +152,85 @@
     ],
     "expected_references": [],
     "pass_rule": "Pass if the agent avoids packet bloat and keeps action, scope, and verification narrowly tied to the single requested edit."
+  },
+  {
+    "id": "plain-pr-review-no-trigger",
+    "input": "Review this PR for bugs, regressions, and missing tests.",
+    "expected_behavior": [
+      "Treat this as ordinary code review.",
+      "Use code-review criteria and file/line findings.",
+      "Do not route through prompt compilation unless the user asks for a prompt, packet, or validator."
+    ],
+    "must_not": [
+      "Do not produce a SACP packet.",
+      "Do not read token-prompt-compiler references.",
+      "Do not describe this as token/cost work."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and proceeds as a normal code review."
+  },
+  {
+    "id": "single-typo-no-trigger",
+    "input": "Fix the typo in README.md line 12. This is the only allowed edit.",
+    "expected_behavior": [
+      "Treat this as a single exact edit.",
+      "Use direct execution with narrow verification.",
+      "Keep scope limited to README.md line 12."
+    ],
+    "must_not": [
+      "Do not produce a Tiny, Standard, or Full SACP packet.",
+      "Do not read token-prompt-compiler references.",
+      "Do not scan unrelated files."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and makes or plans only the exact requested edit."
+  },
+  {
+    "id": "runtime-performance-no-trigger",
+    "input": "Benchmark the CLI startup time and tell me whether it got slower.",
+    "expected_behavior": [
+      "Treat this as runtime performance benchmarking.",
+      "Choose timing commands or existing performance tests.",
+      "Keep the result about wall-clock/runtime behavior, not provider token usage."
+    ],
+    "must_not": [
+      "Do not create a token/cost A/B plan.",
+      "Do not read token-prompt-compiler references.",
+      "Do not claim this is a prompt-token benchmark."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and benchmarks runtime performance directly."
+  },
+  {
+    "id": "ui-polish-no-trigger",
+    "input": "Make this dashboard look more polished and responsive.",
+    "expected_behavior": [
+      "Treat this as UI/product design or frontend implementation work.",
+      "Use the relevant design or implementation workflow.",
+      "Only compile a prompt if the user explicitly asks for prompt optimization."
+    ],
+    "must_not": [
+      "Do not produce a prompt lint packet by default.",
+      "Do not read token-prompt-compiler references.",
+      "Do not turn the request into token/cost work."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and routes to UI/product design or frontend work."
+  },
+  {
+    "id": "test-failure-debug-no-trigger",
+    "input": "Run the test suite, find the failing test, and fix the bug.",
+    "expected_behavior": [
+      "Treat this as test failure debugging and bug fixing.",
+      "Use systematic debugging or TDD-style regression work.",
+      "Only compile a packet if the user asks for an agent handoff or validator."
+    ],
+    "must_not": [
+      "Do not produce a SACP packet by default.",
+      "Do not read token-prompt-compiler references.",
+      "Do not delay debugging with prompt optimization."
+    ],
+    "expected_references": [],
+    "pass_rule": "Pass if the agent does not use token-prompt-compiler and starts from tests/debugging workflow."
   }
 ]

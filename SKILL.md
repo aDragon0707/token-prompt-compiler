@@ -30,6 +30,12 @@ First classify the user's intent. The skill name selects this capability; it doe
 | `model_adapter`, GPT/OpenAI version, Claude version | Keep one SACP or Prompt IR source of truth, then emit model-specific variants. |
 | Benchmark, token saving, cost proof, A/B test | Produce fixed conditions and measurement fields; do not claim token savings without provider usage evidence. |
 
+## When Not To Use
+
+Do not use this skill for ordinary code review, PR review, bug fixing, test failure debugging, UI/product design, PRD/issue planning, or runtime performance benchmarking unless the user explicitly asks to compile a prompt, SACP, handoff packet, validator, or token/cost benchmark.
+
+For a single exact edit, direct question, already-scoped command, or normal implementation task, use the host agent's normal workflow or a more specific skill.
+
 ## Reference Router
 
 Load only the references needed for the chosen intent. Do not batch-read `references/`.

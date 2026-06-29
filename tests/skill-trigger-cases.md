@@ -32,6 +32,11 @@
 | `benchmark-claim` | 对 token/cost 结论保持 claim boundary，不把 dry-run 当证明。 |
 | `complex-repo-plan-escalation` | 复杂仓库任务先进入 plan，不直接改文件。 |
 | `small-scoped-skip-full-packet` | 小而明确的任务跳过 Full Packet，避免过度编译。 |
+| `plain-pr-review-no-trigger` | Negative trigger: ordinary code review should not use token-prompt-compiler. |
+| `single-typo-no-trigger` | Negative trigger: a single exact edit should not use token-prompt-compiler. |
+| `runtime-performance-no-trigger` | Negative trigger: runtime performance benchmark should not become token/cost benchmark. |
+| `ui-polish-no-trigger` | Negative trigger: UI/product design should route to design/frontend work. |
+| `test-failure-debug-no-trigger` | Negative trigger: test failure debugging should route to debugging/TDD work. |
 
 ## Pass / Fail Rule
 
@@ -99,4 +104,34 @@ Use token-prompt-compiler to prove this prompt saves tokens. Do an A/B plan but 
 
 ```text
 Use token-prompt-compiler lightly: fix the typo in README.md line 12. This is the only allowed edit.
+```
+
+### `plain-pr-review-no-trigger`
+
+```text
+Review this PR for bugs, regressions, and missing tests.
+```
+
+### `single-typo-no-trigger`
+
+```text
+Fix the typo in README.md line 12. This is the only allowed edit.
+```
+
+### `runtime-performance-no-trigger`
+
+```text
+Benchmark the CLI startup time and tell me whether it got slower.
+```
+
+### `ui-polish-no-trigger`
+
+```text
+Make this dashboard look more polished and responsive.
+```
+
+### `test-failure-debug-no-trigger`
+
+```text
+Run the test suite, find the failing test, and fix the bug.
 ```

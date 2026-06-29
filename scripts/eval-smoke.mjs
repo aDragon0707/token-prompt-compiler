@@ -53,7 +53,7 @@ const referenceCaseIds = new Set();
 if (exists("tests/skill-trigger-cases.json")) {
   cases = readJson("tests/skill-trigger-cases.json");
   assert(Array.isArray(cases), "skill trigger cases are an array");
-  assert(cases.length === 8, "skill trigger case count is 8");
+  assert(cases.length >= 8, "skill trigger case count is at least 8");
   for (const testCase of cases) {
     if ((testCase.expected_references || []).length > 0) {
       referenceCaseIds.add(testCase.id);
@@ -103,10 +103,10 @@ if (exists("scripts/run-skill-effect-eval.mjs")) {
   if (parsed) {
     assert(parsed.mode === "dry-run", "skill effect runner reports dry-run mode");
     assert(parsed.execute === false, "skill effect runner execute is false");
-    assert(parsed.case_count === 8, "skill effect runner includes 8 cases");
+    assert(parsed.case_count === cases.length, "skill effect runner includes all trigger cases");
     assert(parsed.variant_count === 3, "skill effect runner includes A/B/C variants");
     assert(parsed.model_count === 2, "skill effect runner includes 2 dry-run models");
-    assert(parsed.planned_calls === 96, "skill effect runner planned calls are 96");
+    assert(parsed.planned_calls === cases.length * 3 * 2 * 2, "skill effect runner planned calls match cases, variants, models, and runs");
     assert(Array.isArray(parsed.variants) && parsed.variants.join(",") === "A,B,C", "skill effect runner variants are A,B,C");
     assert(parsed.raw_out_path?.startsWith("eval-runs/"), "skill effect runner raw output path stays in eval-runs/");
     assert(parsed.summary_out_path?.startsWith("evals/results/"), "skill effect runner summary output path stays in evals/results/");
