@@ -77,6 +77,13 @@ hash_receipt:
 
 Use the smallest tier that changes the outcome.
 
+Downshift when structure adds more friction than clarity:
+
+- Small already-bounded tasks should not grow extra roles, approvals, or phase gates just because the user mentioned SACP.
+- If the next useful action is obvious, return a direct answer, one lean prompt, or Tiny SACP.
+- Use Standard/Full only when the extra fields prevent real risk: cross-file ambiguity, external publishing, secrets/privacy, schema changes, tool/API execution, multi-agent handoff, or high-cost rework.
+- A good contract reduces decision surface. It is a bad contract if it makes a one-step task feel like a program office.
+
 ### Tiny SACP
 
 Use for small tasks with one clear action.

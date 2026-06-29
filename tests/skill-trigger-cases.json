@@ -152,5 +152,24 @@
     ],
     "expected_references": [],
     "pass_rule": "Pass if the agent avoids packet bloat and keeps action, scope, and verification narrowly tied to the single requested edit."
+  },
+  {
+    "id": "small-plan-only-avoid-governance",
+    "input": "用 token-prompt-compiler 优化一下这个 prompt：让执行窗口规划 T2.2。T2.2 只改一个 index.html，把三份 sample JSON 内嵌到 DATA，并实现 getSelectedTrace。不要执行，只要 plan-only prompt。",
+    "expected_behavior": [
+      "Recognize this as a small plan-only prompt optimization task.",
+      "Output one lean execution-window prompt or Tiny SACP at most.",
+      "Keep the user's intended path instead of inventing extra roles or approval stages.",
+      "Preserve hard task boundaries such as no T2.3, no schema edits, and no API/build-tool expansion."
+    ],
+    "must_not": [
+      "Do not output multiple reviewer or governance prompts.",
+      "Do not create a five-step multi-window workflow.",
+      "Do not use Standard or Full SACP unless new risk evidence appears."
+    ],
+    "expected_references": [
+      "references/sacp-core.md"
+    ],
+    "pass_rule": "Pass if the agent downshifts to a single lean prompt and avoids adding governance friction beyond the small plan-only task."
   }
 ]
